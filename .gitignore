@@ -1,0 +1,22 @@
+# secrets: your Claude / PageSpeed keys live here (use .env.example as the template)
+.env
+
+# your audit runs (screenshots, snapshots of the pages you audited) and local caches
+out/
+out_*/
+cache/
+
+# reference outputs from real brand pages; kept out of the public repo
+sample_output/
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

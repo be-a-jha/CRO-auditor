@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRO Audit · {{ r.label }}</title>
+<style>
+:root{--ink:#16181d;--ink2:#4b5160;--ink3:#8a8f9c;--bg:#f5f5f2;--card:#fff;--line:#e6e5e0;--pass:#1a7f4b;--partial:#b7791f;--fail:#c0362c;--na:#9aa0aa;--accent:#2f4bd8;--you:#2f4bd8;--them:#9aa0aa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent)}.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}h1{font-size:28px;margin:4px 0 2px;letter-spacing:-.01em}
+.url{color:var(--ink2);font-size:13px;word-break:break-all}.meta{font-size:12px;color:var(--ink3);text-align:right}
+.grid{display:grid;gap:14px}.g5{grid-template-columns:repeat(5,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr 1fr}
+@media(max-width:980px){.g5{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:860px){.g5,.g4,.g3{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.k{font-size:12px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em}.big{font-size:38px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.mid{font-size:28px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.sub{font-size:13px;color:var(--ink2)}.ring{display:flex;gap:14px;align-items:center}
+section{margin-top:32px}h2{font-size:19px;margin:0 0 12px}h3.h{font-size:15px;margin:18px 0 8px}
+.chip{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.s-pass{background:#e5f3eb;color:var(--pass)}.s-partial{background:#fbf0dc;color:var(--partial)}.s-fail{background:#f8e3e1;color:var(--fail)}.s-na{background:#eceef1;color:var(--na)}
+.sev-critical{background:var(--fail);color:#fff}.sev-high{background:#f8e3e1;color:var(--fail)}.sev-medium{background:#fbf0dc;color:var(--partial)}.sev-low{background:#eceef1;color:var(--ink2)}
+.imp-high{background:#e3e8fb;color:var(--accent)}.imp-medium{background:#eef0f7;color:#4a5ba8}.imp-low{background:#eceef1;color:var(--ink2)}
+.vp{background:#f0efea;color:var(--ink2)}.kind-addon{background:#efe6fb;color:#6b3fb0}.kind-change{background:#e6f1f6;color:#23627f}
+.list{display:grid;gap:10px}.item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.item h3{font-size:15px;margin:0 0 4px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.item p{margin:0;color:var(--ink2);font-size:14px}
+.ev{font-size:12.5px;color:var(--ink3);margin-top:6px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;background:#fafaf8}
+tr:last-child td{border-bottom:0}.tw{overflow-x:auto}.tw table{min-width:720px}
+td.you{background:#f4f6fe}th.you{color:var(--you)}
+.bar{height:8px;background:#ecebe6;border-radius:99px;overflow:hidden;min-width:80px}.bar i{display:block;height:100%;border-radius:99px}
+.bench{display:grid;gap:8px}.brow{display:grid;grid-template-columns:170px 1fr 42px;gap:10px;align-items:center;font-size:14px}
+.brow .bar{height:12px}.brow.you b{color:var(--you)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:14px}.shot{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.shot .cap{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--ink2);padding:8px 12px;border-bottom:1px solid var(--line)}
+.scroll{max-height:760px;overflow:auto;background:#fbfbfa}.scroll img{display:block;width:100%}
+.mob .scroll img{max-width:390px;margin:0 auto}
+.comps{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.comp img{display:block;width:100%;border-radius:8px;border:1px solid var(--line);margin-top:10px;max-height:420px;object-fit:cover;object-position:top}
+.comp .nm{font-weight:700;font-size:16px}.comp .sc{display:flex;gap:12px;margin-top:8px;font-size:13px;color:var(--ink2)}.comp .sc b{font-size:18px;color:var(--ink)}
+.swatches{display:flex;flex-wrap:wrap;gap:10px}.sw{width:120px;font-size:12px}.sw i{display:block;height:44px;border-radius:8px;border:1px solid var(--line);margin-bottom:4px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.btn{display:inline-block;padding:9px 14px;border-radius:10px;background:var(--ink);color:#fff;text-decoration:none;font-size:13px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.note{font-size:13px;color:var(--ink2);background:#fffbea;border:1px solid #f1e3a6;border-radius:10px;padding:10px 12px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+details summary{cursor:pointer;color:var(--ink2);font-size:14px}
+sup.cite a{font-size:11px;text-decoration:none;background:#eef0f7;color:#4a5ba8;border-radius:4px;padding:0 4px;margin-left:2px}
+.src li{margin:6px 0;font-size:13.5px;color:var(--ink2)}.src b{color:var(--ink)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle}
+</style>
+</head>
+<body><div class="wrap">
+{% macro cites(ids) %}{% for i in ids or [] %}{% if i in r.research %}<sup class="cite"><a href="#src-{{ i }}" title="{{ r.research[i].source }}">{{ r.research[i].source.split(',')[0].split(' (')[0] }}</a></sup>{% endif %}{% endfor %}{% endmacro %}
+{% macro vp(v) %}{% if v and v != 'both' and v != 'all' %}<span class="chip vp">{{ v }}</span>{% endif %}{% endmacro %}
+{% macro st(s) %}<span class="chip s-{{ s }}">{{ s }}</span>{% endmacro %}
+{% set C = r.comparison or {} %}{% set B = C.benchmark %}
+<header class="top">
+  <div><div class="eyebrow">Product page CRO audit{% if r.profile.category %} · {{ r.profile.category }}{% endif %}</div><h1>{{ r.label }}</h1><div class="url">{{ r.input }}</div></div>
+  <div class="meta">{{ r.generated }}<br>Analysis: {{ ('Claude ' ~ r.model ~ ' (effort ' ~ r.effort ~ ')') if r.plan_source == 'llm' else 'rules engine (no LLM)' }}
+  {% if r.cost %}<br>Claude cost for this page: ${{ '%.3f'|format(r.cost.usd) }}{{ ' (batch, 50% off)' if r.batch }}{% endif %}</div>
+</header>
+
+{% if r.error %}<div class="note"><b>Partial result.</b> {{ r.error }}</div>{% endif %}
+
+<div class="grid g5">
+  <div class="card ring">{{ ring(r.cro_score) }}<div><div class="k">CRO score</div><div class="big">{{ r.cro_score }}</div><div class="sub">Grade {{ r.grade }} · {{ (r.coverage*100)|int }}% measurable</div></div></div>
+  <div class="card"><div class="k">Mobile</div><div class="mid" style="color:{{ col(r.viewport_scores.mobile) }}">{{ r.viewport_scores.mobile if r.viewport_scores.mobile is not none else 'n/a' }}</div><div class="sub">{% if B and B.mobile.avg is not none %}competitors avg {{ B.mobile.avg }}{% else %}390px viewport{% endif %}</div></div>
+  <div class="card"><div class="k">Desktop</div><div class="mid" style="color:{{ col(r.viewport_scores.desktop) }}">{{ r.viewport_scores.desktop if r.viewport_scores.desktop is not none else 'n/a' }}</div><div class="sub">{% if B and B.desktop.avg is not none %}competitors avg {{ B.desktop.avg }}{% else %}1440px viewport{% endif %}</div></div>
+  <div class="card"><div class="k">Vs competitors</div>{% if B %}<div class="mid">#{{ B.rank }} <span style="font-size:16px;color:var(--ink3)">of {{ B.of }}</span></div><div class="sub">avg {{ B.avg }} · best {{ B.best }} ({{ B.best_brand }})</div>{% else %}<div class="mid">n/a</div><div class="sub">no competitor captured</div>{% endif %}</div>
+  <div class="card"><div class="k">Performance</div><div class="mid" style="color:{{ col(r.perf_score) }}">{{ r.perf_score if r.perf_score is not none else 'n/a' }}</div><div class="sub">{{ r.perf_label }}</div></div>
+</div>
+<div class="btns" style="margin-top:14px">{% if r.optimized %}<a class="btn" href="{{ r.optimized }}?highlight">Open optimised page</a><a class="btn ghost" href="{{ r.optimized }}?download" download="{{ (r.slug or 'page') ~ '-optimized.html' }}">Download HTML</a>{% endif %}{% if r.original %}<a class="btn ghost" href="{{ r.original }}">Original snapshot</a>{% endif %}<a class="btn ghost" href="report.json">report.json</a></div>
+
+{% if r.summary or r.positioning %}<section><div class="card">
+  {% if r.summary %}<div class="k">Summary</div><p style="margin:.4em 0 0">{{ r.summary }}</p>{% endif %}
+  {% if r.positioning %}<div class="k" style="margin-top:14px">Competitive position</div><p style="margin:.4em 0 0">{{ r.positioning }}</p>{% endif %}
+</div></section>{% endif %}
+{% for f in r.flags %}<section style="margin-top:14px"><div class="note">{{ f }}</div></section>{% endfor %}
+
+<section><h2>Competitive analysis</h2>
+{% if C.competitors %}
+<div class="grid g2" style="align-items:start">
+  <div class="card"><div class="k" style="margin-bottom:10px">CRO score, same rubric</div><div class="bench">
+    <div class="brow you"><b>{{ r.profile.brand or r.label }} (you)</b><div class="bar"><i style="width:{{ r.cro_score }}%;background:var(--you)"></i></div><b>{{ r.cro_score }}</b></div>
+    {% for c in C.competitors %}<div class="brow"><span>{{ c.brand }}</span><div class="bar"><i style="width:{{ c.cro_score }}%;background:var(--them)"></i></div><b>{{ c.cro_score }}</b></div>{% endfor %}
+  </div>
+  <table style="margin-top:14px"><thead><tr><th></th><th class="you">You</th>{% for c in C.competitors %}<th>{{ c.brand }}</th>{% endfor %}</tr></thead><tbody>
+    <tr><td>Mobile</td><td class="you"><b>{{ r.viewport_scores.mobile }}</b></td>{% for c in C.competitors %}<td>{{ c.mobile_score }}</td>{% endfor %}</tr>
+    <tr><td>Desktop</td><td class="you"><b>{{ r.viewport_scores.desktop }}</b></td>{% for c in C.competitors %}<td>{{ c.desktop_score }}</td>{% endfor %}</tr>
+    {% if r.kind == 'url' %}<tr><td>Perf (lab)</td><td class="you"><b>{{ r.target.perf_score }}</b></td>{% for c in C.competitors %}<td>{{ c.perf_score }}</td>{% endfor %}</tr>{% endif %}
+  </tbody></table></div>
+  <div class="card"><div class="k" style="margin-bottom:8px">Where you trail</div>
+    {% for g in C.gaps[:8] %}<div style="display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)"><span><b>{{ g.title }}</b> {{ vp(g.viewport) }}<br><span class="sub">done by {{ g.passing|join(', ') }}</span></span>{{ st(g.target) }}</div>
+    {% else %}<p class="sub">No check where a competitor passes and this page doesn't.</p>{% endfor %}
+    {% if C.table_stakes %}<p class="sub" style="margin-top:10px"><b>Table stakes</b> (every competitor does it, you don't): {{ C.table_stakes|map(attribute='title')|join(', ') }}.</p>{% endif %}
+    <div class="k" style="margin:14px 0 8px">Where you lead</div>
+    {% for g in C.leads[:6] %}<div style="padding:4px 0" class="sub"><span class="chip s-pass">ahead</span> <b style="color:var(--ink)">{{ g.title }}</b></div>
+    {% else %}<p class="sub">No check where this page beats most competitors.</p>{% endfor %}
+  </div>
+</div>
+
+<div class="comps" style="margin-top:14px">{% for c in C.competitors %}<div class="card comp">
+  <div class="nm">{{ c.brand }}</div><div class="url"><a href="{{ c.final_url }}" target="_blank" rel="noopener">{{ c.final_url[:70] }}</a></div>
+  <div class="sc"><span>CRO <b>{{ c.cro_score }}</b></span><span>Mobile <b>{{ c.mobile_score }}</b></span><span>Desktop <b>{{ c.desktop_score }}</b></span></div>
+  {% if c.why %}<p class="sub" style="margin:8px 0 0">{{ c.why }}</p>{% endif %}
+  <p class="sub" style="margin:6px 0 0">{{ c.title }} · {{ c.price }}</p>
+  {% if c.shots and c.shots.mobile_fold %}<a href="{{ c.shots.mobile_full or c.shots.mobile_fold }}" target="_blank"><img src="{{ c.shots.mobile_fold }}" alt="{{ c.brand }} mobile first screen" loading="lazy"></a>{% endif %}
+</div>{% endfor %}</div>
+
+{% if r.insights %}<h3 class="h">What competitors do differently</h3><div class="list">
+{% for x in r.insights %}<div class="item"><h3><span class="chip vp">{{ x.competitor }}</span>{{ x.observation }}</h3><p><b>Takeaway:</b> {{ x.takeaway }}</p></div>{% endfor %}</div>{% endif %}
+
+<h3 class="h">Side by side</h3>
+<div class="tw"><table><thead><tr><th></th><th class="you">You</th>{% for c in C.competitors %}<th>{{ c.brand }}</th>{% endfor %}</tr></thead><tbody>
+{% for f in C.facts %}<tr><td><b>{{ f.label }}</b></td><td class="you">{{ f.target }}</td>{% for v in f.comps %}<td>{{ v }}</td>{% endfor %}</tr>{% endfor %}
+</tbody></table></div>
+
+<details style="margin-top:12px"><summary>Check-by-check matrix ({{ C.matrix|length }} checks)</summary>
+<div class="tw" style="margin-top:8px"><table><thead><tr><th>Check</th><th class="you">You</th>{% for c in C.competitors %}<th>{{ c.brand }}</th>{% endfor %}</tr></thead><tbody>
+{% for m in C.matrix %}<tr><td><b>{{ m.title }}</b> {{ vp(m.viewport) }}<div class="sub">{{ m.category }}</div></td><td class="you">{{ st(m.target) }}</td>{% for s in m.comps %}<td>{{ st(s) }}</td>{% endfor %}</tr>{% endfor %}
+</tbody></table></div></details>
+{% else %}<div class="note">No competitor page could be analysed for this product.</div>{% endif %}
+{% for n in r.comp_notes %}<p class="sub" style="margin:6px 0 0">{{ n }}</p>{% endfor %}
+<p class="sub">Category: {{ r.profile.category or 'unknown' }}{% if r.profile.product_type %} · product type: {{ r.profile.product_type }}{% endif %} · competitors chosen by {{ r.profile.source or 'n/a' }}. Every page is scored with the same rubric, captured the same way (desktop 1440px + mobile 390px).</p>
+</section>
+
+{% if r.shots %}
+<section><h2>Before and after</h2>
+  {% if r.shots.before_mobile %}<div class="ba mob">
+    <div class="shot"><div class="cap"><span>Before · mobile</span><span>{{ 'input screenshot' if r.kind == 'image' else 'static snapshot' }}</span></div><div class="scroll"><img src="{{ r.shots.before_mobile }}" alt="Before, mobile"></div></div>
+    <div class="shot"><div class="cap"><span>After · mobile</span><span>changes outlined in pink</span></div><div class="scroll">{% if r.shots.after_mobile %}<img src="{{ r.shots.after_mobile }}" alt="After, mobile">{% endif %}
+      {% if r.shots.after_sticky %}<div class="cap" style="border-top:1px solid var(--line)"><span>Sticky elements, shown while scrolling</span></div><img src="{{ r.shots.after_sticky }}" alt="After, mobile, scrolled">{% endif %}</div></div>
+  </div>{% endif %}
+  {% if r.shots.before_desktop %}<div class="ba" style="margin-top:14px">
+    <div class="shot"><div class="cap"><span>Before · desktop</span></div><div class="scroll"><img src="{{ r.shots.before_desktop }}" alt="Before, desktop"></div></div>
+    <div class="shot"><div class="cap"><span>After · desktop</span><span>changes outlined in pink</span></div><div class="scroll">{% if r.shots.after_desktop %}<img src="{{ r.shots.after_desktop }}" alt="After, desktop">{% endif %}</div></div>
+  </div>{% endif %}
+</section>
+{% endif %}
+
+<section class="grid g2" style="align-items:start">
+  <div><h2>What's wrong</h2><div class="list">
+  {% for i in r.issues %}<div class="item"><h3><span class="chip sev-{{ i.severity }}">{{ i.severity }}</span>{{ i.title }} {{ vp(i.viewport) }}{{ cites(i.research) }}</h3><p>{{ i.detail }}</p>{% if i.fix %}<div class="ev"><b>Fix:</b> {{ i.fix }}</div>{% endif %}{% if i.evidence and i.evidence != i.detail %}<div class="ev">Evidence: {{ i.evidence }}</div>{% endif %}</div>
+  {% else %}<div class="item"><p>No issues found.</p></div>{% endfor %}</div></div>
+  <div><h2>What's working</h2><div class="list">
+  {% for s in r.strengths %}<div class="item"><h3><span class="chip s-pass">ok</span>{{ s.title }} {{ vp(s.viewport) }}</h3><p>{{ s.detail }}</p></div>
+  {% else %}<div class="item"><p>Nothing stands out yet.</p></div>{% endfor %}</div></div>
+</section>
+
+<section><h2>Recommended changes and add-ons</h2>
+<div class="tw"><table><thead><tr><th>#</th><th>Recommendation</th><th>Type</th><th>Impact</th><th>Effort</th><th>In mockup</th></tr></thead><tbody>
+{% for x in r.recommendations %}<tr><td class="mono">{{ x.id }}</td><td><b>{{ x.title }}</b> {{ vp(x.viewport) }}{{ cites(x.research) }}<div class="sub">{{ x.why }}</div>{% if x.competitor_ref %}<div class="ev">Competitor reference: {{ x.competitor_ref }}</div>{% endif %}</td>
+<td><span class="chip kind-{{ x.kind or 'change' }}">{{ 'add-on' if x.kind == 'addon' else 'change' }}</span></td>
+<td><span class="chip imp-{{ x.impact }}">{{ x.impact }}</span></td><td><span class="chip s-na">{{ x.effort }}</span></td>
+<td>{% if x.id in r.applied_recs %}<span class="chip s-pass">shown</span>{% elif x.in_mockup %}<span class="chip s-partial">blocked</span>{% else %}<span class="chip s-na">needs content</span>{% endif %}</td></tr>{% endfor %}
+</tbody></table></div>
+<p class="sub">"Blocked" means the brand or claim guard refused the change, or its target wasn't found; see the guard log below.</p></section>
+
+<section><h2>CRO rubric</h2>
+<div class="grid g4" style="margin-bottom:14px">{% for name, c in r.categories.items() %}
+  <div class="card"><div class="k">{{ name }}</div><div style="display:flex;align-items:center;gap:10px;margin-top:6px"><b>{{ c.score if c.score is not none else 'n/a' }}</b>
+  <div class="bar" style="flex:1"><i style="width:{{ c.score or 0 }}%;background:{{ col(c.score) }}"></i></div></div><div class="sub">weight {{ c.weight }}</div></div>{% endfor %}</div>
+<div class="tw"><table><thead><tr><th>Check</th><th>Status</th><th>Evidence</th><th>Weight</th></tr></thead><tbody>
+{% for c in r.checks %}<tr><td><b>{{ c.title }}</b> {{ vp(c.viewport) }}{{ cites(c.research) }}<div class="sub">{{ c.category }}</div></td><td>{{ st(c.status) }}</td><td>{{ c.evidence }}</td><td class="mono">{{ c.weight }}</td></tr>{% endfor %}
+</tbody></table></div></section>
+
+<section><h2>Performance</h2>
+{% if r.perf.psi %}<div class="grid g4">{% for k, v in r.perf.psi.metrics.items() %}<div class="card"><div class="k">{{ k|replace('_ms',' (ms)')|upper }}</div><div class="big" style="font-size:26px">{{ (v|round(3) if k == 'cls' else v|round|int) if v is not none else 'n/a' }}</div></div>{% endfor %}</div>
+{% if r.perf.psi.field %}<p class="sub">Real-user data (Chrome UX Report, p75): {% for k, v in r.perf.psi.field.items() %}{{ k }} {{ v.p75 }} ({{ v.category }}){{ ', ' if not loop.last }}{% endfor %}</p>{% endif %}
+{% if r.perf.psi.opportunities %}<table style="margin-top:12px"><thead><tr><th>Lighthouse opportunity</th><th>Est. saving</th></tr></thead><tbody>{% for o in r.perf.psi.opportunities %}<tr><td>{{ o.title }}</td><td class="mono">{{ o.savings_ms }} ms</td></tr>{% endfor %}</tbody></table>{% endif %}
+{% endif %}
+{% if r.perf.lab_rows %}<table style="margin-top:12px"><thead><tr><th>Lab budget check (mobile load)</th><th>Value</th><th>Status</th></tr></thead><tbody>
+{% for x in r.perf.lab_rows %}<tr><td>{{ x.name }}</td><td class="mono">{{ x.value }}</td><td>{{ st(x.status) }}</td></tr>{% endfor %}</tbody></table>
+<p class="sub">{{ r.perf.note }} Why speed matters: {{ cites(['google-speed', 'deloitte-speed', 'google-cwv']) }}</p>{% endif %}
+{% if not r.perf.psi and not r.perf.lab_rows %}<div class="note">{{ r.perf.note }}</div>{% endif %}
+</section>
+
+<section><h2>Brand identity kept</h2>
+<div class="card">
+  <div class="k" style="margin-bottom:8px">Colour roles ({{ r.tokens.source }})</div>
+  <div class="swatches">{% for role, hx in r.tokens.roles.items() %}<div class="sw"><i style="background:{{ hx }}"></i><b>{{ role }}</b><br><span class="mono">{{ hx }}</span></div>{% endfor %}</div>
+  <div class="grid g2" style="margin-top:14px">
+    <div><div class="k">Fonts</div>{% for k, v in r.tokens.fonts.items() %}<div><b>{{ k }}</b> <span class="mono">{{ v }}</span></div>{% endfor %}</div>
+    <div><div class="k">Type scale (px)</div><div class="mono">{{ r.tokens.sizes|map('fmtnum')|join(', ') }}</div><div class="k" style="margin-top:8px">Button</div><div class="mono">radius {{ r.tokens.radius.button }} · {{ r.tokens.button.transform }} · spacing {{ r.tokens.button.spacing }}</div></div>
+  </div>
+  {% for n in r.tokens.notes %}<p class="sub">{{ n }}</p>{% endfor %}
+</div>
+{% if r.guard_log %}<details style="margin-top:12px" open><summary>Brand and claim guard log ({{ r.guard_log|length }})</summary>
+<table style="margin-top:8px"><thead><tr><th>Rec</th><th>Type</th><th>What the guard did</th></tr></thead><tbody>
+{% for g in r.guard_log %}<tr><td class="mono">{{ g.rec_id }}</td><td><span class="chip s-na">{{ g.kind }}</span></td><td>{{ g.detail }}</td></tr>{% endfor %}</tbody></table></details>{% endif %}
+{% if r.rejected %}<details style="margin-top:12px"><summary>Patches not applied ({{ r.rejected|length }})</summary>
+<table style="margin-top:8px"><tbody>{% for x in r.rejected %}<tr><td class="mono">{{ x.rec_id }} · {{ x.op }}{{ ' ' ~ x.component if x.component and x.component != 'none' }} → {{ x.target }}</td><td>{{ x.reason }}</td></tr>{% endfor %}</tbody></table></details>{% endif %}
+</section>
+
+{% if r.research %}<section><h2>Sources</h2><ul class="src card" style="list-style:none;margin:0">
+{% for k, s in r.research.items() %}<li id="src-{{ k }}"><b>{{ s.source }}.</b> {{ s.finding }}{% if s.url %} <a href="{{ s.url }}" target="_blank" rel="noopener">link</a>{% endif %}</li>{% endfor %}
+</ul></section>{% endif %}
+
+<section class="sub">
+<p><b>Method.</b> The CRO score is a fixed, weighted rubric of {{ r.checks|length }} checks measured from the rendered page on mobile (390px) and desktop (1440px){{ ' (estimated by vision from the screenshot)' if r.kind == 'image' }}; the same page always gets the same score, and competitors are scored with the same rubric. The written audit and mockup changes come from {{ 'Claude' if r.plan_source == 'llm' else 'the rules engine' }}; competitor discovery from {{ r.profile.source or 'the seed list' }}.
+{% if r.kind == 'image' %}The optimised page is the screenshot itself cut into sections, with new brand-styled blocks inserted, so every original pixel is unchanged.{% else %}The optimised page is a static snapshot of the live page with changes injected; scripts are removed, so carousels and forms do not work.{% endif %}
+Dashed outlines mark placeholders the brand must confirm before anything ships.</p>
+{% if r.cost and r.cost.calls %}<details><summary>Claude usage for this page (${{ '%.4f'|format(r.cost.usd) }})</summary><table style="margin-top:8px"><thead><tr><th>Call</th><th>Model</th><th>Input</th><th>Cached</th><th>Output</th><th>Cost</th></tr></thead><tbody>
+{% for c in r.cost.calls %}<tr><td class="mono">{{ c.tag.split('.')[-1] }}{{ ' (batch)' if c.batch }}</td><td class="mono">{{ c.model }}</td><td class="mono">{{ c.input_tokens }}</td><td class="mono">{{ c.cache_read_input_tokens }}</td><td class="mono">{{ c.output_tokens }}</td><td class="mono">${{ '%.4f'|format(c.usd) }}</td></tr>{% endfor %}
+</tbody></table></details>{% endif %}
+</section>
+</div>
+<script>
+document.querySelectorAll('.ba').forEach(function (row) {
+  var panes = row.querySelectorAll('.scroll'), busy = false;
+  panes.forEach(function (p) { p.addEventListener('scroll', function () {
+    if (busy) return; busy = true;
+    var f = p.scrollTop / Math.max(1, p.scrollHeight - p.clientHeight);
+    panes.forEach(function (q) { if (q !== p) q.scrollTop = f * (q.scrollHeight - q.clientHeight); });
+    requestAnimationFrame(function () { busy = false; });
+  }); });
+});
+</script>
+</body></html>

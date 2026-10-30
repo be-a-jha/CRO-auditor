@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDP CRO Auditor</title>
+<style>
+:root{--ink:#16181d;--ink2:#4b5160;--ink3:#8a8f9c;--bg:#f5f5f2;--card:#fff;--line:#e6e5e0;--pass:#1a7f4b;--partial:#b7791f;--fail:#c0362c;--accent:#2f4bd8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:28px 16px 80px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+h1{font-size:24px;margin:0;letter-spacing:-.01em}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.pill{font-size:12px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2)}
+.pill b{color:var(--pass)}.pill.off b{color:var(--partial)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+h2{font-size:16px;margin:0 0 12px}
+label.k{display:block;font-size:12px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+textarea,input[type=password],select{width:100%;font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:130px;resize:vertical;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+textarea:focus,input:focus,select:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+.drop{margin-top:12px;border:1.5px dashed #cfcdc5;border-radius:12px;padding:16px;text-align:center;color:var(--ink2);cursor:pointer;background:#fbfbf9}
+.drop.over{border-color:var(--accent);background:#f2f4fd}
+.files{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.file{font-size:12px;background:#f0efea;border-radius:999px;padding:4px 6px 4px 10px;display:flex;gap:6px;align-items:center}
+.file button{border:0;background:transparent;cursor:pointer;color:var(--ink3);font-size:14px;line-height:1}
+.row{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.row label{display:flex;gap:7px;align-items:center;font-size:14px;color:var(--ink2)}
+.row select{width:auto;padding:6px 8px}
+.btn{font:inherit;font-weight:600;font-size:14px;padding:10px 18px;border-radius:10px;border:0;background:var(--ink);color:#fff;cursor:pointer}
+.btn:disabled{opacity:.45;cursor:not-allowed}.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
+.hint{font-size:12.5px;color:var(--ink3)}
+.err{color:var(--fail);font-size:13px}
+.keyrow{display:flex;gap:8px}.keyrow input{flex:1}
+.bar{height:6px;background:#ecebe6;border-radius:99px;overflow:hidden;margin:4px 0 14px}.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .4s}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11.5px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+tr:last-child td{border-bottom:0}
+.sub{font-size:12px;color:var(--ink3);word-break:break-all}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:#eef0f7;color:#4a5ba8;white-space:nowrap}
+.st.ok{background:#e5f3eb;color:var(--pass)}.st.partial{background:#fbf0dc;color:var(--partial)}.st.failed{background:#f8e3e1;color:var(--fail)}.st.queued{background:#eceef1;color:var(--ink3)}
+.spin{width:9px;height:9px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:r .8s linear infinite}
+@keyframes r{to{transform:rotate(360deg)}}
+td.nw{white-space:nowrap}td .sub{max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.score{font-weight:700}.links a{margin-right:10px;font-size:13px;color:var(--accent);white-space:nowrap}
+.tw{overflow-x:auto}.tw table{min-width:640px}
+.runs a{color:var(--accent)}.runs li{margin:4px 0;font-size:14px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div><div class="eyebrow">Product page audit</div><h1>PDP CRO Auditor</h1></div>
+    <div id="keyPill" class="pill">Checking setup…</div>
+  </header>
+
+  <div id="keyCard" class="card hidden">
+    <h2>Add your Claude API key</h2>
+    <div class="keyrow"><input id="keyInput" type="password" placeholder="sk-ant-..." autocomplete="off"><button class="btn" id="keySave">Save</button></div>
+    <p class="hint">Saved to the .env file on this computer. Without a key you can still audit URLs in rules-only mode; screenshots need the key.</p>
+    <div id="keyErr" class="err"></div>
+  </div>
+
+  <div class="card">
+    <h2>New audit</h2>
+    <label class="k" for="urls">Product page URLs, one per line</label>
+    <textarea id="urls" placeholder="https://brand.com/products/face-serum&#10;https://another-brand.in/products/protein-bar | Brand label (optional)"></textarea>
+    <div id="drop" class="drop">Drop full-page screenshots here, or click to choose<input id="fileInput" type="file" accept=".png,.jpg,.jpeg,.webp" multiple hidden>
+      <div class="hint" style="margin-top:4px">A mobile and a desktop screenshot of the same page are paired automatically when their names differ only by "mobile" / "desktop".</div></div>
+    <div id="files" class="files"></div>
+    <label class="k" for="comps" style="margin-top:14px">Competitors (optional)</label>
+    <input id="comps" type="text" placeholder="Leave empty to find the top 3 automatically, or list URLs / domains: thewholetruthfoods.com, superyou.in" style="width:100%;font:inherit;border:1px solid var(--line);border-radius:10px;padding:10px 12px">
+    <div class="row">
+      <label><input type="checkbox" id="useLlm" checked> Claude analysis + tailored mockup</label>
+      <label title="Claude Message Batches API: half price, results usually within minutes"><input type="checkbox" id="batch"> Economy mode (50% cheaper, slower)</label>
+      <label><input type="checkbox" id="psi" checked> PageSpeed Insights</label>
+      <label>Competitors <select id="ncomp"><option value="0">off</option><option>2</option><option selected>3</option></select></label>
+      <label>Pages in parallel <select id="conc"><option selected>2</option><option>3</option><option>4</option><option>6</option></select></label>
+    </div>
+    <div class="actions">
+      <span class="hint" id="costHint"></span>
+      <button class="btn" id="runBtn">Run audit</button>
+    </div>
+    <div id="runErr" class="err"></div>
+  </div>
+
+  <div id="jobCard" class="card hidden">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <h2 id="jobTitle">Running</h2><span><a id="indexLink" class="hidden" target="_blank">Open batch dashboard</a>
+      <a id="zipLink" class="hidden" style="margin-left:14px">Download all (.zip)</a></span>
+    </div>
+    <div class="bar"><i id="barFill"></i></div>
+    <div class="tw"><table>
+      <thead><tr><th>Page</th><th>Status</th><th>CRO</th><th>Mobile / desktop</th><th>Vs competitors</th><th>Biggest issue</th><th>Open</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h2>Recent runs</h2>
+    <ul id="runs" class="runs" style="padding-left:18px;margin:0"></ul>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const H = {"Content-Type": "application/json", "X-CRO": "1"};
+let files = [], cfg = {has_key: false}, pollTimer = null;
+const STAGE = {queued: "Queued", capturing: "Loading page", scoring: "Scoring", competitors: "Benchmarking competitors",
+  analysing: "Claude analysing", "waiting for batch": "Waiting for batch", building: "Building mockup", rendering: "Rendering",
+  ok: "Done", partial: "Done, partial", failed: "Failed"};
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+
+async function loadConfig() {
+  cfg = await (await fetch("/api/config")).json();
+  const pill = $("keyPill");
+  pill.className = "pill" + (cfg.has_key ? "" : " off");
+  pill.innerHTML = cfg.has_key ? `Claude: <b>connected</b> · ${esc(cfg.model)} + ${esc(cfg.fast_model)} · <a href="#" id="changeKey">change key</a>`
+    : `Claude: <b>no key</b> · rules-only mode`;
+  $("keyCard").classList.toggle("hidden", cfg.has_key);
+  $("useLlm").disabled = !cfg.has_key;
+  $("useLlm").checked = cfg.has_key;
+  $("batch").disabled = !cfg.has_key;
+  const ck = $("changeKey");
+  if (ck) ck.onclick = (e) => { e.preventDefault(); $("keyCard").classList.remove("hidden"); $("keyInput").focus(); };
+  updateHint();
+}
+
+function updateHint() {
+  const n = $("urls").value.split("\n").filter(l => l.trim() && !l.trim().startsWith("#")).length;
+  const llm = $("useLlm").checked && cfg.has_key;
+  // measured per-page Claude cost at low effort (Sonnet audit + Haiku discovery); Economy mode = Batch API, half price
+  const perUrl = 0.075, perShot = 0.11, factor = $("batch").checked ? 0.5 : 1;
+  const est = llm ? (n * perUrl + files.length * perShot) * factor : 0;
+  $("costHint").textContent = (n + files.length) ? `${n} URL${n === 1 ? "" : "s"}, ${files.length} screenshot${files.length === 1 ? "" : "s"}` +
+    (llm ? ` · est. Claude cost ~$${est.toFixed(2)}` : " · no API cost") : "";
+}
+
+function renderFiles() {
+  $("files").innerHTML = files.map((f, i) => `<span class="file">${esc(f.name)}<button data-i="${i}" title="Remove">&times;</button></span>`).join("");
+  $("files").querySelectorAll("button").forEach(b => b.onclick = () => { files.splice(+b.dataset.i, 1); renderFiles(); });
+  updateHint();
+}
+
+function addFiles(list) {
+  for (const f of list) {
+    if (!/\.(png|jpe?g|webp)$/i.test(f.name)) continue;
+    if (f.size > 20 * 1024 * 1024) { $("runErr").textContent = `${f.name} is over 20 MB.`; continue; }
+    const r = new FileReader();
+    r.onload = () => { files.push({name: f.name, data: r.result}); renderFiles(); };
+    r.readAsDataURL(f);
+  }
+}
+
+const drop = $("drop");
+drop.onclick = () => $("fileInput").click();
+$("fileInput").onchange = (e) => { addFiles(e.target.files); e.target.value = ""; };
+drop.ondragover = (e) => { e.preventDefault(); drop.classList.add("over"); };
+drop.ondragleave = () => drop.classList.remove("over");
+drop.ondrop = (e) => { e.preventDefault(); drop.classList.remove("over"); addFiles(e.dataTransfer.files); };
+$("urls").oninput = updateHint;
+$("useLlm").onchange = updateHint;
+$("batch").onchange = updateHint;
+
+$("keySave").onclick = async () => {
+  $("keyErr").textContent = "Checking the key with Claude…";
+  $("keySave").disabled = true;
+  const res = await fetch("/api/key", {method: "POST", headers: H, body: JSON.stringify({key: $("keyInput").value})});
+  $("keySave").disabled = false;
+  const data = await res.json();
+  if (!res.ok) { $("keyErr").textContent = data.error; return; }
+  $("keyErr").textContent = "";
+  $("keyInput").value = "";
+  loadConfig();
+};
+
+$("runBtn").onclick = async () => {
+  $("runErr").textContent = "";
+  $("runBtn").disabled = true;
+  const body = {urls: $("urls").value, files, use_llm: $("useLlm").checked, psi: $("psi").checked, concurrency: +$("conc").value,
+    batch: $("batch").checked, competitors: $("comps").value, n_competitors: +$("ncomp").value};
+  const res = await fetch("/api/runs", {method: "POST", headers: H, body: JSON.stringify(body)});
+  const data = await res.json();
+  if (!res.ok) { $("runErr").textContent = data.error; $("runBtn").disabled = false; return; }
+  files = []; renderFiles();
+  watch(data.id);
+};
+
+function watch(id) {
+  clearInterval(pollTimer);
+  $("jobCard").classList.remove("hidden");
+  const tick = async () => {
+    const res = await fetch(`/api/runs/${id}`);
+    if (!res.ok) return;
+    const j = await res.json();
+    renderJob(j);
+    if (j.status !== "running") { clearInterval(pollTimer); $("runBtn").disabled = false; loadRuns(); }
+  };
+  tick();
+  pollTimer = setInterval(tick, 1500);
+}
+
+function renderJob(j) {
+  const done = j.items.filter(i => ["ok", "partial", "failed"].includes(i.stage)).length;
+  $("jobTitle").textContent = j.status === "running" ? `Running · ${done} of ${j.items.length} done` :
+    j.status === "failed" ? `Run failed: ${j.error}` : `Finished · ${j.items.length} page${j.items.length === 1 ? "" : "s"}`;
+  $("barFill").style.width = `${j.items.length ? 100 * done / j.items.length : 0}%`;
+  const link = $("indexLink");
+  link.classList.toggle("hidden", !j.index);
+  if (j.index) link.href = j.index;
+  $("zipLink").classList.toggle("hidden", !j.index);
+  if (j.index) $("zipLink").href = `/api/runs/${encodeURIComponent(j.id)}.zip`;
+  $("rows").innerHTML = j.items.map(i => {
+    const active = !["ok", "partial", "failed", "queued"].includes(i.stage);
+    const cls = ["ok", "partial", "failed", "queued"].includes(i.stage) ? i.stage : "";
+    const score = i.cro_score != null ? `<span class="score">${i.cro_score}</span> ${esc(i.grade)}` +
+      (i.cost_usd ? `<div class="sub">$${(+i.cost_usd).toFixed(3)}</div>` : "") : "";
+    const md = i.cro_score != null ? `${i.mobile_score ?? "n/a"} / ${i.desktop_score ?? "n/a"}` : "";
+    const vs = i.comp_avg != null ? `avg ${i.comp_avg} · #${esc(i.rank)}<div class="sub">${esc((i.competitors || []).join(", "))}</div>` : "";
+    const issue = i.error && i.stage === "failed" ? `<span class="err">${esc(i.error.slice(0, 140))}</span>` : esc((i.top_issues || [])[0] || "");
+    const links = [i.report && `<a href="${i.report}" target="_blank">Report</a>`, i.optimized && `<a href="${i.optimized}?highlight" target="_blank">Optimised page</a>`,
+      i.optimized && `<a href="${i.optimized}?download" download>Download HTML</a>`].filter(Boolean).join("");
+    return `<tr><td><b>${esc(i.label)}</b><div class="sub">${esc(i.input).slice(0, 90)}</div></td>
+      <td><span class="st ${cls}">${active ? '<span class="spin"></span>' : ""}${STAGE[i.stage] || esc(i.stage)}</span></td>
+      <td class="nw">${score}</td><td class="nw">${md}</td><td>${vs}</td><td class="sub" style="color:var(--ink2)">${issue}</td><td class="links">${links}</td></tr>`;
+  }).join("");
+}
+
+async function loadRuns() {
+  const runs = await (await fetch("/api/runs")).json();
+  $("runs").innerHTML = runs.length ? runs.map(r => {
+    const when = r.id.replace(/^(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2}).*/, "$3/$2/$1 $4:$5");
+    const meta = r.status === "running" ? "running" : r.status === "done" ? `${r.pages} pages · avg CRO ${r.avg_cro ?? "n/a"}` : "incomplete";
+    return `<li><a href="#" data-id="${esc(r.id)}">${when}</a> <span class="hint">${meta}</span>${r.index ? ` · <a href="${r.index}" target="_blank">dashboard</a>` : ""}</li>`;
+  }).join("") : '<li class="hint" style="list-style:none;margin-left:-18px">No runs yet.</li>';
+  $("runs").querySelectorAll("a[data-id]").forEach(a => a.onclick = (e) => { e.preventDefault(); watch(a.dataset.id); });
+}
+
+loadConfig();
+loadRuns().then(async () => {
+  const runs = await (await fetch("/api/runs")).json();
+  const live = runs.find(r => r.status === "running");
+  if (live) { $("runBtn").disabled = true; watch(live.id); }
+});
+</script>
+</body>
+</html>

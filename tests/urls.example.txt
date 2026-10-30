@@ -1,0 +1,5 @@
+# One input per line: a product page URL or a screenshot path (or "mobile.png + desktop.png").
+# Optional after "|": a label, and "vs:" followed by competitor domains or product URLs.
+#   https://brand.com/products/whey | Brand | vs: thewholetruthfoods.com, superyou.in
+http://127.0.0.1:8765/pdp_kosha.html | Kosha Botanicals (test page, weak PDP)
+http://127.0.0.1:8765/pdp_fizz.html | Fizzlab (test page, strong PDP)
