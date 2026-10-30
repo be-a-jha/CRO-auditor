@@ -1,0 +1,2326 @@
+{
+ "label": "Fableroom",
+ "input": "https://fableroom.com/collections/furniture-deals/products/riven-pedestal-coffee-table",
+ "kind": "url",
+ "generated": "29 Oct 2026, 02:16",
+ "model": "claude-sonnet-5-5",
+ "fast_model": "claude-haiku-5-5",
+ "effort": "low",
+ "batch": false,
+ "plan_source": "llm",
+ "summary": "FableRoom sells the Riven table on price: 70% off, a John Lewis comparison, a Trustpilot card, B Corp and strong imagery. The biggest problem is that on mobile the price and Add to Basket sit far below the first screen, and a popup and side tab cover the gallery.",
+ "positioning": "FableRoom (score 70) leads Heal's (51) on trust, payments, delivery, reviews and imagery. Heal's shows its price on the first mobile screen, which FableRoom does not, and both pages open with an email popup.",
+ "cro_score": 70,
+ "grade": "B",
+ "coverage": 0.97,
+ "viewport_scores": {
+  "mobile": 72,
+  "desktop": 78
+ },
+ "categories": {
+  "First screen (mobile)": {
+   "score": 32,
+   "weight": 22
+  },
+  "First screen (desktop)": {
+   "score": 50,
+   "weight": 10
+  },
+  "Add to cart": {
+   "score": 87,
+   "weight": 15
+  },
+  "Trust & social proof": {
+   "score": 85,
+   "weight": 20
+  },
+  "Purchase friction": {
+   "score": 80,
+   "weight": 15
+  },
+  "Content & merchandising": {
+   "score": 87,
+   "weight": 15
+  },
+  "Offer clarity": {
+   "score": 100,
+   "weight": 7
+  },
+  "Technical & SEO": {
+   "score": 62,
+   "weight": 8
+  }
+ },
+ "checks": [
+  {
+   "id": "title_atf",
+   "category": "First screen (mobile)",
+   "title": "Product name above the fold",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product name visible without scrolling.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold"
+   ]
+  },
+  {
+   "id": "price_atf",
+   "category": "First screen (mobile)",
+   "title": "Price above the fold",
+   "weight": 5,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Price is not visible on the first mobile screen.",
+   "fix": "Show price next to the title in the first screen; price uncertainty is a top exit reason.",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold",
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "atc_atf",
+   "category": "First screen (mobile)",
+   "title": "Add to cart above the fold",
+   "weight": 6,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Add-to-cart starts 1220px down; mobile screen is 844px.",
+   "fix": "Tighten the hero (shorter gallery, smaller spacing) or add a sticky add-to-cart bar.",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold",
+    "fitts"
+   ]
+  },
+  {
+   "id": "image_atf",
+   "category": "First screen (mobile)",
+   "title": "Product image leads",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product image leads the first screen.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "no_popup",
+   "category": "First screen (mobile)",
+   "title": "No entry popup",
+   "weight": 4,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Popup on load: \"10% Off Your First Order Email CLAIM 10% OFF NO, I WILL PAY THE FULL PRICE\"",
+   "fix": "Delay the email popup to exit intent or 2nd page view; never block a PDP on first load.",
+   "viewport": "mobile",
+   "research": [
+    "google-interstitials"
+   ]
+  },
+  {
+   "id": "d_title_price_atf",
+   "category": "First screen (desktop)",
+   "title": "Name and price above the fold",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product name and price visible on the first desktop screen (1440x900).",
+   "fix": "",
+   "viewport": "desktop",
+   "research": [
+    "nng-fold"
+   ]
+  },
+  {
+   "id": "d_atc_atf",
+   "category": "First screen (desktop)",
+   "title": "Add to cart above the fold",
+   "weight": 3,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Desktop add-to-cart starts 965px down; the screen is 900px.",
+   "fix": "Tighten the desktop buy box so the CTA sits within the first screen.",
+   "viewport": "desktop",
+   "research": [
+    "nng-fold",
+    "fitts"
+   ]
+  },
+  {
+   "id": "d_buybox",
+   "category": "First screen (desktop)",
+   "title": "Buy box beside the gallery",
+   "weight": 2,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Gallery and buy box sit side by side.",
+   "fix": "",
+   "viewport": "desktop",
+   "research": [
+    "nng-fold",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "d_no_popup",
+   "category": "First screen (desktop)",
+   "title": "No entry popup",
+   "weight": 2,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Popup on load: \"10% Off Your First Order Email CLAIM 10% OFF NO, I WILL PAY THE FULL PRICE\"",
+   "fix": "Delay the popup to exit intent on desktop.",
+   "viewport": "desktop",
+   "research": [
+    "google-interstitials"
+   ]
+  },
+  {
+   "id": "atc_present",
+   "category": "Add to cart",
+   "title": "Clear add-to-cart button",
+   "weight": 5,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Primary CTA: \"Add to Basket - £83\".",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "choice-overload"
+   ]
+  },
+  {
+   "id": "atc_contrast",
+   "category": "Add to cart",
+   "title": "CTA text contrast",
+   "weight": 4,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Contrast ratio 3.14:1 (WCAG AA needs 4.5:1).",
+   "fix": "Raise CTA label contrast using the brand's own dark/light pair.",
+   "viewport": "both",
+   "research": [
+    "wcag-contrast"
+   ]
+  },
+  {
+   "id": "atc_tap",
+   "category": "Add to cart",
+   "title": "CTA tap target size",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Mobile CTA height 47px (target 44px+).",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "wcag-target",
+    "fitts"
+   ]
+  },
+  {
+   "id": "sticky_atc",
+   "category": "Add to cart",
+   "title": "Sticky add-to-cart (mobile)",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Add-to-cart stays reachable after scrolling.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "fitts",
+    "nng-fold"
+   ]
+  },
+  {
+   "id": "rating_title",
+   "category": "Trust & social proof",
+   "title": "Rating summary near title",
+   "weight": 6,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Reviews exist further down but no star summary next to the title.",
+   "fix": "Surface the star rating + review count under the title, linked to the reviews section.",
+   "viewport": "both",
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ]
+  },
+  {
+   "id": "reviews",
+   "category": "Trust & social proof",
+   "title": "Customer reviews section",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Reviews section present.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ]
+  },
+  {
+   "id": "trust_atc",
+   "category": "Trust & social proof",
+   "title": "Trust signals near CTA",
+   "weight": 5,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Near CTA: secure, returns, warranty, quality",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "payments",
+   "category": "Trust & social proof",
+   "title": "Payment options visible",
+   "weight": 5,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Payment options shown near CTA.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "delivery",
+   "category": "Purchase friction",
+   "title": "Delivery estimate",
+   "weight": 5,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Delivery estimate / pincode check near CTA.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "shipping",
+   "category": "Purchase friction",
+   "title": "Shipping cost clarity",
+   "weight": 3,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Shipping cost not stated anywhere on the page.",
+   "fix": "State shipping cost or the free-shipping threshold next to the price.",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "returns",
+   "category": "Purchase friction",
+   "title": "Returns policy near CTA",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Returns / exchange stated near CTA.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "variants",
+   "category": "Purchase friction",
+   "title": "Variant selection UX",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Variants shown as visible options.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-pdp",
+    "choice-overload"
+   ]
+  },
+  {
+   "id": "images",
+   "category": "Content & merchandising",
+   "title": "Product imagery depth",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "9 distinct product images.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "video",
+   "category": "Content & merchandising",
+   "title": "Product video",
+   "weight": 2,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "No product video.",
+   "fix": "Add a 15-30s how-to-use or demo video in the gallery.",
+   "viewport": "both",
+   "research": [
+    "wyzowl-video"
+   ]
+  },
+  {
+   "id": "scannable",
+   "category": "Content & merchandising",
+   "title": "Scannable benefits",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "4 bullet points in product info.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "nng-scan"
+   ]
+  },
+  {
+   "id": "faq",
+   "category": "Content & merchandising",
+   "title": "FAQ / objection handling",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "FAQ present.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "cross_sell",
+   "category": "Content & merchandising",
+   "title": "Cross-sell / bundles",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Cross-sell present.",
+   "fix": "",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "discount",
+   "category": "Offer clarity",
+   "title": "Discount clearly stated",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Shown as \"70% OFF\".",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "anchoring"
+   ]
+  },
+  {
+   "id": "offers",
+   "category": "Offer clarity",
+   "title": "Offers / coupons near price",
+   "weight": 2,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Offer messaging near price.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "anchoring",
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "mandatory_info",
+   "category": "Offer clarity",
+   "title": "Mandatory product declarations (India)",
+   "weight": 2,
+   "status": "na",
+   "credit": null,
+   "evidence": "Applies to Indian listings (INR prices).",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "india-lm"
+   ]
+  },
+  {
+   "id": "schema",
+   "category": "Technical & SEO",
+   "title": "Product structured data",
+   "weight": 3,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Product JSON-LD without offer/price.",
+   "fix": "Add Product schema with offers (price, currency, availability).",
+   "viewport": "both",
+   "research": [
+    "google-product-schema"
+   ]
+  },
+  {
+   "id": "rating_schema",
+   "category": "Technical & SEO",
+   "title": "Review stars in search",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "aggregateRating in schema.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "google-product-schema"
+   ]
+  },
+  {
+   "id": "meta",
+   "category": "Technical & SEO",
+   "title": "Meta description",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "160 characters.",
+   "fix": "",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "h1",
+   "category": "Technical & SEO",
+   "title": "Single H1",
+   "weight": 1,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "3 visible H1 tags.",
+   "fix": "Use exactly one H1 (the product name).",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "alt",
+   "category": "Technical & SEO",
+   "title": "Image alt text",
+   "weight": 1,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "86% of images have alt text.",
+   "fix": "Add descriptive alt text to product images.",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "font",
+   "category": "Technical & SEO",
+   "title": "Readable mobile body text",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Body text 14px on mobile.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "lighthouse-font"
+   ]
+  }
+ ],
+ "flags": [],
+ "perf_score": 25,
+ "perf_label": "Lab budget estimate",
+ "perf": {
+  "source": "lab",
+  "score": 25,
+  "lab": {
+   "source": "lab",
+   "ttfb_ms": 167,
+   "fcp_ms": 1404,
+   "lcp_ms": 11084,
+   "cls": 0.068,
+   "tbt_ms": 43936,
+   "load_ms": 0,
+   "requests": 527,
+   "total_kb": 6713,
+   "js_kb": 2976,
+   "img_kb": 1693,
+   "modern_img_share": 0.56,
+   "third_party_domains": 34,
+   "third_party_sample": [
+    "bing.com",
+    "clarity.ms",
+    "cloudflare.com",
+    "cloudfront.net",
+    "doubleclick.net",
+    "facebook.com",
+    "facebook.net",
+    "google.co.in",
+    "google.com",
+    "googleadservices.com",
+    "googleapis.com",
+    "googletagmanager.com"
+   ],
+   "lcp_element": {
+    "tag": "img",
+    "src": "https://fableroom.com/cdn/shop/files/ACCT00007A.jpg?v=1759469285&width=800",
+    "loading": "eager",
+    "fetchpriority": null
+   },
+   "lcp_lazy": false,
+   "blocking_css": 11,
+   "blocking_js": 1,
+   "dom_nodes": 3255
+  },
+  "lab_rows": [
+   {
+    "name": "Page weight",
+    "value": "6713 KB",
+    "status": "fail"
+   },
+   {
+    "name": "JavaScript weight",
+    "value": "2976 KB",
+    "status": "fail"
+   },
+   {
+    "name": "Layout shift (CLS)",
+    "value": "0.068",
+    "status": "pass"
+   },
+   {
+    "name": "Requests",
+    "value": "527",
+    "status": "fail"
+   },
+   {
+    "name": "Third-party domains",
+    "value": "34",
+    "status": "fail"
+   },
+   {
+    "name": "Modern image formats",
+    "value": "56% WebP/AVIF/SVG",
+    "status": "partial"
+   },
+   {
+    "name": "LCP (unthrottled lab)",
+    "value": "11084 ms",
+    "status": "fail"
+   },
+   {
+    "name": "Main-thread blocking",
+    "value": "43936 ms",
+    "status": "fail"
+   },
+   {
+    "name": "Render-blocking resources",
+    "value": "11 CSS, 1 JS",
+    "status": "fail"
+   },
+   {
+    "name": "LCP image not lazy-loaded",
+    "value": "eager",
+    "status": "pass"
+   }
+  ],
+  "psi": null,
+  "note": "Lab budget score from our own mobile load (no CPU/network throttling). Weight, requests and CLS are reliable; timings are optimistic. Set PSI_API_KEY for Lighthouse + real-user (CrUX) data.",
+  "psi_error": "HTTPStatusError: Client error '429 Too Many Requests' for url 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https%3A%2F"
+ },
+ "issues": [
+  {
+   "id": "i1",
+   "title": "Price and CTA far below the first mobile screen",
+   "detail": "Title, gallery, thumbnails and badges push price and Add to Basket past 1200px. Shoppers see no price or action on the first screen.",
+   "severity": "critical",
+   "category": "First screen (mobile)",
+   "viewport": "mobile",
+   "evidence": "Rubric: price_atf and atc_atf fail; Add to Basket starts at 1220px on an 844px screen.",
+   "research": [
+    "nng-fold",
+    "fitts"
+   ]
+  },
+  {
+   "id": "i2",
+   "title": "Entry popup and side tab cover content",
+   "detail": "A 10% email popup loads on both viewports, and a 'Get 10% Off' tab overlays the mobile gallery. It also duplicates the PAYDAY10 banner.",
+   "severity": "high",
+   "category": "First screen (mobile)",
+   "viewport": "both",
+   "evidence": "Rubric: no_popup and d_no_popup fail; tab visible on the left of the mobile gallery.",
+   "research": [
+    "google-interstitials"
+   ]
+  },
+  {
+   "id": "i3",
+   "title": "Add to Basket below the desktop fold",
+   "detail": "Badges, description, price, icons, colour, stock strip and offers fill the buy box before the CTA. It starts at 965px on a 900px screen.",
+   "severity": "high",
+   "category": "First screen (desktop)",
+   "viewport": "desktop",
+   "evidence": "Rubric: d_atc_atf fails; offers cards are cut off at the screen bottom.",
+   "research": [
+    "nng-fold",
+    "fitts"
+   ]
+  },
+  {
+   "id": "i5",
+   "title": "Shipping cost not stated",
+   "detail": "Delivery date is shown but no delivery charge is. Late costs are the top abandonment reason.",
+   "severity": "high",
+   "category": "Purchase friction",
+   "viewport": "both",
+   "evidence": "Rubric: shipping fails; Care & Delivery is collapsed.",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "i4",
+   "title": "Weak review proof and rating mismatch",
+   "detail": "Review block shows 4.50 from only 2 reviews, while Trustpilot shows 1,512 and the stars near the title sit apart. The site reviews look thin and could confuse.",
+   "severity": "medium",
+   "category": "Trust & social proof",
+   "viewport": "both",
+   "evidence": "Reviews section: 'Based on 2 reviews'; one testimonial is about a rug.",
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ]
+  },
+  {
+   "id": "i6",
+   "title": "Urgency strip and countdown-style banners",
+   "detail": "'Only 4 Units Left' and 'LIMITED-TIME' need to be genuinely true under CCPA rules. If not they erode trust.",
+   "severity": "medium",
+   "category": "Offer clarity",
+   "viewport": "both",
+   "evidence": "Red 'Only 4 Units Left.' strip and limited-time banner.",
+   "research": [
+    "ccpa-dark"
+   ]
+  },
+  {
+   "id": "i7",
+   "title": "Low CTA contrast and no video",
+   "detail": "White text on the tan button is 3.14:1, and there is no product video to show scale and texture.",
+   "severity": "medium",
+   "category": "Visual hierarchy",
+   "viewport": "both",
+   "evidence": "Rubric: atc_contrast 3.14:1; video fails.",
+   "research": [
+    "wcag-contrast",
+    "wyzowl-video"
+   ]
+  },
+  {
+   "id": "i8",
+   "title": "Heavy page and multiple H1s",
+   "detail": "Lab performance is 25 with 527 requests and 6.7MB, and 3 H1 tags exist. Both hurt mobile speed and SEO.",
+   "severity": "medium",
+   "category": "Technical & SEO",
+   "viewport": "both",
+   "evidence": "Performance score 25, 34 third-party domains, 3 visible H1s.",
+   "research": [
+    "google-speed",
+    "deloitte-speed"
+   ]
+  }
+ ],
+ "strengths": [
+  {
+   "title": "Strong lifestyle and detail imagery",
+   "detail": "Nine images include close-ups and a dimension drawing with a human-scale view. Shoppers can judge size and finish.",
+   "viewport": "both"
+  },
+  {
+   "title": "Clear price and saving",
+   "detail": "The £275 MRP sits beside £83 with a 70% OFF tag and a comparison against named retailers.",
+   "viewport": "both"
+  },
+  {
+   "title": "Dense trust cluster near CTA",
+   "detail": "Trustpilot 1,512 reviews, returns, secure payments, 365-day guarantee and Klarna instalments sit beside Add to Basket.",
+   "viewport": "both"
+  },
+  {
+   "title": "Delivery date and instalments shown",
+   "detail": "'Delivered by 10th November' and 3 payments of £27.66 reduce late cost surprises.",
+   "viewport": "both"
+  },
+  {
+   "title": "Bundle and FAQ present",
+   "detail": "Frequently Bought Together offers a £10 saving, and an FAQ covers common questions.",
+   "viewport": "both"
+  }
+ ],
+ "insights": [
+  {
+   "competitor": "Heal's",
+   "observation": "Shows the £999 price on the first mobile screen under a short intro.",
+   "takeaway": "Bring FableRoom's price and saving into the first mobile screen in its own style."
+  },
+  {
+   "competitor": "Heal's",
+   "observation": "States delivery lead time ('Made to order: 4-5 weeks') right by the price.",
+   "takeaway": "Put delivery date and cost together near the CTA."
+  },
+  {
+   "competitor": "Heal's",
+   "observation": "Its email popup covers the product on mobile, as FableRoom's does.",
+   "takeaway": "Dropping the popup would be a clear edge over the benchmark."
+  }
+ ],
+ "recommendations": [
+  {
+   "id": "r1",
+   "title": "Add sticky Add to Basket bar on mobile",
+   "why": "Keeps price and CTA reachable from the first screen onwards.",
+   "kind": "addon",
+   "viewport": "mobile",
+   "impact": "high",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i1"
+   ],
+   "research": [
+    "fitts",
+    "nng-fold"
+   ],
+   "competitor_ref": "Heal's",
+   "in_mockup": true
+  },
+  {
+   "id": "r2",
+   "title": "Shorten mobile gallery height",
+   "why": "A shorter hero image brings price and CTA nearer the first screen.",
+   "kind": "change",
+   "viewport": "mobile",
+   "impact": "high",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i1"
+   ],
+   "research": [
+    "nng-fold"
+   ],
+   "competitor_ref": "Heal's",
+   "in_mockup": true
+  },
+  {
+   "id": "r3",
+   "title": "Remove entry popup and side tab",
+   "why": "The PAYDAY10 banner already shows the offer, so the popup only blocks the product.",
+   "kind": "change",
+   "viewport": "both",
+   "impact": "high",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i2"
+   ],
+   "research": [
+    "google-interstitials"
+   ],
+   "competitor_ref": "",
+   "in_mockup": false
+  },
+  {
+   "id": "r4",
+   "title": "Move delivery check up and state shipping cost",
+   "why": "Date plus cost beside the CTA removes late-cost doubt.",
+   "kind": "addon",
+   "viewport": "both",
+   "impact": "high",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i5"
+   ],
+   "research": [
+    "baymard-abandon"
+   ],
+   "competitor_ref": "Heal's",
+   "in_mockup": true
+  },
+  {
+   "id": "r5",
+   "title": "Compact desktop buy box",
+   "why": "Move the offers and stock strip below the CTA so Add to Basket lands above 900px.",
+   "kind": "change",
+   "viewport": "desktop",
+   "impact": "high",
+   "effort": "medium",
+   "fixes_issue_ids": [
+    "i3"
+   ],
+   "research": [
+    "nng-fold"
+   ],
+   "competitor_ref": "",
+   "in_mockup": true
+  },
+  {
+   "id": "r6",
+   "title": "Show review quotes and align rating counts",
+   "why": "Real quotes and one consistent count lift proof near the CTA.",
+   "kind": "addon",
+   "viewport": "both",
+   "impact": "medium",
+   "effort": "medium",
+   "fixes_issue_ids": [
+    "i4"
+   ],
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ],
+   "competitor_ref": "",
+   "in_mockup": false
+  },
+  {
+   "id": "r7",
+   "title": "Verify urgency claims and darken CTA text",
+   "why": "Keeps claims honest and lifts button contrast toward 4.5:1.",
+   "kind": "change",
+   "viewport": "both",
+   "impact": "medium",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i6",
+    "i7"
+   ],
+   "research": [
+    "ccpa-dark",
+    "wcag-contrast"
+   ],
+   "competitor_ref": "",
+   "in_mockup": false
+  },
+  {
+   "id": "r8",
+   "title": "Cut third-party scripts and fix H1s",
+   "why": "Faster load and cleaner SEO.",
+   "kind": "change",
+   "viewport": "both",
+   "impact": "medium",
+   "effort": "high",
+   "fixes_issue_ids": [
+    "i8"
+   ],
+   "research": [
+    "google-speed",
+    "deloitte-speed"
+   ],
+   "competitor_ref": "",
+   "in_mockup": false
+  }
+ ],
+ "patches": [
+  {
+   "rec_id": "r1",
+   "op": "component",
+   "component": "sticky_atc",
+   "target": "atc",
+   "position": "after",
+   "viewport": "mobile",
+   "heading": "",
+   "label": "",
+   "items": [],
+   "source": "",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r2",
+   "op": "layout",
+   "component": "none",
+   "target": "description",
+   "position": "after",
+   "viewport": "mobile",
+   "heading": "",
+   "label": "",
+   "items": [],
+   "source": "",
+   "css": "max-height:380px;overflow:hidden",
+   "html": ""
+  },
+  {
+   "rec_id": "r4",
+   "op": "component",
+   "component": "delivery_check",
+   "target": "atc",
+   "position": "before",
+   "viewport": "all",
+   "heading": "Delivery to your postcode",
+   "label": "Delivery cost: [shipping cost]. Estimated date shown after postcode.",
+   "items": [],
+   "source": "",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r5",
+   "op": "move",
+   "component": "none",
+   "target": "title",
+   "position": "after",
+   "viewport": "desktop",
+   "heading": "",
+   "label": "",
+   "items": [],
+   "source": "atc",
+   "css": "",
+   "html": ""
+  }
+ ],
+ "applied": [
+  {
+   "rec_id": "r2",
+   "op": "layout",
+   "component": "none",
+   "target": "description",
+   "position": "after",
+   "viewport": "mobile",
+   "source": ""
+  },
+  {
+   "rec_id": "r4",
+   "op": "component",
+   "component": "delivery_check",
+   "target": "atc",
+   "position": "before",
+   "viewport": "all",
+   "source": ""
+  },
+  {
+   "rec_id": "r5",
+   "op": "move",
+   "component": "none",
+   "target": "title",
+   "position": "after",
+   "viewport": "desktop",
+   "source": "atc"
+  }
+ ],
+ "rejected": [
+  {
+   "rec_id": "r1",
+   "op": "component",
+   "component": "sticky_atc",
+   "target": "atc",
+   "position": "after",
+   "viewport": "mobile",
+   "source": "",
+   "reason": "the page already has a sticky add-to-cart"
+  }
+ ],
+ "guard_log": [
+  {
+   "rec_id": "r4",
+   "kind": "target",
+   "detail": "the add-to-cart sits in a sticky bar on mobile, so the block was placed after the price instead (next to the button it would float with the bar)"
+  }
+ ],
+ "tokens": {
+  "source": "dom",
+  "roles": {
+   "primary": "#b77e45",
+   "on_primary": "#edece9",
+   "text": "#edece9",
+   "heading": "#2c2c2c",
+   "muted": "#edece9",
+   "bg": "#ffffff",
+   "surface": "#edece9",
+   "border": "#eefaf4",
+   "accent": "#051326",
+   "link": "#edece9"
+  },
+  "palette": [
+   {
+    "hex": "#ffffff",
+    "weight": 1.0474
+   },
+   {
+    "hex": "#2c2c2c",
+    "weight": 0.5458
+   },
+   {
+    "hex": "#edece9",
+    "weight": 0.2096
+   },
+   {
+    "hex": "#505050",
+    "weight": 0.1585
+   },
+   {
+    "hex": "#eefaf4",
+    "weight": 0.118
+   },
+   {
+    "hex": "#000000",
+    "weight": 0.0822
+   },
+   {
+    "hex": "#b77e45",
+    "weight": 0.0528
+   },
+   {
+    "hex": "#051326",
+    "weight": 0.0514
+   },
+   {
+    "hex": "#d4cec6",
+    "weight": 0.036
+   },
+   {
+    "hex": "#433122",
+    "weight": 0.0314
+   },
+   {
+    "hex": "#d3f3e2",
+    "weight": 0.026
+   },
+   {
+    "hex": "#0c1d20",
+    "weight": 0.0178
+   }
+  ],
+  "fonts": {
+   "body": "HKGrotesk-Regular, sans-serif",
+   "heading": "IvyPrestoDisplay-Regular, serif",
+   "button": "\"Le Mano\""
+  },
+  "font_names": [
+   "HKGrotesk-Regular",
+   "IvyPrestoDisplay-Regular",
+   "Le Mano",
+   "HKGrotesk-Bold"
+  ],
+  "sizes": [
+   12.0,
+   13.0,
+   14.0,
+   14.5,
+   16.0,
+   18.0,
+   30.0
+  ],
+  "size_roles": {
+   "xs": 12.0,
+   "sm": 14.0,
+   "base": 14.5,
+   "lg": 16.0,
+   "xl": 16.0,
+   "h1": 30.0,
+   "button": 18.0
+  },
+  "radius": {
+   "button": "6px",
+   "input": "6px"
+  },
+  "button": {
+   "transform": "none",
+   "spacing": "1.17px",
+   "weight": "400",
+   "padding": "0 16px",
+   "height": "49px"
+  },
+  "line_height": "18.24px",
+  "logo": {
+   "tag": "svg",
+   "src": "",
+   "alt": ""
+  },
+  "google_font_url": null,
+  "notes": [],
+  "css_vars": ":root{--cro-primary: #b77e45;--cro-on-primary: #edece9;--cro-text: #edece9;--cro-heading: #2c2c2c;--cro-muted: #edece9;--cro-bg: #ffffff;--cro-surface: #edece9;--cro-border: #eefaf4;--cro-accent: #051326;--cro-link: #edece9;--cro-font-body: HKGrotesk-Regular, sans-serif;--cro-font-heading: IvyPrestoDisplay-Regular, serif;--cro-font-button: \"Le Mano\";--cro-fs-xs: 12.0px;--cro-fs-sm: 14.0px;--cro-fs-base: 14.5px;--cro-fs-lg: 16.0px;--cro-fs-xl: 16.0px;--cro-fs-h1: 30.0px;--cro-fs-button: 18.0px;--cro-radius: 6px;--cro-radius-input: 6px;--cro-btn-transform: none;--cro-btn-spacing: 1.17px;--cro-btn-weight: 400;--cro-btn-padding: 0 16px;--cro-btn-height: 49px;--cro-line: 18.24px;}"
+ },
+ "shots": {
+  "before_mobile": "shots/before_mobile.png",
+  "after_mobile": "shots/after_mobile.png",
+  "before_desktop": "shots/before_desktop.png",
+  "after_desktop": "shots/after_desktop.png"
+ },
+ "original": "original.html",
+ "optimized": "optimized.html",
+ "error": "",
+ "profile": {
+  "brand": "FABLEROOM",
+  "category": "Furniture & home decor",
+  "product_type": "Pedestal coffee table (solid acacia wood)",
+  "market": "GB",
+  "price_positioning": "mid",
+  "audience": "UK homeowners furnishing living rooms with modern-rustic decor, value-conscious buyers responding to sale pricing",
+  "competitors": [
+   {
+    "brand": "WoodenStreet",
+    "domain": "woodenstreet.com",
+    "search_query": "wooden coffee table",
+    "why": "Large Indian D2C furniture brand selling solid wood coffee tables online; closest seed-list match for solid wood living room tables."
+   },
+   {
+    "brand": "Urban Ladder",
+    "domain": "urbanladder.com",
+    "search_query": "coffee table",
+    "why": "Established online furniture retailer with a broad living room coffee table range at similar mid price points."
+   },
+   {
+    "brand": "Wakefit",
+    "domain": "wakefit.co",
+    "search_query": "coffee table",
+    "why": "Seed-list furniture D2C brand offering direct-to-consumer home furniture including living room pieces."
+   },
+   {
+    "brand": "Durian",
+    "domain": "durian.in",
+    "search_query": "coffee table",
+    "why": "Seed-list furniture brand known for solid wood and upholstered living room furniture sold direct online."
+   },
+   {
+    "brand": "Nestasia",
+    "domain": "nestasia.in",
+    "search_query": "wooden coffee table",
+    "why": "Seed-list home decor brand selling solid wood accent and coffee tables with a modern-rustic look."
+   }
+  ],
+  "source": "claude-haiku-5-5"
+ },
+ "comparison": {
+  "competitors": [
+   {
+    "url": "https://heals.com/products/pedrera-coffee-table",
+    "final_url": "https://www.heals.com/products/pedrera-coffee-table",
+    "domain": "heals.com",
+    "brand": "Heal's",
+    "title": "Pedrera Coffee Table",
+    "price": "£999",
+    "compare": "£999",
+    "discount": "",
+    "currency": "GBP",
+    "atc_label": "ADD TO CART",
+    "rating": null,
+    "reviews": null,
+    "rating_text": "",
+    "images": 4,
+    "video": false,
+    "sticky_atc": true,
+    "bullets": [],
+    "headings": [
+     "BY GUBI",
+     "[ PRODUCT ADVICE ]",
+     "[ HEAL’S PRICE PROMISE ]",
+     "[ INTERIOR DESIGN SERVICE ]",
+     "You may also like",
+     "How To Choose A Mattress"
+    ],
+    "trust": [],
+    "offers": "",
+    "delivery": "",
+    "faq": false,
+    "cross_sell": true,
+    "cro_score": 51,
+    "grade": "D",
+    "mobile_score": 48,
+    "desktop_score": 37,
+    "categories": {
+     "First screen (mobile)": 86,
+     "First screen (desktop)": 80,
+     "Add to cart": 100,
+     "Trust & social proof": 0,
+     "Purchase friction": 0,
+     "Content & merchandising": 43,
+     "Offer clarity": 50,
+     "Technical & SEO": 50
+    },
+    "checks": {
+     "title_atf": "pass",
+     "price_atf": "pass",
+     "atc_atf": "partial",
+     "image_atf": "pass",
+     "no_popup": "pass",
+     "d_title_price_atf": "pass",
+     "d_atc_atf": "pass",
+     "d_buybox": "pass",
+     "d_no_popup": "fail",
+     "atc_present": "pass",
+     "atc_contrast": "pass",
+     "atc_tap": "pass",
+     "sticky_atc": "pass",
+     "rating_title": "fail",
+     "reviews": "fail",
+     "trust_atc": "fail",
+     "payments": "fail",
+     "delivery": "fail",
+     "shipping": "fail",
+     "returns": "fail",
+     "variants": "na",
+     "images": "partial",
+     "video": "fail",
+     "scannable": "partial",
+     "faq": "fail",
+     "cross_sell": "pass",
+     "discount": "partial",
+     "offers": "partial",
+     "mandatory_info": "na",
+     "schema": "fail",
+     "rating_schema": "na",
+     "meta": "partial",
+     "h1": "pass",
+     "alt": "pass",
+     "font": "pass"
+    },
+    "perf_score": 32,
+    "lab": {
+     "total_kb": 4624,
+     "js_kb": 1729,
+     "requests": 344,
+     "lcp_ms": 19188,
+     "cls": 0.003
+    },
+    "ok": true,
+    "captured_ts": 1793220265.6635463,
+    "dir": "cache/competitors/22fff60035d3",
+    "why": "Leading furniture & home decor (uk) brand (seed list).",
+    "shots": {
+     "mobile_fold": "competitors/c1_mobile_fold.jpg",
+     "mobile_full": "competitors/c1_mobile_full.jpg",
+     "desktop_fold": "competitors/c1_desktop_fold.jpg"
+    }
+   }
+  ],
+  "matrix": [
+   {
+    "check_id": "title_atf",
+    "title": "Product name above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "price_atf",
+    "title": "Price above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "atc_atf",
+    "title": "Add to cart above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 6,
+    "target": "fail",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "image_atf",
+    "title": "Product image leads",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "no_popup",
+    "title": "No entry popup",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 4,
+    "target": "fail",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "d_title_price_atf",
+    "title": "Name and price above the fold",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "d_atc_atf",
+    "title": "Add to cart above the fold",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "d_buybox",
+    "title": "Buy box beside the gallery",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "d_no_popup",
+    "title": "No entry popup",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 2,
+    "target": "fail",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "atc_present",
+    "title": "Clear add-to-cart button",
+    "category": "Add to cart",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "atc_contrast",
+    "title": "CTA text contrast",
+    "category": "Add to cart",
+    "viewport": "both",
+    "weight": 4,
+    "target": "partial",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "atc_tap",
+    "title": "CTA tap target size",
+    "category": "Add to cart",
+    "viewport": "mobile",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "sticky_atc",
+    "title": "Sticky add-to-cart (mobile)",
+    "category": "Add to cart",
+    "viewport": "mobile",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "rating_title",
+    "title": "Rating summary near title",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 6,
+    "target": "partial",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "reviews",
+    "title": "Customer reviews section",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "trust_atc",
+    "title": "Trust signals near CTA",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "payments",
+    "title": "Payment options visible",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "delivery",
+    "title": "Delivery estimate",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "shipping",
+    "title": "Shipping cost clarity",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "returns",
+    "title": "Returns policy near CTA",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "variants",
+    "title": "Variant selection UX",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "na"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "images",
+    "title": "Product imagery depth",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "video",
+    "title": "Product video",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 2,
+    "target": "fail",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "scannable",
+    "title": "Scannable benefits",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "faq",
+    "title": "FAQ / objection handling",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "cross_sell",
+    "title": "Cross-sell / bundles",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "discount",
+    "title": "Discount clearly stated",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "offers",
+    "title": "Offers / coupons near price",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "schema",
+    "title": "Product structured data",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 3,
+    "target": "partial",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "rating_schema",
+    "title": "Review stars in search",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "na"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "meta",
+    "title": "Meta description",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "h1",
+    "title": "Single H1",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "fail",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "alt",
+    "title": "Image alt text",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "partial",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "font",
+    "title": "Readable mobile body text",
+    "category": "Technical & SEO",
+    "viewport": "mobile",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   }
+  ],
+  "gaps": [
+   {
+    "check_id": "price_atf",
+    "title": "Price above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "atc_contrast",
+    "title": "CTA text contrast",
+    "category": "Add to cart",
+    "viewport": "both",
+    "weight": 4,
+    "target": "partial",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "no_popup",
+    "title": "No entry popup",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 4,
+    "target": "fail",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "d_atc_atf",
+    "title": "Add to cart above the fold",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "alt",
+    "title": "Image alt text",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "partial",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   },
+   {
+    "check_id": "h1",
+    "title": "Single H1",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "fail",
+    "comps": [
+     "pass"
+    ],
+    "passing": [
+     "Heal's"
+    ]
+   }
+  ],
+  "leads": [
+   {
+    "check_id": "trust_atc",
+    "title": "Trust signals near CTA",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "payments",
+    "title": "Payment options visible",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "delivery",
+    "title": "Delivery estimate",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "reviews",
+    "title": "Customer reviews section",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "returns",
+    "title": "Returns policy near CTA",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "images",
+    "title": "Product imagery depth",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "scannable",
+    "title": "Scannable benefits",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "faq",
+    "title": "FAQ / objection handling",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "discount",
+    "title": "Discount clearly stated",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "offers",
+    "title": "Offers / coupons near price",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "meta",
+    "title": "Meta description",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "partial"
+    ],
+    "passing": []
+   }
+  ],
+  "table_stakes": [],
+  "benchmark": {
+   "target": 70,
+   "avg": 51,
+   "best": 51,
+   "best_brand": "Heal's",
+   "rank": 1,
+   "of": 2,
+   "mobile": {
+    "target": 72,
+    "avg": 48
+   },
+   "desktop": {
+    "target": 78,
+    "avg": 37
+   }
+  },
+  "facts": [
+   {
+    "label": "Price",
+    "target": "£275",
+    "comps": [
+     "£999"
+    ]
+   },
+   {
+    "label": "Rating",
+    "target": "4.5 (1,512 reviews)",
+    "comps": [
+     "none shown"
+    ]
+   },
+   {
+    "label": "Product images",
+    "target": 9,
+    "comps": [
+     4
+    ]
+   },
+   {
+    "label": "Video",
+    "target": "no",
+    "comps": [
+     "no"
+    ]
+   },
+   {
+    "label": "Sticky add-to-cart (mobile)",
+    "target": "yes",
+    "comps": [
+     "yes"
+    ]
+   },
+   {
+    "label": "Trust cues near CTA",
+    "target": "secure checkout, returns, warranty, quality claims",
+    "comps": [
+     "none"
+    ]
+   },
+   {
+    "label": "Offer shown",
+    "target": "none",
+    "comps": [
+     "none"
+    ]
+   },
+   {
+    "label": "Delivery info",
+    "target": "FF Get £75 off on Cart value above £749 Delivered by 10th November Add",
+    "comps": [
+     "none"
+    ]
+   },
+   {
+    "label": "FAQ",
+    "target": "yes",
+    "comps": [
+     "no"
+    ]
+   },
+   {
+    "label": "Mobile page weight",
+    "target": "6.6 MB",
+    "comps": [
+     "4.5 MB"
+    ]
+   }
+  ]
+ },
+ "comp_notes": [
+  "Skipped (sell in another market than this page): WoodenStreet, Urban Ladder, Wakefit, Durian, Nestasia.",
+  "Swoon: no comparable product page found on swooneditions.com.",
+  "Loaf: no comparable product page found on loaf.com.",
+  "Cox & Cox: no comparable product page found on coxandcox.co.uk.",
+  "Habitat: no comparable product page found on habitat.co.uk.",
+  "Oak Furnitureland: no comparable product page found on oakfurnitureland.co.uk.",
+  "Only 1 competitor page(s) could be analysed; add competitor URLs to the input line (`url | label | vs: https://competitor.com/products/x`) for a fuller comparison."
+ ],
+ "target": {
+  "url": "https://fableroom.com/collections/furniture-deals/products/riven-pedestal-coffee-table",
+  "final_url": "https://fableroom.com/collections/furniture-deals/products/riven-pedestal-coffee-table",
+  "domain": "fableroom.com",
+  "brand": "FABLEROOM",
+  "title": "Riven Pedestal Coffee Table",
+  "price": "£275",
+  "compare": "£275",
+  "discount": "70% OFF",
+  "currency": "GBP",
+  "atc_label": "Add to Basket - £83",
+  "rating": 4.5,
+  "reviews": 1512,
+  "rating_text": "",
+  "images": 9,
+  "video": false,
+  "sticky_atc": true,
+  "bullets": [
+   "70% OFF",
+   "READY TO SHIP",
+   "£50 OFF Get £50 off on Cart value above £599",
+   "£75 OFF Get £75 off on Cart value above £749"
+  ],
+  "headings": [
+   "Colour:Black",
+   "Details and Dimensions",
+   "Care & Delivery",
+   "FableRoom is now a certified B Corp™",
+   "Priced with honesty",
+   "Frequently Bought Together",
+   "Riven Pedestal Coffee Table",
+   "Nysa Wooden Side Table",
+   "No Middlemen",
+   "Meet the Makers",
+   "What Our Customers Say",
+   "Everything You Need To Know",
+   "Customer Reviews"
+  ],
+  "trust": [
+   "secure checkout",
+   "returns",
+   "warranty",
+   "quality claims"
+  ],
+  "offers": "",
+  "delivery": "FF Get £75 off on Cart value above £749 Delivered by 10th November Add",
+  "faq": true,
+  "cross_sell": true,
+  "cro_score": 70,
+  "grade": "B",
+  "mobile_score": 72,
+  "desktop_score": 78,
+  "categories": {
+   "First screen (mobile)": 32,
+   "First screen (desktop)": 50,
+   "Add to cart": 87,
+   "Trust & social proof": 85,
+   "Purchase friction": 80,
+   "Content & merchandising": 87,
+   "Offer clarity": 100,
+   "Technical & SEO": 62
+  },
+  "checks": {
+   "title_atf": "pass",
+   "price_atf": "fail",
+   "atc_atf": "fail",
+   "image_atf": "pass",
+   "no_popup": "fail",
+   "d_title_price_atf": "pass",
+   "d_atc_atf": "fail",
+   "d_buybox": "pass",
+   "d_no_popup": "fail",
+   "atc_present": "pass",
+   "atc_contrast": "partial",
+   "atc_tap": "pass",
+   "sticky_atc": "pass",
+   "rating_title": "partial",
+   "reviews": "pass",
+   "trust_atc": "pass",
+   "payments": "pass",
+   "delivery": "pass",
+   "shipping": "fail",
+   "returns": "pass",
+   "variants": "pass",
+   "images": "pass",
+   "video": "fail",
+   "scannable": "pass",
+   "faq": "pass",
+   "cross_sell": "pass",
+   "discount": "pass",
+   "offers": "pass",
+   "mandatory_info": "na",
+   "schema": "partial",
+   "rating_schema": "pass",
+   "meta": "pass",
+   "h1": "fail",
+   "alt": "partial",
+   "font": "pass"
+  },
+  "perf_score": 25,
+  "lab": {
+   "total_kb": 6713,
+   "js_kb": 2976,
+   "requests": 527,
+   "lcp_ms": 11084,
+   "cls": 0.068
+  }
+ },
+ "research": {
+  "anchoring": {
+   "id": "anchoring",
+   "source": "Tversky & Kahneman, Judgment under Uncertainty (1974)",
+   "finding": "Anchoring: a reference price (MRP or compare-at price) shapes perceived value, so showing the saving next to the selling price makes the offer register instantly.",
+   "url": ""
+  },
+  "baymard-abandon": {
+   "id": "baymard-abandon",
+   "source": "Baymard Institute, Cart Abandonment Rate statistics",
+   "finding": "The documented average cart abandonment rate is about 70%. Extra costs (shipping, taxes, fees) revealed late are the #1 reason shoppers abandon; slow delivery, not trusting the site with card details and an unsatisfactory returns policy are also among the top reasons.",
+   "url": "https://baymard.com/lists/cart-abandonment-rate"
+  },
+  "baymard-pdp": {
+   "id": "baymard-pdp",
+   "source": "Baymard Institute, Product Page UX research",
+   "finding": "Shoppers judge products mainly through images and product information; when key details (scale, variations, specs, delivery) are missing or hard to find, they leave the page or look elsewhere. Variation options should be visible (buttons or swatches) rather than hidden in drop-downs.",
+   "url": "https://baymard.com/research/product-page"
+  },
+  "ccpa-dark": {
+   "id": "ccpa-dark",
+   "source": "Central Consumer Protection Authority (India), Guidelines for Prevention and Regulation of Dark Patterns, 2023",
+   "finding": "Lists 13 dark patterns, including false urgency, basket sneaking, confirm shaming and drip pricing; urgency, scarcity and price claims must be true and fully disclosed.",
+   "url": ""
+  },
+  "choice-overload": {
+   "id": "choice-overload",
+   "source": "Iyengar & Lepper, When Choice is Demotivating (2000)",
+   "finding": "Shoppers shown 6 jam flavours were about ten times more likely to buy (30%) than those shown 24 (3%): too many competing options and CTAs stall decisions.",
+   "url": ""
+  },
+  "cialdini-proof": {
+   "id": "cialdini-proof",
+   "source": "Robert Cialdini, Influence (1984)",
+   "finding": "Social proof: under uncertainty people follow what others like them have done, which is why visible ratings, review counts and real customer photos reduce hesitation.",
+   "url": ""
+  },
+  "deloitte-speed": {
+   "id": "deloitte-speed",
+   "source": "Deloitte for Google, Milliseconds Make Millions (2020)",
+   "finding": "A 0.1s improvement in mobile site speed increased retail conversions by 8.4% and average order value by 9.2%.",
+   "url": ""
+  },
+  "fitts": {
+   "id": "fitts",
+   "source": "Fitts's law (Fitts, 1954)",
+   "finding": "The time to hit a target grows with its distance and shrinks with its size, so a large CTA that stays within reach (sticky) is faster and easier to tap.",
+   "url": ""
+  },
+  "google-cwv": {
+   "id": "google-cwv",
+   "source": "Google web.dev, Core Web Vitals",
+   "finding": "Good thresholds at the 75th percentile of visits: LCP 2.5s or less, INP 200ms or less, CLS 0.1 or less.",
+   "url": "https://web.dev/articles/vitals"
+  },
+  "google-interstitials": {
+   "id": "google-interstitials",
+   "source": "Google Search Central, intrusive interstitials guidance",
+   "finding": "Popups that cover the main content on mobile make it hard to access and can hurt how the page performs in Google Search.",
+   "url": "https://developers.google.com/search/docs/appearance/avoid-intrusive-interstitials"
+  },
+  "google-product-schema": {
+   "id": "google-product-schema",
+   "source": "Google Search Central, Product structured data",
+   "finding": "Product markup with offers and aggregateRating makes pages eligible for price, availability and review star rich results.",
+   "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+  },
+  "google-speed": {
+   "id": "google-speed",
+   "source": "Google / SOASTA research, Think with Google (2017)",
+   "finding": "As mobile page load time goes from 1s to 3s, the probability of a bounce increases 32%; from 1s to 5s, it increases 90%.",
+   "url": "https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/page-load-time-statistics/"
+  },
+  "india-lm": {
+   "id": "india-lm",
+   "source": "Legal Metrology (Packaged Commodities) Rules, 2011, as amended in 2017 (India)",
+   "finding": "E-commerce listings of packaged goods must show declarations such as manufacturer or packer, net quantity, MRP inclusive of all taxes, country of origin and consumer-care details.",
+   "url": ""
+  },
+  "lighthouse-font": {
+   "id": "lighthouse-font",
+   "source": "Google Lighthouse, legible font sizes audit; Apple HIG",
+   "finding": "Lighthouse flags text below 12px as illegible on mobile; platform guidelines set body text larger (Apple's default body style is 17pt).",
+   "url": ""
+  },
+  "nng-fold": {
+   "id": "nng-fold",
+   "source": "Nielsen Norman Group, Scrolling and Attention (2018)",
+   "finding": "57% of page-viewing time is spent above the fold and 74% within the first two screenfuls, so what the first screen shows gets most of the attention.",
+   "url": "https://www.nngroup.com/articles/scrolling-and-attention/"
+  },
+  "nng-scan": {
+   "id": "nng-scan",
+   "source": "Nielsen Norman Group, Concise, Scannable and Objective writing study",
+   "finding": "Users scan web pages rather than read them; a concise, scannable, objective version of a page measured 124% better usability than the original.",
+   "url": "https://www.nngroup.com/articles/concise-scannable-and-objective-how-to-write-for-the-web/"
+  },
+  "spiegel-reviews": {
+   "id": "spiegel-reviews",
+   "source": "Spiegel Research Center, Northwestern University, How Online Reviews Influence Sales (2017)",
+   "finding": "A product with five reviews is 270% more likely to be purchased than one with none. Purchase likelihood peaks for average ratings of 4.0-4.7 and falls as ratings approach 5.0, and reviews matter more for higher-priced products.",
+   "url": "https://spiegel.medill.northwestern.edu/how-online-reviews-influence-sales/"
+  },
+  "wcag-contrast": {
+   "id": "wcag-contrast",
+   "source": "W3C WCAG 2.2, SC 1.4.3 Contrast (Minimum)",
+   "finding": "Text needs a contrast ratio of at least 4.5:1 against its background (3:1 for large text).",
+   "url": "https://www.w3.org/TR/WCAG22/#contrast-minimum"
+  },
+  "wcag-target": {
+   "id": "wcag-target",
+   "source": "W3C WCAG 2.2, SC 2.5.5 and 2.5.8 Target Size",
+   "finding": "Touch targets of 44x44 CSS px meet the enhanced level (24x24 is the minimum); Apple's Human Interface Guidelines also recommend 44pt.",
+   "url": "https://www.w3.org/TR/WCAG22/#target-size-minimum"
+  },
+  "wyzowl-video": {
+   "id": "wyzowl-video",
+   "source": "Wyzowl, State of Video Marketing (annual survey)",
+   "finding": "In every recent edition, over 80% of consumers say a brand's video has convinced them to buy a product.",
+   "url": "https://www.wyzowl.com/video-marketing-statistics/"
+  }
+ },
+ "cost": {
+  "usd": 0.0664,
+  "calls": [
+   {
+    "tag": "fableroom-3f8ec6.audit",
+    "model": "claude-sonnet-5-5",
+    "input_tokens": 15813,
+    "output_tokens": 3349,
+    "cache_read_input_tokens": 6186,
+    "cache_creation_input_tokens": 0,
+    "batch": false,
+    "usd": 0.0664
+   }
+  ]
+ },
+ "sev_counts": {
+  "critical": 1,
+  "high": 3,
+  "medium": 4,
+  "low": 0
+ },
+ "applied_recs": "{'r5', 'r2', 'r4'}",
+ "slug": "fableroom-3f8ec6"
+}

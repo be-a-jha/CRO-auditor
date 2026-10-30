@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRO Audit Batch</title>
+<style>
+:root{--ink:#16181d;--ink2:#4b5160;--ink3:#8a8f9c;--bg:#f5f5f2;--card:#fff;--line:#e6e5e0;--pass:#1a7f4b;--partial:#b7791f;--fail:#c0362c;--accent:#2f4bd8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 20px 60px}a{color:var(--accent)}
+h1{font-size:26px;margin:4px 0 18px}.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}@media(max-width:860px){.stats{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}.k{font-size:12px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em}
+.big{font-size:30px;font-weight:700}.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px;min-width:980px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;background:#fafaf8}
+.bar{height:8px;background:#ecebe6;border-radius:99px;overflow:hidden;width:70px;display:inline-block;vertical-align:middle;margin-left:8px}.bar i{display:block;height:100%}
+.chip{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;text-transform:uppercase}
+.ok{background:#e5f3eb;color:var(--pass)}.err{background:#f8e3e1;color:var(--fail)}.warn{background:#fbf0dc;color:var(--partial)}
+.sub{font-size:12.5px;color:var(--ink2)}.links a{margin-right:10px;white-space:nowrap}
+</style></head>
+<body><div class="wrap">
+<div class="eyebrow">Product page CRO audit · batch</div><h1>4 product pages</h1>
+<div class="stats">
+  <div class="card"><div class="k">Audited</div><div class="big">4/4</div><div class="sub"></div></div>
+  <div class="card"><div class="k">Avg CRO score</div><div class="big">72</div><div class="sub">competitors avg 63</div></div>
+  <div class="card"><div class="k">Avg mobile / desktop</div><div class="big">73 <span style="font-size:18px;color:var(--ink3)">/ 73</span></div></div>
+  <div class="card"><div class="k">Critical issues</div><div class="big">3</div></div>
+  <div class="card"><div class="k">Claude cost</div><div class="big">$0.32</div><div class="sub">~$0.080 per page</div></div>
+</div>
+<div class="tw"><table><thead><tr><th>Page</th><th>CRO</th><th>Mobile</th><th>Desktop</th><th>Vs competitors</th><th>Perf</th><th>Biggest issue</th><th>Status</th></tr></thead><tbody>
+<tr>
+<td><b><a href="foxtale-e5ee62/report.html">Foxtale</a></b><div class="sub">https://foxtale.in/products/super-glow-face-wash</div><div class="sub">Skincare</div>
+<div class="links sub"><a href="foxtale-e5ee62/optimized.html?highlight">optimised page</a><a href="foxtale-e5ee62/optimized.html?download" download="foxtale-e5ee62-optimized.html">download HTML</a></div></td>
+<td><b>61</b> C<span class="bar"><i style="width:61%;background:#b7791f"></i></span></td>
+<td>60</td>
+<td>60</td>
+<td>avg 75 · rank 4/4<div class="sub">Minimalist, Dot &amp; Key, Plum</div></td>
+<td>22<div class="sub">lab</div></td>
+<td class="sub">No add-to-cart on first mobile screen</td>
+<td><span class="chip ok">ok</span>
+<div class="sub">$0.088</div>
+</td></tr><tr>
+<td><b><a href="wellbeing-nutrition-85bcc2/report.html">Wellbeing Nutrition</a></b><div class="sub">https://wellbeingnutrition.com/products/raw-whey-protein-isolate-unfla</div><div class="sub">Protein &amp; sports nutrition</div>
+<div class="links sub"><a href="wellbeing-nutrition-85bcc2/optimized.html?highlight">optimised page</a><a href="wellbeing-nutrition-85bcc2/optimized.html?download" download="wellbeing-nutrition-85bcc2-optimized.html">download HTML</a></div></td>
+<td><b>69</b> C<span class="bar"><i style="width:69%;background:#b7791f"></i></span></td>
+<td>72</td>
+<td>64</td>
+<td>avg 74 · rank 4/4<div class="sub">MuscleBlaze, The Whole Truth, SuperYou</div></td>
+<td>28<div class="sub">lab</div></td>
+<td class="sub">Desktop buy box is below the fold</td>
+<td><span class="chip ok">ok</span>
+<div class="sub">$0.045</div>
+</td></tr><tr>
+<td><b><a href="fableroom-3f8ec6/report.html">Fableroom</a></b><div class="sub">https://fableroom.com/collections/furniture-deals/products/riven-pedes</div><div class="sub">Furniture &amp; home decor</div>
+<div class="links sub"><a href="fableroom-3f8ec6/optimized.html?highlight">optimised page</a><a href="fableroom-3f8ec6/optimized.html?download" download="fableroom-3f8ec6-optimized.html">download HTML</a></div></td>
+<td><b>70</b> B<span class="bar"><i style="width:70%;background:#1a7f4b"></i></span></td>
+<td>72</td>
+<td>78</td>
+<td>avg 51 · rank 1/2<div class="sub">Heal&#39;s</div></td>
+<td>25<div class="sub">lab</div></td>
+<td class="sub">Price and CTA far below the first mobile screen</td>
+<td><span class="chip ok">ok</span>
+<div class="sub">$0.066</div>
+</td></tr><tr>
+<td><b><a href="fableroom-screenshot-1d6f73/report.html">Fableroom (screenshot)</a></b><div class="sub">screencapture-fableroom-collections-furniture-deals-products-riven-ped</div><div class="sub">Furniture &amp; home decor (UK)</div>
+<div class="links sub"><a href="fableroom-screenshot-1d6f73/optimized.html?highlight">optimised page</a><a href="fableroom-screenshot-1d6f73/optimized.html?download" download="fableroom-screenshot-1d6f73-optimized.html">download HTML</a></div></td>
+<td><b>89</b> A<span class="bar"><i style="width:89%;background:#1a7f4b"></i></span></td>
+<td>88</td>
+<td>89</td>
+<td>avg 51 · rank 1/2<div class="sub">Heal&#39;s</div></td>
+<td>n/a<div class="sub">n/a</div></td>
+<td class="sub">Buy box content is duplicated</td>
+<td><span class="chip ok">ok</span>
+<div class="sub">$0.122</div>
+</td></tr>
+</tbody></table></div>
+<p class="sub">Sorted worst CRO score first. summary.csv has the same data for outreach sheets. Claude: 6 calls, 68,028 input tokens (6,186 read from cache), 17,402 output tokens.</p>
+</div></body></html>

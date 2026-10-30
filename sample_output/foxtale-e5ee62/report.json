@@ -1,0 +1,2886 @@
+{
+ "label": "Foxtale",
+ "input": "https://foxtale.in/products/super-glow-face-wash",
+ "kind": "url",
+ "generated": "29 Oct 2026, 09:22",
+ "model": "claude-sonnet-5-5",
+ "fast_model": "claude-haiku-5-5",
+ "effort": "low",
+ "batch": false,
+ "plan_source": "llm",
+ "summary": "Foxtale's Super Glow De-tan Face Wash page sells on a clear tan-removal promise, a before/after slider and layered reviews. The biggest problem is that the buy box is buried under a long info stack and offers, so the first mobile screen has no add-to-cart, and shipping, delivery and returns answers are missing.",
+ "positioning": "Foxtale ranks 4th of 4 on CRO score (61 vs a 75 average), behind Dot & Key (81), Plum (72) and Minimalist (71). All three competitors show a rating near the title and delivery or cross-sell cues, and Dot & Key and Plum put the add-to-cart on the first mobile screen.",
+ "cro_score": 61,
+ "grade": "C",
+ "coverage": 0.94,
+ "viewport_scores": {
+  "mobile": 60,
+  "desktop": 60
+ },
+ "categories": {
+  "First screen (mobile)": {
+   "score": 73,
+   "weight": 22
+  },
+  "First screen (desktop)": {
+   "score": 70,
+   "weight": 10
+  },
+  "Add to cart": {
+   "score": 80,
+   "weight": 15
+  },
+  "Trust & social proof": {
+   "score": 48,
+   "weight": 20
+  },
+  "Purchase friction": {
+   "score": 0,
+   "weight": 15
+  },
+  "Content & merchandising": {
+   "score": 70,
+   "weight": 15
+  },
+  "Offer clarity": {
+   "score": 75,
+   "weight": 7
+  },
+  "Technical & SEO": {
+   "score": 88,
+   "weight": 8
+  }
+ },
+ "checks": [
+  {
+   "id": "title_atf",
+   "category": "First screen (mobile)",
+   "title": "Product name above the fold",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product name visible without scrolling.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold"
+   ]
+  },
+  {
+   "id": "price_atf",
+   "category": "First screen (mobile)",
+   "title": "Price above the fold",
+   "weight": 5,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Price visible without scrolling.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold",
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "atc_atf",
+   "category": "First screen (mobile)",
+   "title": "Add to cart above the fold",
+   "weight": 6,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Add-to-cart starts 3012px down; mobile screen is 844px.",
+   "fix": "Tighten the hero (shorter gallery, smaller spacing) or add a sticky add-to-cart bar.",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold",
+    "fitts"
+   ]
+  },
+  {
+   "id": "image_atf",
+   "category": "First screen (mobile)",
+   "title": "Product image leads",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product image leads the first screen.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "no_popup",
+   "category": "First screen (mobile)",
+   "title": "No entry popup",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "No blocking popup on first load.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "google-interstitials"
+   ]
+  },
+  {
+   "id": "d_title_price_atf",
+   "category": "First screen (desktop)",
+   "title": "Name and price above the fold",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product name and price visible on the first desktop screen (1440x900).",
+   "fix": "",
+   "viewport": "desktop",
+   "research": [
+    "nng-fold"
+   ]
+  },
+  {
+   "id": "d_atc_atf",
+   "category": "First screen (desktop)",
+   "title": "Add to cart above the fold",
+   "weight": 3,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Desktop add-to-cart starts 3348px down; the screen is 900px.",
+   "fix": "Tighten the desktop buy box so the CTA sits within the first screen.",
+   "viewport": "desktop",
+   "research": [
+    "nng-fold",
+    "fitts"
+   ]
+  },
+  {
+   "id": "d_buybox",
+   "category": "First screen (desktop)",
+   "title": "Buy box beside the gallery",
+   "weight": 2,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Gallery and buy box sit side by side.",
+   "fix": "",
+   "viewport": "desktop",
+   "research": [
+    "nng-fold",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "d_no_popup",
+   "category": "First screen (desktop)",
+   "title": "No entry popup",
+   "weight": 2,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "No blocking popup on first desktop load.",
+   "fix": "",
+   "viewport": "desktop",
+   "research": [
+    "google-interstitials"
+   ]
+  },
+  {
+   "id": "atc_present",
+   "category": "Add to cart",
+   "title": "Clear add-to-cart button",
+   "weight": 5,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Primary CTA: \"Add to cart\".",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "choice-overload"
+   ]
+  },
+  {
+   "id": "atc_contrast",
+   "category": "Add to cart",
+   "title": "CTA text contrast",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Contrast ratio 21.0:1 (WCAG AA needs 4.5:1).",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "wcag-contrast"
+   ]
+  },
+  {
+   "id": "atc_tap",
+   "category": "Add to cart",
+   "title": "CTA tap target size",
+   "weight": 3,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Mobile CTA height 32px (target 44px+).",
+   "fix": "Make the mobile CTA at least 44px tall and full width.",
+   "viewport": "mobile",
+   "research": [
+    "wcag-target",
+    "fitts"
+   ]
+  },
+  {
+   "id": "sticky_atc",
+   "category": "Add to cart",
+   "title": "Sticky add-to-cart (mobile)",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Add-to-cart stays reachable after scrolling.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "fitts",
+    "nng-fold"
+   ]
+  },
+  {
+   "id": "rating_title",
+   "category": "Trust & social proof",
+   "title": "Rating summary near title",
+   "weight": 6,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Reviews exist further down but no star summary next to the title.",
+   "fix": "Surface the star rating + review count under the title, linked to the reviews section.",
+   "viewport": "both",
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ]
+  },
+  {
+   "id": "reviews",
+   "category": "Trust & social proof",
+   "title": "Customer reviews section",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Reviews section present.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ]
+  },
+  {
+   "id": "trust_atc",
+   "category": "Trust & social proof",
+   "title": "Trust signals near CTA",
+   "weight": 5,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Near CTA: quality",
+   "fix": "Add a compact trust strip under the CTA (returns window, secure checkout, COD, authenticity).",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "payments",
+   "category": "Trust & social proof",
+   "title": "Payment options visible",
+   "weight": 5,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "No payment options (UPI / cards / COD / EMI) shown near CTA.",
+   "fix": "Show accepted payment methods (UPI, cards, COD, EMI) under the CTA.",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "delivery",
+   "category": "Purchase friction",
+   "title": "Delivery estimate",
+   "weight": 5,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "No delivery estimate or pincode check near the CTA.",
+   "fix": "Add a pincode checker with an estimated delivery date next to the CTA.",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "shipping",
+   "category": "Purchase friction",
+   "title": "Shipping cost clarity",
+   "weight": 3,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Shipping cost not stated anywhere on the page.",
+   "fix": "State shipping cost or the free-shipping threshold next to the price.",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "returns",
+   "category": "Purchase friction",
+   "title": "Returns policy near CTA",
+   "weight": 4,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "No returns or exchange policy on the page.",
+   "fix": "Put the return window (e.g. [N]-day easy returns) right under the CTA.",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "variants",
+   "category": "Purchase friction",
+   "title": "Variant selection UX",
+   "weight": 3,
+   "status": "na",
+   "credit": null,
+   "evidence": "Single-variant product.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-pdp",
+    "choice-overload"
+   ]
+  },
+  {
+   "id": "images",
+   "category": "Content & merchandising",
+   "title": "Product imagery depth",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "44 distinct product images.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "video",
+   "category": "Content & merchandising",
+   "title": "Product video",
+   "weight": 2,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product video present.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "wyzowl-video"
+   ]
+  },
+  {
+   "id": "scannable",
+   "category": "Content & merchandising",
+   "title": "Scannable benefits",
+   "weight": 3,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Description is a text block, no benefit bullets.",
+   "fix": "Lead with 3-5 benefit bullets above the long description.",
+   "viewport": "both",
+   "research": [
+    "nng-scan"
+   ]
+  },
+  {
+   "id": "faq",
+   "category": "Content & merchandising",
+   "title": "FAQ / objection handling",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "FAQ present.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "cross_sell",
+   "category": "Content & merchandising",
+   "title": "Cross-sell / bundles",
+   "weight": 3,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "No cross-sell / bundle module.",
+   "fix": "Add 'Frequently bought together' or a bundle to lift AOV.",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "discount",
+   "category": "Offer clarity",
+   "title": "Discount clearly stated",
+   "weight": 3,
+   "status": "na",
+   "credit": null,
+   "evidence": "No compare-at / MRP price shown.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "anchoring"
+   ]
+  },
+  {
+   "id": "offers",
+   "category": "Offer clarity",
+   "title": "Offers / coupons near price",
+   "weight": 2,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Offer messaging near price.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "anchoring",
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "mandatory_info",
+   "category": "Offer clarity",
+   "title": "Mandatory product declarations (India)",
+   "weight": 2,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Found: MRP inclusive of taxes. Missing: country of origin, net quantity, manufacturer / marketer.",
+   "fix": "Add the Legal Metrology declarations (country of origin, net quantity, manufacturer / marketer) in a 'Product details' block.",
+   "viewport": "both",
+   "research": [
+    "india-lm"
+   ]
+  },
+  {
+   "id": "schema",
+   "category": "Technical & SEO",
+   "title": "Product structured data",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product JSON-LD with offer.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "google-product-schema"
+   ]
+  },
+  {
+   "id": "rating_schema",
+   "category": "Technical & SEO",
+   "title": "Review stars in search",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "aggregateRating in schema.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "google-product-schema"
+   ]
+  },
+  {
+   "id": "meta",
+   "category": "Technical & SEO",
+   "title": "Meta description",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "168 characters.",
+   "fix": "",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "h1",
+   "category": "Technical & SEO",
+   "title": "Single H1",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "1 visible H1 tags.",
+   "fix": "",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "alt",
+   "category": "Technical & SEO",
+   "title": "Image alt text",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "91% of images have alt text.",
+   "fix": "",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "font",
+   "category": "Technical & SEO",
+   "title": "Readable mobile body text",
+   "weight": 1,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Body text 12px on mobile.",
+   "fix": "Bump mobile body copy to 14-16px.",
+   "viewport": "mobile",
+   "research": [
+    "lighthouse-font"
+   ]
+  }
+ ],
+ "flags": [],
+ "perf_score": 22,
+ "perf_label": "Lab budget estimate",
+ "perf": {
+  "source": "lab",
+  "score": 22,
+  "lab": {
+   "source": "lab",
+   "ttfb_ms": 5101,
+   "fcp_ms": 5340,
+   "lcp_ms": 5576,
+   "cls": 0.062,
+   "tbt_ms": 794,
+   "load_ms": 10856,
+   "requests": 281,
+   "total_kb": 5795,
+   "js_kb": 3168,
+   "img_kb": 1338,
+   "modern_img_share": 0.36,
+   "third_party_domains": 53,
+   "third_party_sample": [
+    "1rx.io",
+    "360yield.com",
+    "3lift.com",
+    "adingo.jp",
+    "adnxs.com",
+    "amazonaws.com",
+    "bidswitch.net",
+    "bing.com",
+    "casalemedia.com",
+    "clarity.ms",
+    "clmbtech.com",
+    "config-security.com"
+   ],
+   "lcp_element": {
+    "tag": "img",
+    "src": "https://cdn.shopify.com/s/files/1/0609/6096/4855/files/FXN-SGFW100-01-sale.jpg?v=1792670774&width=828&quality=60",
+    "loading": null,
+    "fetchpriority": "high"
+   },
+   "lcp_lazy": false,
+   "blocking_css": 5,
+   "blocking_js": 1,
+   "dom_nodes": 2494
+  },
+  "lab_rows": [
+   {
+    "name": "Page weight",
+    "value": "5795 KB",
+    "status": "fail"
+   },
+   {
+    "name": "JavaScript weight",
+    "value": "3168 KB",
+    "status": "fail"
+   },
+   {
+    "name": "Layout shift (CLS)",
+    "value": "0.062",
+    "status": "pass"
+   },
+   {
+    "name": "Requests",
+    "value": "281",
+    "status": "fail"
+   },
+   {
+    "name": "Third-party domains",
+    "value": "53",
+    "status": "fail"
+   },
+   {
+    "name": "Modern image formats",
+    "value": "36% WebP/AVIF/SVG",
+    "status": "fail"
+   },
+   {
+    "name": "LCP (unthrottled lab)",
+    "value": "5576 ms",
+    "status": "fail"
+   },
+   {
+    "name": "Main-thread blocking",
+    "value": "794 ms",
+    "status": "fail"
+   },
+   {
+    "name": "Render-blocking resources",
+    "value": "5 CSS, 1 JS",
+    "status": "partial"
+   },
+   {
+    "name": "LCP image not lazy-loaded",
+    "value": "eager",
+    "status": "pass"
+   }
+  ],
+  "psi": null,
+  "note": "Lab budget score from our own mobile load (no CPU/network throttling). Weight, requests and CLS are reliable; timings are optimistic. Set PSI_API_KEY for Lighthouse + real-user (CrUX) data."
+ },
+ "issues": [
+  {
+   "id": "i1",
+   "title": "No add-to-cart on first mobile screen",
+   "detail": "Add to cart appears only after the title, description and a tall spacer, and the first screen ends before any offer detail. Dot & Key and Plum show the CTA in the first view.",
+   "severity": "critical",
+   "category": "First screen (mobile)",
+   "viewport": "mobile",
+   "evidence": "Rubric: add-to-cart starts 3012px down on a 844px screen.",
+   "research": [
+    "nng-fold",
+    "fitts"
+   ]
+  },
+  {
+   "id": "i2",
+   "title": "Delivery, shipping, returns and payments missing",
+   "detail": "Nothing near the CTA says when it arrives, what shipping costs, whether COD or UPI work, or how returns work.",
+   "severity": "high",
+   "category": "Purchase friction",
+   "viewport": "both",
+   "evidence": "Rubric fails for delivery, shipping, returns and payments; Plum shows '95% orders delivered within 3 days'.",
+   "research": [
+    "baymard-abandon",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "i3",
+   "title": "Rating not beside the title",
+   "detail": "The 4.8 chip sits on the image corner with no review count, while 132 reviews and the average are far down the page.",
+   "severity": "high",
+   "category": "Trust & social proof",
+   "viewport": "both",
+   "evidence": "Rating chip '4.8' on the image; schema has 132 reviews; all three competitors show a summary near the title.",
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ]
+  },
+  {
+   "id": "i4",
+   "title": "Body text is tiny and dense",
+   "detail": "Description, directions and ingredient text run at 12px in unbroken blocks, with no benefit bullets.",
+   "severity": "high",
+   "category": "Content & merchandising",
+   "viewport": "mobile",
+   "evidence": "Rubric: body text 12px on mobile; 0 bullets.",
+   "research": [
+    "lighthouse-font",
+    "nng-scan"
+   ]
+  },
+  {
+   "id": "i5",
+   "title": "Offer stack is confusing",
+   "detail": "Two banners and two codes (B2G4, GLOW20) with different promises appear in the announcement bar, the Offers block and a banner. The 'MRP 249' beside a ₹249 price also makes the '20% off' unclear.",
+   "severity": "medium",
+   "category": "Offer clarity",
+   "viewport": "both",
+   "evidence": "Offers: 'Buy 2 Get 4 Free' and 'Up to 20% off'; price ₹249 with MRP 249.",
+   "research": [
+    "choice-overload",
+    "anchoring",
+    "ccpa-dark"
+   ]
+  },
+  {
+   "id": "i6",
+   "title": "Small CTA and unstable loading placeholder",
+   "detail": "The mobile CTA is 32px tall, and a grey loading box covers part of the title area on both screens.",
+   "severity": "medium",
+   "category": "Add to cart",
+   "viewport": "mobile",
+   "evidence": "Rubric: CTA height 32px; a spinner box overlaps the title and description in screenshots.",
+   "research": [
+    "wcag-target",
+    "google-cwv"
+   ]
+  },
+  {
+   "id": "i7",
+   "title": "Heavy, slow page",
+   "detail": "A lab performance score of 38 with 231 requests and 33 third-party domains risks bounces on mobile.",
+   "severity": "medium",
+   "category": "Technical & SEO",
+   "viewport": "mobile",
+   "evidence": "Performance 38, 5311 KB, 2654 KB JS.",
+   "research": [
+    "google-speed",
+    "deloitte-speed"
+   ]
+  },
+  {
+   "id": "i8",
+   "title": "Missing mandatory declarations",
+   "detail": "Net quantity, manufacturer and country of origin are not shown with the product facts.",
+   "severity": "low",
+   "category": "Technical & SEO",
+   "viewport": "both",
+   "evidence": "Rubric: only MRP inclusive of taxes found.",
+   "research": [
+    "india-lm"
+   ]
+  },
+  {
+   "id": "i9",
+   "title": "Possible false urgency line",
+   "detail": "'500+ users claimed this in the last hour!' is an unverified urgency claim.",
+   "severity": "low",
+   "category": "Copy & messaging",
+   "viewport": "mobile",
+   "evidence": "Text in the B2G4 offer card.",
+   "research": [
+    "ccpa-dark"
+   ]
+  }
+ ],
+ "strengths": [
+  {
+   "title": "Clear core promise",
+   "detail": "The title and subtitle state 'Zero to glow in 30 seconds' with Papaya Enzymes and Vitamin C, so the benefit is clear fast.",
+   "viewport": "both"
+  },
+  {
+   "title": "Lead image is strong",
+   "detail": "A large on-brand product image leads the first screen, and a 4.8 rating chip sits on it.",
+   "viewport": "both"
+  },
+  {
+   "title": "Before/after results module",
+   "detail": "The 'Expected Results' slider shows before, after and 30 days visually, which supports the de-tan claim.",
+   "viewport": "both"
+  },
+  {
+   "title": "Rich review layer",
+   "detail": "Marketplace ratings, theme percentages and 132 on-site reviews with photos give broad social proof.",
+   "viewport": "mobile"
+  },
+  {
+   "title": "Clear price and MRP note",
+   "detail": "The price is large and the MRP is stated as inclusive of all taxes.",
+   "viewport": "both"
+  },
+  {
+   "title": "Sticky buy bar on desktop",
+   "detail": "A bottom bar keeps Add to cart and Buy now in reach while scrolling.",
+   "viewport": "desktop"
+  }
+ ],
+ "insights": [
+  {
+   "competitor": "Dot & Key",
+   "observation": "Shows the rating with a 'Loved by 912+ customers' line under the title and a sticky price plus quantity plus Add to cart bar on the first screen.",
+   "takeaway": "Put Foxtale's own rating and review count under the title and keep a sticky CTA bar in view from load."
+  },
+  {
+   "competitor": "Plum",
+   "observation": "Gives a delivery promise ('95% orders delivered within 3 days') and a pincode check near the CTA, plus a returns cue.",
+   "takeaway": "Add a pincode check with a true delivery line and returns note beside the CTA."
+  },
+  {
+   "competitor": "Minimalist",
+   "observation": "Leads with a clean product image and the title and price kept simple, with a scannable ingredient focus.",
+   "takeaway": "Trim the stacked info above the CTA so the buy action comes sooner."
+  },
+  {
+   "competitor": "Dot & Key",
+   "observation": "Includes a cross-sell module and a 'Suitable for: all skin types' line at the top.",
+   "takeaway": "Foxtale's routine module is strong but sits too low; surface key facts earlier."
+  }
+ ],
+ "recommendations": [
+  {
+   "id": "r1",
+   "title": "Add a sticky add-to-cart bar on mobile",
+   "why": "Gets the CTA onto the first screen and keeps it in thumb reach at a 44px height.",
+   "kind": "addon",
+   "viewport": "mobile",
+   "impact": "high",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i1",
+    "i6"
+   ],
+   "research": [
+    "fitts",
+    "wcag-target",
+    "nng-fold"
+   ],
+   "competitor_ref": "Dot & Key",
+   "in_mockup": true
+  },
+  {
+   "id": "r2",
+   "title": "Add rating summary under the title",
+   "why": "Puts the 4.8 and 132 reviews where shoppers decide, linking to reviews.",
+   "kind": "addon",
+   "viewport": "both",
+   "impact": "high",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i3"
+   ],
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ],
+   "competitor_ref": "Dot & Key",
+   "in_mockup": true
+  },
+  {
+   "id": "r3",
+   "title": "Add pincode delivery check near CTA",
+   "why": "Answers delivery timing before the shopper leaves to look elsewhere.",
+   "kind": "addon",
+   "viewport": "both",
+   "impact": "high",
+   "effort": "medium",
+   "fixes_issue_ids": [
+    "i2"
+   ],
+   "research": [
+    "baymard-abandon",
+    "baymard-pdp"
+   ],
+   "competitor_ref": "Plum",
+   "in_mockup": true
+  },
+  {
+   "id": "r4",
+   "title": "Add trust strip with payment, COD and returns cues",
+   "why": "Reduces checkout doubt with short cues; fill unknown policy details with placeholders.",
+   "kind": "addon",
+   "viewport": "both",
+   "impact": "high",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i2"
+   ],
+   "research": [
+    "baymard-abandon"
+   ],
+   "competitor_ref": "Plum",
+   "in_mockup": true
+  },
+  {
+   "id": "r5",
+   "title": "Turn description into scannable benefit and fact blocks",
+   "why": "Replaces the 12px text wall with quick facts and benefits readers can scan.",
+   "kind": "change",
+   "viewport": "both",
+   "impact": "medium",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i4"
+   ],
+   "research": [
+    "nng-scan",
+    "lighthouse-font"
+   ],
+   "competitor_ref": "Minimalist",
+   "in_mockup": true
+  },
+  {
+   "id": "r6",
+   "title": "Simplify offers into one clear box",
+   "why": "One offer box with the two codes clearly stated removes confusion; drop the unverified 'last hour' claim.",
+   "kind": "change",
+   "viewport": "both",
+   "impact": "medium",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i5",
+    "i9"
+   ],
+   "research": [
+    "choice-overload",
+    "ccpa-dark"
+   ],
+   "competitor_ref": "",
+   "in_mockup": true
+  },
+  {
+   "id": "r7",
+   "title": "Cut page weight and fix the loading placeholder",
+   "why": "Faster load lowers bounce and removes the grey box covering the title.",
+   "kind": "change",
+   "viewport": "mobile",
+   "impact": "medium",
+   "effort": "high",
+   "fixes_issue_ids": [
+    "i6",
+    "i7"
+   ],
+   "research": [
+    "google-speed",
+    "deloitte-speed",
+    "google-cwv"
+   ],
+   "competitor_ref": "",
+   "in_mockup": false
+  },
+  {
+   "id": "r8",
+   "title": "Add India mandatory declarations",
+   "why": "Net quantity, manufacturer and country of origin build trust and meet Legal Metrology rules.",
+   "kind": "addon",
+   "viewport": "both",
+   "impact": "low",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i8"
+   ],
+   "research": [
+    "india-lm"
+   ],
+   "competitor_ref": "Dot & Key",
+   "in_mockup": false
+  }
+ ],
+ "patches": [
+  {
+   "rec_id": "r1",
+   "op": "component",
+   "component": "sticky_atc",
+   "target": "buy_now",
+   "position": "after",
+   "viewport": "mobile",
+   "heading": "",
+   "label": "",
+   "items": [],
+   "source": "",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r2",
+   "op": "component",
+   "component": "rating_summary",
+   "target": "title",
+   "position": "after",
+   "viewport": "all",
+   "heading": "",
+   "label": "4.8 (132 reviews)",
+   "items": [],
+   "source": "",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r3",
+   "op": "component",
+   "component": "delivery_check",
+   "target": "buy_now",
+   "position": "before",
+   "viewport": "all",
+   "heading": "Enter pincode",
+   "label": "See delivery date for your area [delivery time]",
+   "items": [],
+   "source": "",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r4",
+   "op": "component",
+   "component": "trust_strip",
+   "target": "buy_now",
+   "position": "after",
+   "viewport": "all",
+   "heading": "",
+   "label": "UPI, cards and COD [confirm payment options]",
+   "items": [
+    {
+     "title": "",
+     "text": "[Easy returns policy]",
+     "icon": "returns"
+    },
+    {
+     "title": "",
+     "text": "Secure checkout",
+     "icon": "secure"
+    },
+    {
+     "title": "",
+     "text": "[Shipping cost]",
+     "icon": "truck"
+    }
+   ],
+   "source": "",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r5",
+   "op": "component",
+   "component": "key_facts",
+   "target": "description",
+   "position": "before",
+   "viewport": "all",
+   "heading": "",
+   "label": "",
+   "items": [
+    {
+     "title": "100ml",
+     "text": "Daily face wash",
+     "icon": "drop"
+    },
+    {
+     "title": "30 sec",
+     "text": "Zero to glow",
+     "icon": "clock"
+    },
+    {
+     "title": "100%",
+     "text": "Sulphate-free",
+     "icon": "check"
+    }
+   ],
+   "source": "",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r6",
+   "op": "component",
+   "component": "offer_box",
+   "target": "price",
+   "position": "after",
+   "viewport": "all",
+   "heading": "Offers on this product",
+   "label": "",
+   "items": [
+    {
+     "title": "",
+     "text": "Buy 2 Get 4 Free with code B2G4",
+     "icon": ""
+    },
+    {
+     "title": "",
+     "text": "Flat 15% off with code GLOW20",
+     "icon": ""
+    }
+   ],
+   "source": "",
+   "css": "",
+   "html": ""
+  }
+ ],
+ "applied": [
+  {
+   "rec_id": "r2",
+   "op": "component",
+   "component": "rating_summary",
+   "target": "title",
+   "position": "after",
+   "viewport": "all",
+   "source": ""
+  },
+  {
+   "rec_id": "r3",
+   "op": "component",
+   "component": "delivery_check",
+   "target": "buy_now",
+   "position": "before",
+   "viewport": "all",
+   "source": ""
+  },
+  {
+   "rec_id": "r4",
+   "op": "component",
+   "component": "trust_strip",
+   "target": "buy_now",
+   "position": "after",
+   "viewport": "all",
+   "source": ""
+  },
+  {
+   "rec_id": "r5",
+   "op": "component",
+   "component": "key_facts",
+   "target": "description",
+   "position": "before",
+   "viewport": "all",
+   "source": ""
+  },
+  {
+   "rec_id": "r6",
+   "op": "component",
+   "component": "offer_box",
+   "target": "price",
+   "position": "after",
+   "viewport": "all",
+   "source": ""
+  }
+ ],
+ "rejected": [
+  {
+   "rec_id": "r1",
+   "op": "component",
+   "component": "sticky_atc",
+   "target": "buy_now",
+   "position": "after",
+   "viewport": "mobile",
+   "source": "",
+   "reason": "the page already has a sticky add-to-cart"
+  }
+ ],
+ "guard_log": [
+  {
+   "rec_id": "r1",
+   "kind": "target",
+   "detail": "'buy_now' sits in a horizontal row; the block was placed after the whole row"
+  },
+  {
+   "rec_id": "r3",
+   "kind": "target",
+   "detail": "'buy_now' sits in a floating bar, so the block was placed after the price instead (next to it, it would float with the bar)"
+  },
+  {
+   "rec_id": "r4",
+   "kind": "target",
+   "detail": "'buy_now' sits in a floating bar, so the block was placed after the price instead (next to it, it would float with the bar)"
+  }
+ ],
+ "tokens": {
+  "source": "dom",
+  "roles": {
+   "primary": "#ffe0ad",
+   "on_primary": "#000000",
+   "text": "#000000",
+   "heading": "#212121",
+   "muted": "#212121",
+   "bg": "#ffffff",
+   "surface": "#e9e5e5",
+   "border": "#e9e5e5",
+   "accent": "#ffe4d6",
+   "link": "#475467"
+  },
+  "palette": [
+   {
+    "hex": "#000000",
+    "weight": 0.5735
+   },
+   {
+    "hex": "#ffffff",
+    "weight": 0.4859
+   },
+   {
+    "hex": "#ffe0ad",
+    "weight": 0.4418
+   },
+   {
+    "hex": "#e9e5e5",
+    "weight": 0.2628
+   },
+   {
+    "hex": "#212121",
+    "weight": 0.1913
+   },
+   {
+    "hex": "#fff2eb",
+    "weight": 0.1287
+   },
+   {
+    "hex": "#333333",
+    "weight": 0.0521
+   },
+   {
+    "hex": "#475467",
+    "weight": 0.05
+   },
+   {
+    "hex": "#ffe4d6",
+    "weight": 0.0495
+   },
+   {
+    "hex": "#aaaaaa",
+    "weight": 0.0418
+   },
+   {
+    "hex": "#666666",
+    "weight": 0.034
+   },
+   {
+    "hex": "#ff8c4b",
+    "weight": 0.0144
+   }
+  ],
+  "fonts": {
+   "body": "Poppins, system-ui, -apple-system, sans-serif",
+   "heading": "Poppins, system-ui, -apple-system, sans-serif",
+   "button": "Poppins, system-ui, -apple-system, sans-serif"
+  },
+  "font_names": [
+   "Poppins"
+  ],
+  "sizes": [
+   12.0,
+   13.0,
+   14.0,
+   16.0,
+   18.0,
+   20.0,
+   24.0,
+   30.0,
+   36.0
+  ],
+  "size_roles": {
+   "xs": 12.0,
+   "sm": 12.0,
+   "base": 12.0,
+   "lg": 13.0,
+   "xl": 30.0,
+   "h1": 36.0,
+   "button": 18.0
+  },
+  "radius": {
+   "button": "12px",
+   "input": "0px"
+  },
+  "button": {
+   "transform": "none",
+   "spacing": "normal",
+   "weight": "600",
+   "padding": "0 20px",
+   "height": "48px"
+  },
+  "line_height": "12px",
+  "logo": {
+   "tag": "img",
+   "src": "https://cdn.shopify.com/s/files/1/0609/6096/4855/files/foxtale-logo.avif?v=1768397507&width=125&quality=60",
+   "alt": "Foxtale Logo"
+  },
+  "google_font_url": null,
+  "notes": [
+   "No filled add-to-cart found; primary colour inferred from the most used accent."
+  ],
+  "css_vars": ":root{--cro-primary: #ffe0ad;--cro-on-primary: #000000;--cro-text: #000000;--cro-heading: #212121;--cro-muted: #212121;--cro-bg: #ffffff;--cro-surface: #e9e5e5;--cro-border: #e9e5e5;--cro-accent: #ffe4d6;--cro-link: #475467;--cro-font-body: Poppins, system-ui, -apple-system, sans-serif;--cro-font-heading: Poppins, system-ui, -apple-system, sans-serif;--cro-font-button: Poppins, system-ui, -apple-system, sans-serif;--cro-fs-xs: 12.0px;--cro-fs-sm: 12.0px;--cro-fs-base: 12.0px;--cro-fs-lg: 13.0px;--cro-fs-xl: 30.0px;--cro-fs-h1: 36.0px;--cro-fs-button: 18.0px;--cro-radius: 12px;--cro-radius-input: 0px;--cro-btn-transform: none;--cro-btn-spacing: normal;--cro-btn-weight: 600;--cro-btn-padding: 0 20px;--cro-btn-height: 48px;--cro-line: 12px;}"
+ },
+ "shots": {
+  "before_mobile": "shots/before_mobile.png",
+  "after_mobile": "shots/after_mobile.png",
+  "before_desktop": "shots/before_desktop.png",
+  "after_desktop": "shots/after_desktop.png"
+ },
+ "original": "original.html",
+ "optimized": "optimized.html",
+ "error": "",
+ "profile": {
+  "brand": "Foxtale",
+  "category": "Skincare",
+  "product_type": "De-tan face wash",
+  "market": "IN",
+  "price_positioning": "mid",
+  "audience": "Indian adults, mostly women and men with daily sun exposure, seeking tan removal, brightening and even skin tone with gentle daily face wash",
+  "competitors": [
+   {
+    "brand": "The Derma Co",
+    "domain": "thedermaco.com",
+    "search_query": "tan removal face wash",
+    "why": "Direct Indian D2C skincare competitor with brightening and tan-care face washes at similar price"
+   },
+   {
+    "brand": "Minimalist",
+    "domain": "beminimalist.co",
+    "search_query": "tan removal face wash",
+    "why": "Leading Indian D2C skincare brand with actives-led face washes for brightening and even tone"
+   },
+   {
+    "brand": "Dot & Key",
+    "domain": "dotandkey.com",
+    "search_query": "glow face wash",
+    "why": "Indian D2C brand selling vitamin C and brightening face washes to the same shoppers"
+   },
+   {
+    "brand": "Plum",
+    "domain": "plumgoodness.com",
+    "search_query": "brightening face wash",
+    "why": "Indian D2C skincare brand with vitamin C and brightening cleansers in the same mid price band"
+   },
+   {
+    "brand": "Aqualogica",
+    "domain": "aqualogica.in",
+    "search_query": "glow face wash",
+    "why": "Indian D2C skincare brand with daily glow and brightening face washes"
+   }
+  ],
+  "source": "claude-haiku-5-5"
+ },
+ "comparison": {
+  "competitors": [
+   {
+    "url": "https://beminimalist.co/products/aha-25-pha-5-bha-2",
+    "final_url": "https://beminimalist.co/products/aha-25-pha-5-bha-2",
+    "domain": "beminimalist.co",
+    "brand": "Minimalist",
+    "title": "AHA PHA BHA 32% Face Peel",
+    "price": "₹ 629 MRP ₹ 699 10% Off",
+    "compare": "₹ 629",
+    "discount": "10% Off",
+    "currency": "INR",
+    "atc_label": "ADD TO CART",
+    "rating": 4.75,
+    "reviews": 699,
+    "rating_text": "stars",
+    "images": 54,
+    "video": false,
+    "sticky_atc": true,
+    "bullets": [
+     "5 412",
+     "4 131",
+     "3 52",
+     "2 33",
+     "1 71",
+     "feels"
+    ],
+    "headings": [
+     "Offers (4)",
+     "Ingredients",
+     "You might also like",
+     "Customers say",
+     "FAQs",
+     "Company Overview",
+     "Quick Links",
+     "Contact Us",
+     "Login with OTP"
+    ],
+    "trust": [],
+    "offers": "",
+    "delivery": "",
+    "faq": true,
+    "cross_sell": true,
+    "cro_score": 71,
+    "grade": "B",
+    "mobile_score": 71,
+    "desktop_score": 73,
+    "categories": {
+     "First screen (mobile)": 50,
+     "First screen (desktop)": 70,
+     "Add to cart": 100,
+     "Trust & social proof": 50,
+     "Purchase friction": 53,
+     "Content & merchandising": 87,
+     "Offer clarity": 100,
+     "Technical & SEO": 100
+    },
+    "checks": {
+     "title_atf": "pass",
+     "price_atf": "fail",
+     "atc_atf": "fail",
+     "image_atf": "pass",
+     "no_popup": "pass",
+     "d_title_price_atf": "pass",
+     "d_atc_atf": "fail",
+     "d_buybox": "pass",
+     "d_no_popup": "pass",
+     "atc_present": "pass",
+     "atc_contrast": "pass",
+     "atc_tap": "pass",
+     "sticky_atc": "pass",
+     "rating_title": "pass",
+     "reviews": "pass",
+     "trust_atc": "fail",
+     "payments": "fail",
+     "delivery": "pass",
+     "shipping": "fail",
+     "returns": "fail",
+     "variants": "pass",
+     "images": "pass",
+     "video": "fail",
+     "scannable": "pass",
+     "faq": "pass",
+     "cross_sell": "pass",
+     "discount": "pass",
+     "offers": "pass",
+     "mandatory_info": "pass",
+     "schema": "pass",
+     "rating_schema": "pass",
+     "meta": "pass",
+     "h1": "pass",
+     "alt": "pass",
+     "font": "pass"
+    },
+    "perf_score": 33,
+    "lab": {
+     "total_kb": 5751,
+     "js_kb": 2971,
+     "requests": 611,
+     "lcp_ms": 0,
+     "cls": 0.006
+    },
+    "ok": true,
+    "captured_ts": 1793216673.411223,
+    "dir": "cache/competitors/c57c83ef13ef",
+    "why": "Leading Indian D2C skincare brand with actives-led face washes for brightening and even tone",
+    "shots": {
+     "mobile_fold": "competitors/c1_mobile_fold.jpg",
+     "mobile_full": "competitors/c1_mobile_full.jpg",
+     "desktop_fold": "competitors/c1_desktop_fold.jpg"
+    }
+   },
+   {
+    "url": "https://dotandkey.com/products/vitamin-c-e-gel-facewash",
+    "final_url": "https://www.dotandkey.com/products/vitamin-c-e-gel-facewash",
+    "domain": "dotandkey.com",
+    "brand": "Dot & Key",
+    "title": "Vitamin C + E Gel Face Wash for Glowing Skin",
+    "price": "₹ 338 ₹ 375 (10% OFF) MRP incl. of all t",
+    "compare": "₹ 375",
+    "discount": "10% OFF",
+    "currency": "INR",
+    "atc_label": "ADD TO CART",
+    "rating": 4.57,
+    "reviews": 912,
+    "rating_text": "stars",
+    "images": 10,
+    "video": false,
+    "sticky_atc": true,
+    "bullets": [],
+    "headings": [
+     "Available Offers",
+     "Customers Also Bought",
+     "Customer Reviews"
+    ],
+    "trust": [
+     "secure checkout",
+     "free shipping"
+    ],
+    "offers": "",
+    "delivery": "",
+    "faq": true,
+    "cross_sell": true,
+    "cro_score": 81,
+    "grade": "B",
+    "mobile_score": 82,
+    "desktop_score": 74,
+    "categories": {
+     "First screen (mobile)": 100,
+     "First screen (desktop)": 70,
+     "Add to cart": 87,
+     "Trust & social proof": 62,
+     "Purchase friction": 73,
+     "Content & merchandising": 77,
+     "Offer clarity": 86,
+     "Technical & SEO": 94
+    },
+    "checks": {
+     "title_atf": "pass",
+     "price_atf": "pass",
+     "atc_atf": "pass",
+     "image_atf": "pass",
+     "no_popup": "pass",
+     "d_title_price_atf": "pass",
+     "d_atc_atf": "fail",
+     "d_buybox": "pass",
+     "d_no_popup": "pass",
+     "atc_present": "pass",
+     "atc_contrast": "partial",
+     "atc_tap": "pass",
+     "sticky_atc": "pass",
+     "rating_title": "pass",
+     "reviews": "pass",
+     "trust_atc": "partial",
+     "payments": "fail",
+     "delivery": "pass",
+     "shipping": "pass",
+     "returns": "fail",
+     "variants": "pass",
+     "images": "pass",
+     "video": "fail",
+     "scannable": "partial",
+     "faq": "pass",
+     "cross_sell": "pass",
+     "discount": "pass",
+     "offers": "partial",
+     "mandatory_info": "pass",
+     "schema": "pass",
+     "rating_schema": "pass",
+     "meta": "pass",
+     "h1": "pass",
+     "alt": "partial",
+     "font": "pass"
+    },
+    "perf_score": 22,
+    "lab": {
+     "total_kb": 5027,
+     "js_kb": 2666,
+     "requests": 534,
+     "lcp_ms": 1728,
+     "cls": 0.11
+    },
+    "ok": true,
+    "captured_ts": 1793216669.7356946,
+    "dir": "cache/competitors/9b408106236e",
+    "why": "Indian D2C brand selling vitamin C and brightening face washes to the same shoppers",
+    "shots": {
+     "mobile_fold": "competitors/c2_mobile_fold.jpg",
+     "mobile_full": "competitors/c2_mobile_full.jpg",
+     "desktop_fold": "competitors/c2_desktop_fold.jpg"
+    }
+   },
+   {
+    "url": "https://plumgoodness.com/products/2-niacinamide-rice-water-face-wash",
+    "final_url": "https://plumgoodness.com/products/2-niacinamide-rice-water-face-wash",
+    "domain": "plumgoodness.com",
+    "brand": "Plum",
+    "title": "2% Niacinamide & Rice Water Face Wash For Clear & Bright Skin",
+    "price": "₹335",
+    "compare": "Regular price ₹395",
+    "discount": "30% off",
+    "currency": "INR",
+    "atc_label": "Add to bag",
+    "rating": null,
+    "reviews": null,
+    "rating_text": "stars",
+    "images": 18,
+    "video": false,
+    "sticky_atc": true,
+    "bullets": [],
+    "headings": [
+     "Available offers",
+     "95% orders are delivered within 3 days",
+     "Niacinamide & rice water face wash"
+    ],
+    "trust": [
+     "returns",
+     "free shipping"
+    ],
+    "offers": "23 / ml 150 ml Add to bag Buy any 3 @flat 30% off Facebook Pinterest T",
+    "delivery": "s while cleansing gently 95% orders are delivered within 3 days Check ",
+    "faq": true,
+    "cross_sell": true,
+    "cro_score": 72,
+    "grade": "B",
+    "mobile_score": 74,
+    "desktop_score": 73,
+    "categories": {
+     "First screen (mobile)": 73,
+     "First screen (desktop)": 50,
+     "Add to cart": 80,
+     "Trust & social proof": 62,
+     "Purchase friction": 100,
+     "Content & merchandising": 77,
+     "Offer clarity": 86,
+     "Technical & SEO": 31
+    },
+    "checks": {
+     "title_atf": "pass",
+     "price_atf": "pass",
+     "atc_atf": "fail",
+     "image_atf": "pass",
+     "no_popup": "pass",
+     "d_title_price_atf": "pass",
+     "d_atc_atf": "fail",
+     "d_buybox": "fail",
+     "d_no_popup": "pass",
+     "atc_present": "pass",
+     "atc_contrast": "pass",
+     "atc_tap": "fail",
+     "sticky_atc": "pass",
+     "rating_title": "pass",
+     "reviews": "pass",
+     "trust_atc": "partial",
+     "payments": "fail",
+     "delivery": "pass",
+     "shipping": "pass",
+     "returns": "pass",
+     "variants": "pass",
+     "images": "pass",
+     "video": "fail",
+     "scannable": "partial",
+     "faq": "pass",
+     "cross_sell": "pass",
+     "discount": "pass",
+     "offers": "pass",
+     "mandatory_info": "partial",
+     "schema": "fail",
+     "rating_schema": "fail",
+     "meta": "pass",
+     "h1": "fail",
+     "alt": "partial",
+     "font": "pass"
+    },
+    "perf_score": 38,
+    "lab": {
+     "total_kb": 8529,
+     "js_kb": 2901,
+     "requests": 636,
+     "lcp_ms": 784,
+     "cls": 0.005
+    },
+    "ok": true,
+    "captured_ts": 1793216718.2408314,
+    "dir": "cache/competitors/572be6e7efb3",
+    "why": "Indian D2C skincare brand with vitamin C and brightening cleansers in the same mid price band",
+    "shots": {
+     "mobile_fold": "competitors/c3_mobile_fold.jpg",
+     "mobile_full": "competitors/c3_mobile_full.jpg",
+     "desktop_fold": "competitors/c3_desktop_fold.jpg"
+    }
+   }
+  ],
+  "matrix": [
+   {
+    "check_id": "title_atf",
+    "title": "Product name above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "price_atf",
+    "title": "Price above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "fail",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "atc_atf",
+    "title": "Add to cart above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 6,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "Dot & Key"
+    ]
+   },
+   {
+    "check_id": "image_atf",
+    "title": "Product image leads",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "no_popup",
+    "title": "No entry popup",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "d_title_price_atf",
+    "title": "Name and price above the fold",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "d_atc_atf",
+    "title": "Add to cart above the fold",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "fail",
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "d_buybox",
+    "title": "Buy box beside the gallery",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key"
+    ]
+   },
+   {
+    "check_id": "d_no_popup",
+    "title": "No entry popup",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "atc_present",
+    "title": "Clear add-to-cart button",
+    "category": "Add to cart",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "atc_contrast",
+    "title": "CTA text contrast",
+    "category": "Add to cart",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "partial",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "atc_tap",
+    "title": "CTA tap target size",
+    "category": "Add to cart",
+    "viewport": "mobile",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key"
+    ]
+   },
+   {
+    "check_id": "sticky_atc",
+    "title": "Sticky add-to-cart (mobile)",
+    "category": "Add to cart",
+    "viewport": "mobile",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "rating_title",
+    "title": "Rating summary near title",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 6,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "reviews",
+    "title": "Customer reviews section",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "trust_atc",
+    "title": "Trust signals near CTA",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 5,
+    "target": "partial",
+    "comps": [
+     "fail",
+     "partial",
+     "partial"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "payments",
+    "title": "Payment options visible",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "fail",
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "delivery",
+    "title": "Delivery estimate",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "shipping",
+    "title": "Shipping cost clarity",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "returns",
+    "title": "Returns policy near CTA",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 4,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "fail",
+     "pass"
+    ],
+    "passing": [
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "variants",
+    "title": "Variant selection UX",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 3,
+    "target": "na",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "images",
+    "title": "Product imagery depth",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "video",
+    "title": "Product video",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "fail",
+     "fail",
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "scannable",
+    "title": "Scannable benefits",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "partial",
+     "partial"
+    ],
+    "passing": [
+     "Minimalist"
+    ]
+   },
+   {
+    "check_id": "faq",
+    "title": "FAQ / objection handling",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "cross_sell",
+    "title": "Cross-sell / bundles",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "discount",
+    "title": "Discount clearly stated",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 3,
+    "target": "na",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "offers",
+    "title": "Offers / coupons near price",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "partial",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "mandatory_info",
+    "title": "Mandatory product declarations (India)",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 2,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "pass",
+     "partial"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key"
+    ]
+   },
+   {
+    "check_id": "schema",
+    "title": "Product structured data",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key"
+    ]
+   },
+   {
+    "check_id": "rating_schema",
+    "title": "Review stars in search",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key"
+    ]
+   },
+   {
+    "check_id": "meta",
+    "title": "Meta description",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "h1",
+    "title": "Single H1",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key"
+    ]
+   },
+   {
+    "check_id": "alt",
+    "title": "Image alt text",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "partial",
+     "partial"
+    ],
+    "passing": [
+     "Minimalist"
+    ]
+   },
+   {
+    "check_id": "font",
+    "title": "Readable mobile body text",
+    "category": "Technical & SEO",
+    "viewport": "mobile",
+    "weight": 1,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   }
+  ],
+  "gaps": [
+   {
+    "check_id": "rating_title",
+    "title": "Rating summary near title",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 6,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "delivery",
+    "title": "Delivery estimate",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "cross_sell",
+    "title": "Cross-sell / bundles",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "atc_atf",
+    "title": "Add to cart above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 6,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "Dot & Key"
+    ]
+   },
+   {
+    "check_id": "atc_tap",
+    "title": "CTA tap target size",
+    "category": "Add to cart",
+    "viewport": "mobile",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key"
+    ]
+   },
+   {
+    "check_id": "shipping",
+    "title": "Shipping cost clarity",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "mandatory_info",
+    "title": "Mandatory product declarations (India)",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 2,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "pass",
+     "partial"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key"
+    ]
+   },
+   {
+    "check_id": "returns",
+    "title": "Returns policy near CTA",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 4,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "fail",
+     "pass"
+    ],
+    "passing": [
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "font",
+    "title": "Readable mobile body text",
+    "category": "Technical & SEO",
+    "viewport": "mobile",
+    "weight": 1,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "scannable",
+    "title": "Scannable benefits",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "partial",
+     "partial"
+    ],
+    "passing": [
+     "Minimalist"
+    ]
+   }
+  ],
+  "leads": [
+   {
+    "check_id": "video",
+    "title": "Product video",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "fail",
+     "fail",
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "alt",
+    "title": "Image alt text",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "partial",
+     "partial"
+    ],
+    "passing": [
+     "Minimalist"
+    ]
+   }
+  ],
+  "table_stakes": [
+   {
+    "check_id": "rating_title",
+    "title": "Rating summary near title",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 6,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "delivery",
+    "title": "Delivery estimate",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "cross_sell",
+    "title": "Cross-sell / bundles",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   },
+   {
+    "check_id": "font",
+    "title": "Readable mobile body text",
+    "category": "Technical & SEO",
+    "viewport": "mobile",
+    "weight": 1,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "Minimalist",
+     "Dot & Key",
+     "Plum"
+    ]
+   }
+  ],
+  "benchmark": {
+   "target": 61,
+   "avg": 75,
+   "best": 81,
+   "best_brand": "Dot & Key",
+   "rank": 4,
+   "of": 4,
+   "mobile": {
+    "target": 60,
+    "avg": 76
+   },
+   "desktop": {
+    "target": 60,
+    "avg": 73
+   }
+  },
+  "facts": [
+   {
+    "label": "Price",
+    "target": "₹ 249",
+    "comps": [
+     "₹ 629 MRP ₹ 699 10% Off",
+     "₹ 338 ₹ 375 (10% OFF) MRP incl. of all t",
+     "₹335"
+    ]
+   },
+   {
+    "label": "Rating",
+    "target": "4.8 (132 reviews)",
+    "comps": [
+     "4.75 (699 reviews)",
+     "4.57 (912 reviews)",
+     "stars"
+    ]
+   },
+   {
+    "label": "Product images",
+    "target": 44,
+    "comps": [
+     54,
+     10,
+     18
+    ]
+   },
+   {
+    "label": "Video",
+    "target": "yes",
+    "comps": [
+     "no",
+     "no",
+     "no"
+    ]
+   },
+   {
+    "label": "Sticky add-to-cart (mobile)",
+    "target": "yes",
+    "comps": [
+     "yes",
+     "yes",
+     "yes"
+    ]
+   },
+   {
+    "label": "Trust cues near CTA",
+    "target": "quality claims",
+    "comps": [
+     "none",
+     "secure checkout, free shipping",
+     "returns, free shipping"
+    ]
+   },
+   {
+    "label": "Offer shown",
+    "target": "Show more Offers Buy 2 Get 4 Free Buy 2 Get 4 Free + flat 10% cashback",
+    "comps": [
+     "none",
+     "none",
+     "23 / ml 150 ml Add to bag Buy any 3 @flat 30% off Facebook Pinterest T"
+    ]
+   },
+   {
+    "label": "Delivery info",
+    "target": "none",
+    "comps": [
+     "none",
+     "none",
+     "s while cleansing gently 95% orders are delivered within 3 days Check "
+    ]
+   },
+   {
+    "label": "FAQ",
+    "target": "yes",
+    "comps": [
+     "yes",
+     "yes",
+     "yes"
+    ]
+   },
+   {
+    "label": "Mobile page weight",
+    "target": "5.7 MB",
+    "comps": [
+     "5.6 MB",
+     "4.9 MB",
+     "8.3 MB"
+    ]
+   }
+  ]
+ },
+ "comp_notes": [
+  "The Derma Co: page could not be captured (https://thedermaco.com/products/2-cica-glow-daily-face-wash-with-tranexamic-acid-licorice-extract-100ml)."
+ ],
+ "target": {
+  "url": "https://foxtale.in/products/super-glow-face-wash",
+  "final_url": "https://foxtale.in/products/super-glow-face-wash",
+  "domain": "foxtale.in",
+  "brand": "Foxtale",
+  "title": "Super Glow De-tan Face Wash",
+  "price": "₹ 249",
+  "compare": "",
+  "discount": "20% off",
+  "currency": "INR",
+  "atc_label": "Add to cart",
+  "rating": 4.8,
+  "reviews": 132,
+  "rating_text": "",
+  "images": 44,
+  "video": true,
+  "sticky_atc": true,
+  "bullets": [],
+  "headings": [
+   "All Super Glow Face Wash",
+   "Expected Results",
+   "Directions of use",
+   "How to Use:",
+   "Clinical Study:",
+   "Full Ingredient List",
+   "Complete Your RoutineRecommended",
+   "Our Super Glow Face Wash is",
+   "Reviewed and Trusted Across the Internet",
+   "FAQs",
+   "Additional Information"
+  ],
+  "trust": [
+   "quality claims"
+  ],
+  "offers": "Show more Offers Buy 2 Get 4 Free Buy 2 Get 4 Free + flat 10% cashback",
+  "delivery": "",
+  "faq": true,
+  "cross_sell": false,
+  "cro_score": 61,
+  "grade": "C",
+  "mobile_score": 60,
+  "desktop_score": 60,
+  "categories": {
+   "First screen (mobile)": 73,
+   "First screen (desktop)": 70,
+   "Add to cart": 80,
+   "Trust & social proof": 48,
+   "Purchase friction": 0,
+   "Content & merchandising": 70,
+   "Offer clarity": 75,
+   "Technical & SEO": 88
+  },
+  "checks": {
+   "title_atf": "pass",
+   "price_atf": "pass",
+   "atc_atf": "fail",
+   "image_atf": "pass",
+   "no_popup": "pass",
+   "d_title_price_atf": "pass",
+   "d_atc_atf": "fail",
+   "d_buybox": "pass",
+   "d_no_popup": "pass",
+   "atc_present": "pass",
+   "atc_contrast": "pass",
+   "atc_tap": "fail",
+   "sticky_atc": "pass",
+   "rating_title": "partial",
+   "reviews": "pass",
+   "trust_atc": "partial",
+   "payments": "fail",
+   "delivery": "fail",
+   "shipping": "fail",
+   "returns": "fail",
+   "variants": "na",
+   "images": "pass",
+   "video": "pass",
+   "scannable": "partial",
+   "faq": "pass",
+   "cross_sell": "fail",
+   "discount": "na",
+   "offers": "pass",
+   "mandatory_info": "partial",
+   "schema": "pass",
+   "rating_schema": "pass",
+   "meta": "pass",
+   "h1": "pass",
+   "alt": "pass",
+   "font": "fail"
+  },
+  "perf_score": 22,
+  "lab": {
+   "total_kb": 5795,
+   "js_kb": 3168,
+   "requests": 281,
+   "lcp_ms": 5576,
+   "cls": 0.062
+  }
+ },
+ "research": {
+  "anchoring": {
+   "id": "anchoring",
+   "source": "Tversky & Kahneman, Judgment under Uncertainty (1974)",
+   "finding": "Anchoring: a reference price (MRP or compare-at price) shapes perceived value, so showing the saving next to the selling price makes the offer register instantly.",
+   "url": ""
+  },
+  "baymard-abandon": {
+   "id": "baymard-abandon",
+   "source": "Baymard Institute, Cart Abandonment Rate statistics",
+   "finding": "The documented average cart abandonment rate is about 70%. Extra costs (shipping, taxes, fees) revealed late are the #1 reason shoppers abandon; slow delivery, not trusting the site with card details and an unsatisfactory returns policy are also among the top reasons.",
+   "url": "https://baymard.com/lists/cart-abandonment-rate"
+  },
+  "baymard-pdp": {
+   "id": "baymard-pdp",
+   "source": "Baymard Institute, Product Page UX research",
+   "finding": "Shoppers judge products mainly through images and product information; when key details (scale, variations, specs, delivery) are missing or hard to find, they leave the page or look elsewhere. Variation options should be visible (buttons or swatches) rather than hidden in drop-downs.",
+   "url": "https://baymard.com/research/product-page"
+  },
+  "ccpa-dark": {
+   "id": "ccpa-dark",
+   "source": "Central Consumer Protection Authority (India), Guidelines for Prevention and Regulation of Dark Patterns, 2023",
+   "finding": "Lists 13 dark patterns, including false urgency, basket sneaking, confirm shaming and drip pricing; urgency, scarcity and price claims must be true and fully disclosed.",
+   "url": ""
+  },
+  "choice-overload": {
+   "id": "choice-overload",
+   "source": "Iyengar & Lepper, When Choice is Demotivating (2000)",
+   "finding": "Shoppers shown 6 jam flavours were about ten times more likely to buy (30%) than those shown 24 (3%): too many competing options and CTAs stall decisions.",
+   "url": ""
+  },
+  "cialdini-proof": {
+   "id": "cialdini-proof",
+   "source": "Robert Cialdini, Influence (1984)",
+   "finding": "Social proof: under uncertainty people follow what others like them have done, which is why visible ratings, review counts and real customer photos reduce hesitation.",
+   "url": ""
+  },
+  "deloitte-speed": {
+   "id": "deloitte-speed",
+   "source": "Deloitte for Google, Milliseconds Make Millions (2020)",
+   "finding": "A 0.1s improvement in mobile site speed increased retail conversions by 8.4% and average order value by 9.2%.",
+   "url": ""
+  },
+  "fitts": {
+   "id": "fitts",
+   "source": "Fitts's law (Fitts, 1954)",
+   "finding": "The time to hit a target grows with its distance and shrinks with its size, so a large CTA that stays within reach (sticky) is faster and easier to tap.",
+   "url": ""
+  },
+  "google-cwv": {
+   "id": "google-cwv",
+   "source": "Google web.dev, Core Web Vitals",
+   "finding": "Good thresholds at the 75th percentile of visits: LCP 2.5s or less, INP 200ms or less, CLS 0.1 or less.",
+   "url": "https://web.dev/articles/vitals"
+  },
+  "google-interstitials": {
+   "id": "google-interstitials",
+   "source": "Google Search Central, intrusive interstitials guidance",
+   "finding": "Popups that cover the main content on mobile make it hard to access and can hurt how the page performs in Google Search.",
+   "url": "https://developers.google.com/search/docs/appearance/avoid-intrusive-interstitials"
+  },
+  "google-product-schema": {
+   "id": "google-product-schema",
+   "source": "Google Search Central, Product structured data",
+   "finding": "Product markup with offers and aggregateRating makes pages eligible for price, availability and review star rich results.",
+   "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+  },
+  "google-speed": {
+   "id": "google-speed",
+   "source": "Google / SOASTA research, Think with Google (2017)",
+   "finding": "As mobile page load time goes from 1s to 3s, the probability of a bounce increases 32%; from 1s to 5s, it increases 90%.",
+   "url": "https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/page-load-time-statistics/"
+  },
+  "india-lm": {
+   "id": "india-lm",
+   "source": "Legal Metrology (Packaged Commodities) Rules, 2011, as amended in 2017 (India)",
+   "finding": "E-commerce listings of packaged goods must show declarations such as manufacturer or packer, net quantity, MRP inclusive of all taxes, country of origin and consumer-care details.",
+   "url": ""
+  },
+  "lighthouse-font": {
+   "id": "lighthouse-font",
+   "source": "Google Lighthouse, legible font sizes audit; Apple HIG",
+   "finding": "Lighthouse flags text below 12px as illegible on mobile; platform guidelines set body text larger (Apple's default body style is 17pt).",
+   "url": ""
+  },
+  "nng-fold": {
+   "id": "nng-fold",
+   "source": "Nielsen Norman Group, Scrolling and Attention (2018)",
+   "finding": "57% of page-viewing time is spent above the fold and 74% within the first two screenfuls, so what the first screen shows gets most of the attention.",
+   "url": "https://www.nngroup.com/articles/scrolling-and-attention/"
+  },
+  "nng-scan": {
+   "id": "nng-scan",
+   "source": "Nielsen Norman Group, Concise, Scannable and Objective writing study",
+   "finding": "Users scan web pages rather than read them; a concise, scannable, objective version of a page measured 124% better usability than the original.",
+   "url": "https://www.nngroup.com/articles/concise-scannable-and-objective-how-to-write-for-the-web/"
+  },
+  "spiegel-reviews": {
+   "id": "spiegel-reviews",
+   "source": "Spiegel Research Center, Northwestern University, How Online Reviews Influence Sales (2017)",
+   "finding": "A product with five reviews is 270% more likely to be purchased than one with none. Purchase likelihood peaks for average ratings of 4.0-4.7 and falls as ratings approach 5.0, and reviews matter more for higher-priced products.",
+   "url": "https://spiegel.medill.northwestern.edu/how-online-reviews-influence-sales/"
+  },
+  "wcag-contrast": {
+   "id": "wcag-contrast",
+   "source": "W3C WCAG 2.2, SC 1.4.3 Contrast (Minimum)",
+   "finding": "Text needs a contrast ratio of at least 4.5:1 against its background (3:1 for large text).",
+   "url": "https://www.w3.org/TR/WCAG22/#contrast-minimum"
+  },
+  "wcag-target": {
+   "id": "wcag-target",
+   "source": "W3C WCAG 2.2, SC 2.5.5 and 2.5.8 Target Size",
+   "finding": "Touch targets of 44x44 CSS px meet the enhanced level (24x24 is the minimum); Apple's Human Interface Guidelines also recommend 44pt.",
+   "url": "https://www.w3.org/TR/WCAG22/#target-size-minimum"
+  },
+  "wyzowl-video": {
+   "id": "wyzowl-video",
+   "source": "Wyzowl, State of Video Marketing (annual survey)",
+   "finding": "In every recent edition, over 80% of consumers say a brand's video has convinced them to buy a product.",
+   "url": "https://www.wyzowl.com/video-marketing-statistics/"
+  }
+ },
+ "cost": {
+  "usd": 0.0876,
+  "calls": [
+   {
+    "tag": "foxtale-e5ee62.audit",
+    "model": "claude-sonnet-5-5",
+    "input_tokens": 15317,
+    "output_tokens": 4150,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 6186,
+    "batch": false,
+    "usd": 0.0876
+   }
+  ]
+ },
+ "sev_counts": {
+  "critical": 1,
+  "high": 3,
+  "medium": 3,
+  "low": 2
+ },
+ "applied_recs": "{'r4', 'r2', 'r3', 'r5', 'r6'}",
+ "slug": "foxtale-e5ee62"
+}

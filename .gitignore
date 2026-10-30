@@ -6,9 +6,6 @@ out/
 out_*/
 cache/
 
-# reference outputs from real brand pages; kept out of the public repo
-sample_output/
-
 # python
 __pycache__/
 *.py[cod]

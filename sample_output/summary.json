@@ -1,0 +1,122 @@
+[
+ {
+  "label": "Foxtale",
+  "input": "https://foxtale.in/products/super-glow-face-wash",
+  "kind": "url",
+  "slug": "foxtale-e5ee62",
+  "cro_score": 61,
+  "grade": "C",
+  "mobile_score": 60,
+  "desktop_score": 60,
+  "perf_score": 22,
+  "perf_source": "lab",
+  "critical": 1,
+  "category": "Skincare",
+  "competitors": [
+   "Minimalist",
+   "Dot & Key",
+   "Plum"
+  ],
+  "comp_avg": 75,
+  "rank": "4/4",
+  "top_issues": [
+   "No add-to-cart on first mobile screen",
+   "Delivery, shipping, returns and payments missing",
+   "Rating not beside the title"
+  ],
+  "cost_usd": 0.0876,
+  "status": "ok",
+  "error": "",
+  "report": "foxtale-e5ee62/report.html",
+  "optimized": "foxtale-e5ee62/optimized.html"
+ },
+ {
+  "label": "Wellbeing Nutrition",
+  "input": "https://wellbeingnutrition.com/products/raw-whey-protein-isolate-unflavored",
+  "kind": "url",
+  "slug": "wellbeing-nutrition-85bcc2",
+  "cro_score": 69,
+  "grade": "C",
+  "mobile_score": 72,
+  "desktop_score": 64,
+  "perf_score": 28,
+  "perf_source": "lab",
+  "critical": 1,
+  "category": "Protein & sports nutrition",
+  "competitors": [
+   "MuscleBlaze",
+   "The Whole Truth",
+   "SuperYou"
+  ],
+  "comp_avg": 74,
+  "rank": "4/4",
+  "top_issues": [
+   "Desktop buy box is below the fold",
+   "Price missing from first mobile screen",
+   "No delivery, shipping or returns info"
+  ],
+  "cost_usd": 0.0446,
+  "status": "ok",
+  "error": "",
+  "report": "wellbeing-nutrition-85bcc2/report.html",
+  "optimized": "wellbeing-nutrition-85bcc2/optimized.html"
+ },
+ {
+  "label": "Fableroom",
+  "input": "https://fableroom.com/collections/furniture-deals/products/riven-pedestal-coffee-table",
+  "kind": "url",
+  "slug": "fableroom-3f8ec6",
+  "cro_score": 70,
+  "grade": "B",
+  "mobile_score": 72,
+  "desktop_score": 78,
+  "perf_score": 25,
+  "perf_source": "lab",
+  "critical": 1,
+  "category": "Furniture & home decor",
+  "competitors": [
+   "Heal's"
+  ],
+  "comp_avg": 51,
+  "rank": "1/2",
+  "top_issues": [
+   "Price and CTA far below the first mobile screen",
+   "Entry popup and side tab cover content",
+   "Add to Basket below the desktop fold"
+  ],
+  "cost_usd": 0.0664,
+  "status": "ok",
+  "error": "",
+  "report": "fableroom-3f8ec6/report.html",
+  "optimized": "fableroom-3f8ec6/optimized.html"
+ },
+ {
+  "label": "Fableroom (screenshot)",
+  "input": "screencapture-fableroom-collections-furniture-deals-products-riven-pedestal-coffee-table-2026-10-28-18_51_24.png",
+  "kind": "image",
+  "slug": "fableroom-screenshot-1d6f73",
+  "cro_score": 89,
+  "grade": "A",
+  "mobile_score": 88,
+  "desktop_score": 89,
+  "perf_score": null,
+  "perf_source": "n/a",
+  "critical": 0,
+  "category": "Furniture & home decor (UK)",
+  "competitors": [
+   "Heal's"
+  ],
+  "comp_avg": 51,
+  "rank": "1/2",
+  "top_issues": [
+   "Buy box content is duplicated",
+   "Saving figures conflict",
+   "Shipping cost not stated"
+  ],
+  "cost_usd": 0.1223,
+  "status": "ok",
+  "error": "",
+  "report": "fableroom-screenshot-1d6f73/report.html",
+  "optimized": "fableroom-screenshot-1d6f73/optimized.html"
+ }
+]

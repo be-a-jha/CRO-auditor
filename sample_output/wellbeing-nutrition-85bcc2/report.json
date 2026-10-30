@@ -1,0 +1,2906 @@
+{
+ "label": "Wellbeing Nutrition",
+ "input": "https://wellbeingnutrition.com/products/raw-whey-protein-isolate-unflavored",
+ "kind": "url",
+ "generated": "29 Oct 2026, 01:37",
+ "model": "claude-sonnet-5-5",
+ "fast_model": "claude-haiku-5-5",
+ "effort": "low",
+ "batch": true,
+ "plan_source": "llm",
+ "summary": "The page sells on clinical claims, a strong rating (4.89/5 from 777) and a long education story about native whey. The biggest conversion problem is the layout: on desktop the buy box sits below a 900px first screen, and on mobile the price is pushed below a long description and benefit block.",
+ "positioning": "Wellbeing ranks last of four on the rubric (69 vs The Whole Truth 79, MuscleBlaze 73, SuperYou 71). All three competitors show price on the first mobile screen, and MuscleBlaze and The Whole Truth also give delivery information, which this page lacks.",
+ "cro_score": 69,
+ "grade": "C",
+ "coverage": 1.0,
+ "viewport_scores": {
+  "mobile": 72,
+  "desktop": 64
+ },
+ "categories": {
+  "First screen (mobile)": {
+   "score": 77,
+   "weight": 22
+  },
+  "First screen (desktop)": {
+   "score": 35,
+   "weight": 10
+  },
+  "Add to cart": {
+   "score": 100,
+   "weight": 15
+  },
+  "Trust & social proof": {
+   "score": 72,
+   "weight": 20
+  },
+  "Purchase friction": {
+   "score": 20,
+   "weight": 15
+  },
+  "Content & merchandising": {
+   "score": 67,
+   "weight": 15
+  },
+  "Offer clarity": {
+   "score": 86,
+   "weight": 7
+  },
+  "Technical & SEO": {
+   "score": 100,
+   "weight": 8
+  }
+ },
+ "checks": [
+  {
+   "id": "title_atf",
+   "category": "First screen (mobile)",
+   "title": "Product name above the fold",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product name visible without scrolling.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold"
+   ]
+  },
+  {
+   "id": "price_atf",
+   "category": "First screen (mobile)",
+   "title": "Price above the fold",
+   "weight": 5,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Price is not visible on the first mobile screen.",
+   "fix": "Show price next to the title in the first screen; price uncertainty is a top exit reason.",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold",
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "atc_atf",
+   "category": "First screen (mobile)",
+   "title": "Add to cart above the fold",
+   "weight": 6,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Add-to-cart fully visible on the first mobile screen.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold",
+    "fitts"
+   ]
+  },
+  {
+   "id": "image_atf",
+   "category": "First screen (mobile)",
+   "title": "Product image leads",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product image leads the first screen.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "nng-fold",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "no_popup",
+   "category": "First screen (mobile)",
+   "title": "No entry popup",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "No blocking popup on first load.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "google-interstitials"
+   ]
+  },
+  {
+   "id": "d_title_price_atf",
+   "category": "First screen (desktop)",
+   "title": "Name and price above the fold",
+   "weight": 3,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Only one of name or price is on the first desktop screen.",
+   "fix": "Bring the buy box (name, price, CTA) into the first desktop screen.",
+   "viewport": "desktop",
+   "research": [
+    "nng-fold"
+   ]
+  },
+  {
+   "id": "d_atc_atf",
+   "category": "First screen (desktop)",
+   "title": "Add to cart above the fold",
+   "weight": 3,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Desktop add-to-cart starts 1382px down; the screen is 900px.",
+   "fix": "Tighten the desktop buy box so the CTA sits within the first screen.",
+   "viewport": "desktop",
+   "research": [
+    "nng-fold",
+    "fitts"
+   ]
+  },
+  {
+   "id": "d_buybox",
+   "category": "First screen (desktop)",
+   "title": "Buy box beside the gallery",
+   "weight": 2,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Desktop stacks the gallery above the buy box, wasting the wide screen.",
+   "fix": "Use a two-column desktop layout: gallery left, sticky buy box right.",
+   "viewport": "desktop",
+   "research": [
+    "nng-fold",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "d_no_popup",
+   "category": "First screen (desktop)",
+   "title": "No entry popup",
+   "weight": 2,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "No blocking popup on first desktop load.",
+   "fix": "",
+   "viewport": "desktop",
+   "research": [
+    "google-interstitials"
+   ]
+  },
+  {
+   "id": "atc_present",
+   "category": "Add to cart",
+   "title": "Clear add-to-cart button",
+   "weight": 5,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Primary CTA: \"ADD TO CART\".",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "choice-overload"
+   ]
+  },
+  {
+   "id": "atc_contrast",
+   "category": "Add to cart",
+   "title": "CTA text contrast",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Contrast ratio 17.68:1 (WCAG AA needs 4.5:1).",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "wcag-contrast"
+   ]
+  },
+  {
+   "id": "atc_tap",
+   "category": "Add to cart",
+   "title": "CTA tap target size",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Mobile CTA height 45px (target 44px+).",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "wcag-target",
+    "fitts"
+   ]
+  },
+  {
+   "id": "sticky_atc",
+   "category": "Add to cart",
+   "title": "Sticky add-to-cart (mobile)",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Add-to-cart stays reachable after scrolling.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "fitts",
+    "nng-fold"
+   ]
+  },
+  {
+   "id": "rating_title",
+   "category": "Trust & social proof",
+   "title": "Rating summary near title",
+   "weight": 6,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Reviews exist further down but no star summary next to the title.",
+   "fix": "Surface the star rating + review count under the title, linked to the reviews section.",
+   "viewport": "both",
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ]
+  },
+  {
+   "id": "reviews",
+   "category": "Trust & social proof",
+   "title": "Customer reviews section",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Reviews section present.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ]
+  },
+  {
+   "id": "trust_atc",
+   "category": "Trust & social proof",
+   "title": "Trust signals near CTA",
+   "weight": 5,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Near CTA: quality",
+   "fix": "Add a compact trust strip under the CTA (returns window, secure checkout, COD, authenticity).",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "payments",
+   "category": "Trust & social proof",
+   "title": "Payment options visible",
+   "weight": 5,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Payment options shown near CTA.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "delivery",
+   "category": "Purchase friction",
+   "title": "Delivery estimate",
+   "weight": 5,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "No delivery estimate or pincode check near the CTA.",
+   "fix": "Add a pincode checker with an estimated delivery date next to the CTA.",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "shipping",
+   "category": "Purchase friction",
+   "title": "Shipping cost clarity",
+   "weight": 3,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "Shipping cost not stated anywhere on the page.",
+   "fix": "State shipping cost or the free-shipping threshold next to the price.",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "returns",
+   "category": "Purchase friction",
+   "title": "Returns policy near CTA",
+   "weight": 4,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "No returns or exchange policy on the page.",
+   "fix": "Put the return window (e.g. [N]-day easy returns) right under the CTA.",
+   "viewport": "both",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "variants",
+   "category": "Purchase friction",
+   "title": "Variant selection UX",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Variants shown as visible options.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-pdp",
+    "choice-overload"
+   ]
+  },
+  {
+   "id": "images",
+   "category": "Content & merchandising",
+   "title": "Product imagery depth",
+   "weight": 4,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "15 distinct product images.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "video",
+   "category": "Content & merchandising",
+   "title": "Product video",
+   "weight": 2,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "No product video.",
+   "fix": "Add a 15-30s how-to-use or demo video in the gallery.",
+   "viewport": "both",
+   "research": [
+    "wyzowl-video"
+   ]
+  },
+  {
+   "id": "scannable",
+   "category": "Content & merchandising",
+   "title": "Scannable benefits",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "4 bullet points in product info.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "nng-scan"
+   ]
+  },
+  {
+   "id": "faq",
+   "category": "Content & merchandising",
+   "title": "FAQ / objection handling",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "FAQ present.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "cross_sell",
+   "category": "Content & merchandising",
+   "title": "Cross-sell / bundles",
+   "weight": 3,
+   "status": "fail",
+   "credit": 0.0,
+   "evidence": "No cross-sell / bundle module.",
+   "fix": "Add 'Frequently bought together' or a bundle to lift AOV.",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "discount",
+   "category": "Offer clarity",
+   "title": "Discount clearly stated",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Shown as \"10% off\".",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "anchoring"
+   ]
+  },
+  {
+   "id": "offers",
+   "category": "Offer clarity",
+   "title": "Offers / coupons near price",
+   "weight": 2,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Offer messaging near price.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "anchoring",
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "mandatory_info",
+   "category": "Offer clarity",
+   "title": "Mandatory product declarations (India)",
+   "weight": 2,
+   "status": "partial",
+   "credit": 0.5,
+   "evidence": "Found: country of origin, MRP inclusive of taxes. Missing: net quantity, manufacturer / marketer.",
+   "fix": "Add the Legal Metrology declarations (net quantity, manufacturer / marketer) in a 'Product details' block.",
+   "viewport": "both",
+   "research": [
+    "india-lm"
+   ]
+  },
+  {
+   "id": "schema",
+   "category": "Technical & SEO",
+   "title": "Product structured data",
+   "weight": 3,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Product JSON-LD with offer.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "google-product-schema"
+   ]
+  },
+  {
+   "id": "rating_schema",
+   "category": "Technical & SEO",
+   "title": "Review stars in search",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "aggregateRating in schema.",
+   "fix": "",
+   "viewport": "both",
+   "research": [
+    "google-product-schema"
+   ]
+  },
+  {
+   "id": "meta",
+   "category": "Technical & SEO",
+   "title": "Meta description",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "157 characters.",
+   "fix": "",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "h1",
+   "category": "Technical & SEO",
+   "title": "Single H1",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "1 visible H1 tags.",
+   "fix": "",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "alt",
+   "category": "Technical & SEO",
+   "title": "Image alt text",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "97% of images have alt text.",
+   "fix": "",
+   "viewport": "both",
+   "research": []
+  },
+  {
+   "id": "font",
+   "category": "Technical & SEO",
+   "title": "Readable mobile body text",
+   "weight": 1,
+   "status": "pass",
+   "credit": 1.0,
+   "evidence": "Body text 14px on mobile.",
+   "fix": "",
+   "viewport": "mobile",
+   "research": [
+    "lighthouse-font"
+   ]
+  }
+ ],
+ "flags": [
+  "Urgency claim found: \"Only 43 left\". Must reflect real stock/timers; false urgency is a listed dark pattern under India's CCPA Guidelines for Prevention and Regulation of Dark Patterns, 2023."
+ ],
+ "perf_score": 28,
+ "perf_label": "Lab budget estimate",
+ "perf": {
+  "source": "lab",
+  "score": 28,
+  "lab": {
+   "source": "lab",
+   "ttfb_ms": 614,
+   "fcp_ms": 1952,
+   "lcp_ms": 7152,
+   "cls": 0.011,
+   "tbt_ms": 31007,
+   "load_ms": 0,
+   "requests": 301,
+   "total_kb": 4513,
+   "js_kb": 2031,
+   "img_kb": 1597,
+   "modern_img_share": 0.69,
+   "third_party_domains": 25,
+   "third_party_sample": [
+    "aitrillion.com",
+    "amazonaws.com",
+    "artfut.com",
+    "bikayi.app",
+    "bikinfo.co",
+    "clarity.ms",
+    "clevertap-prod.com",
+    "cloudfront.net",
+    "conversionsapigateway.com",
+    "criteo.com",
+    "facebook.com",
+    "facebook.net"
+   ],
+   "lcp_element": {
+    "tag": "img",
+    "src": "https://wellbeingnutrition.com/cdn/shop/files/Image_1_2_8b85a469-d182-4466-8208-74650cb8eedb.jpg?v=1783424228&width=900",
+    "loading": "eager",
+    "fetchpriority": "high"
+   },
+   "lcp_lazy": false,
+   "blocking_css": 5,
+   "blocking_js": 0,
+   "dom_nodes": 2844
+  },
+  "lab_rows": [
+   {
+    "name": "Page weight",
+    "value": "4513 KB",
+    "status": "fail"
+   },
+   {
+    "name": "JavaScript weight",
+    "value": "2031 KB",
+    "status": "fail"
+   },
+   {
+    "name": "Layout shift (CLS)",
+    "value": "0.011",
+    "status": "pass"
+   },
+   {
+    "name": "Requests",
+    "value": "301",
+    "status": "fail"
+   },
+   {
+    "name": "Third-party domains",
+    "value": "25",
+    "status": "fail"
+   },
+   {
+    "name": "Modern image formats",
+    "value": "69% WebP/AVIF/SVG",
+    "status": "partial"
+   },
+   {
+    "name": "LCP (unthrottled lab)",
+    "value": "7152 ms",
+    "status": "fail"
+   },
+   {
+    "name": "Main-thread blocking",
+    "value": "31007 ms",
+    "status": "fail"
+   },
+   {
+    "name": "Render-blocking resources",
+    "value": "5 CSS, 0 JS",
+    "status": "partial"
+   },
+   {
+    "name": "LCP image not lazy-loaded",
+    "value": "eager",
+    "status": "pass"
+   }
+  ],
+  "psi": null,
+  "note": "Lab budget score from our own mobile load (no CPU/network throttling). Weight, requests and CLS are reliable; timings are optimistic. Set PSI_API_KEY for Lighthouse + real-user (CrUX) data.",
+  "psi_error": "HTTPStatusError: Client error '429 Too Many Requests' for url 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https%3A%2F"
+ },
+ "issues": [
+  {
+   "id": "i1",
+   "title": "Desktop buy box is below the fold",
+   "detail": "Price, variants and ADD TO CART sit 1382px down because description and claims fill the first screen. Shoppers cannot buy without scrolling.",
+   "severity": "critical",
+   "category": "First screen (desktop)",
+   "viewport": "desktop",
+   "evidence": "First desktop screen ends at the 2x Muscle Protein Synthesis banner with the price cut off at the bottom edge.",
+   "research": [
+    "nng-fold",
+    "fitts"
+   ]
+  },
+  {
+   "id": "i2",
+   "title": "Price missing from first mobile screen",
+   "detail": "Title, tagline and buttons show, but the price sits about 1500px down below description and benefits.",
+   "severity": "high",
+   "category": "First screen (mobile)",
+   "viewport": "mobile",
+   "evidence": "Mobile first screen shows ADD TO CART and BUY IT NOW with no price; all three competitors show price.",
+   "research": [
+    "nng-fold",
+    "baymard-pdp"
+   ]
+  },
+  {
+   "id": "i3",
+   "title": "No delivery, shipping or returns info",
+   "detail": "There is no pincode check, delivery estimate, shipping cost or return policy near the CTA, which are top abandonment reasons.",
+   "severity": "high",
+   "category": "Purchase friction",
+   "viewport": "both",
+   "evidence": "Rubric fails delivery, shipping and returns; trust near CTA is partial.",
+   "research": [
+    "baymard-abandon"
+   ]
+  },
+  {
+   "id": "i4",
+   "title": "Stock urgency claim may be a dark pattern",
+   "detail": "'Only 43 left in stock' shows 25 on mobile and 43 on desktop, so the number looks unreliable.",
+   "severity": "high",
+   "category": "Offer clarity",
+   "viewport": "both",
+   "evidence": "Mobile screenshot says 'Only 25 left in stock'; desktop says 'Only 43 left in stock'.",
+   "research": [
+    "ccpa-dark"
+   ]
+  },
+  {
+   "id": "i5",
+   "title": "Rating not near the title on mobile",
+   "detail": "The 4.89 rating appears beside the title on desktop only; mobile shoppers see no stars before the CTA.",
+   "severity": "medium",
+   "category": "Trust & social proof",
+   "viewport": "mobile",
+   "evidence": "Mobile title block shows the tagline and then the buttons, with no stars.",
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ]
+  },
+  {
+   "id": "i6",
+   "title": "Dense text blocks and stacked offers",
+   "detail": "A long paragraph, six claim tiles, a 2x banner, member price, EMI, cashback and stock bar compete before the CTA.",
+   "severity": "medium",
+   "category": "Visual hierarchy",
+   "viewport": "both",
+   "evidence": "Mobile sections between title and price run over 1000px of text and badges.",
+   "research": [
+    "nng-scan",
+    "choice-overload"
+   ]
+  },
+  {
+   "id": "i7",
+   "title": "Floating chat prompts cover content",
+   "detail": "On desktop three AI question bubbles and a green tab overlap the description and benefit icons.",
+   "severity": "medium",
+   "category": "First screen (desktop)",
+   "viewport": "desktop",
+   "evidence": "Black question pills overlay the benefit icons at left of the first desktop screen.",
+   "research": [
+    "google-interstitials"
+   ]
+  },
+  {
+   "id": "i8",
+   "title": "Slow page and missing declarations",
+   "detail": "Lab performance is 28 with 301 requests, and net quantity and manufacturer are not found.",
+   "severity": "medium",
+   "category": "Technical & SEO",
+   "viewport": "both",
+   "evidence": "Performance score 28, 4.5MB, 25 third-party domains; mandatory_info is partial.",
+   "research": [
+    "google-speed",
+    "deloitte-speed",
+    "india-lm"
+   ]
+  }
+ ],
+ "strengths": [
+  {
+   "title": "Strong rating and review volume",
+   "detail": "4.89/5 from 777 reviews is a solid proof point and reviews plus aggregateRating schema are in place.",
+   "viewport": "both"
+  },
+  {
+   "title": "Clear pack visual with key stats",
+   "detail": "The pack shot shows 31g protein and a nutrition strip, so the core spec reads at a glance.",
+   "viewport": "both"
+  },
+  {
+   "title": "Visible variant and offer stack",
+   "detail": "Pack of 1KG/2KG appear as buttons with savings, plus member price, EMI and cashback near the price.",
+   "viewport": "both"
+  },
+  {
+   "title": "Deep proof content below",
+   "detail": "Lab reports, research citations, an FAQ and certification badges address trust and ingredient questions.",
+   "viewport": "both"
+  },
+  {
+   "title": "Add to cart is clear and reachable",
+   "detail": "High contrast ADD TO CART and BUY IT NOW buttons appear on the first mobile screen.",
+   "viewport": "mobile"
+  }
+ ],
+ "insights": [
+  {
+   "competitor": "The Whole Truth",
+   "observation": "Mobile first screen shows title, gallery, price with MRP and savings badge, and a sticky ADD TO CART.",
+   "takeaway": "Bring price and the saving up under the title in Wellbeing's own style."
+  },
+  {
+   "competitor": "MuscleBlaze",
+   "observation": "Shows a rating chip beside the title, price with tax note and a short variant summary above a sticky bar.",
+   "takeaway": "Put the 4.89 rating beside the title and trim the content between title and price."
+  },
+  {
+   "competitor": "SuperYou",
+   "observation": "Offers a rating line and bundle tiers such as buy 2 save more.",
+   "takeaway": "Use the existing 2KG saving as a clear bundle nudge near the variants."
+  },
+  {
+   "competitor": "The Whole Truth",
+   "observation": "States dispatch time at the top of the page.",
+   "takeaway": "Add a pincode delivery check so shoppers know timing before the CTA."
+  }
+ ],
+ "recommendations": [
+  {
+   "id": "r1",
+   "title": "Move price block up under the title",
+   "why": "Showing price and saving next to the title puts the key purchase facts on the first screen on both viewports.",
+   "kind": "change",
+   "viewport": "both",
+   "impact": "high",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i1",
+    "i2",
+    "i6"
+   ],
+   "research": [
+    "nng-fold",
+    "anchoring"
+   ],
+   "competitor_ref": "The Whole Truth",
+   "in_mockup": true
+  },
+  {
+   "id": "r2",
+   "title": "Add rating summary beside the title",
+   "why": "The 4.89 rating from 777 reviews reduces hesitation early.",
+   "kind": "addon",
+   "viewport": "mobile",
+   "impact": "high",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i5"
+   ],
+   "research": [
+    "spiegel-reviews",
+    "cialdini-proof"
+   ],
+   "competitor_ref": "MuscleBlaze",
+   "in_mockup": true
+  },
+  {
+   "id": "r3",
+   "title": "Add pincode delivery check by the CTA",
+   "why": "Delivery timing is a top abandonment reason and is missing here.",
+   "kind": "addon",
+   "viewport": "both",
+   "impact": "high",
+   "effort": "medium",
+   "fixes_issue_ids": [
+    "i3"
+   ],
+   "research": [
+    "baymard-abandon"
+   ],
+   "competitor_ref": "The Whole Truth",
+   "in_mockup": true
+  },
+  {
+   "id": "r4",
+   "title": "Add trust strip with returns and payments under CTA",
+   "why": "Returns, secure payment and COD cues reassure at the moment of decision.",
+   "kind": "addon",
+   "viewport": "both",
+   "impact": "high",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i3"
+   ],
+   "research": [
+    "baymard-abandon"
+   ],
+   "competitor_ref": "MuscleBlaze",
+   "in_mockup": true
+  },
+  {
+   "id": "r5",
+   "title": "Show real stock or remove the low-stock bar",
+   "why": "The two different counts look false and risk CCPA dark pattern issues.",
+   "kind": "change",
+   "viewport": "both",
+   "impact": "medium",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i4"
+   ],
+   "research": [
+    "ccpa-dark"
+   ],
+   "competitor_ref": "",
+   "in_mockup": false
+  },
+  {
+   "id": "r6",
+   "title": "Make the buy box sticky beside the gallery on desktop",
+   "why": "A side-by-side layout keeps price and CTA in view next to the pack shot.",
+   "kind": "change",
+   "viewport": "desktop",
+   "impact": "high",
+   "effort": "medium",
+   "fixes_issue_ids": [
+    "i1"
+   ],
+   "research": [
+    "fitts",
+    "nng-fold"
+   ],
+   "competitor_ref": "MuscleBlaze",
+   "in_mockup": false
+  },
+  {
+   "id": "r7",
+   "title": "Add a compact key facts grid in place of the long paragraph",
+   "why": "Scannable numbers replace dense copy and keep the buy box close to the title.",
+   "kind": "addon",
+   "viewport": "both",
+   "impact": "medium",
+   "effort": "low",
+   "fixes_issue_ids": [
+    "i6"
+   ],
+   "research": [
+    "nng-scan"
+   ],
+   "competitor_ref": "",
+   "in_mockup": true
+  },
+  {
+   "id": "r8",
+   "title": "Cut page weight and add declarations",
+   "why": "Faster load and net quantity and manufacturer details improve conversion and compliance.",
+   "kind": "change",
+   "viewport": "both",
+   "impact": "medium",
+   "effort": "high",
+   "fixes_issue_ids": [
+    "i8"
+   ],
+   "research": [
+    "google-speed",
+    "deloitte-speed",
+    "india-lm"
+   ],
+   "competitor_ref": "MuscleBlaze",
+   "in_mockup": false
+  }
+ ],
+ "patches": [
+  {
+   "rec_id": "r1",
+   "op": "move",
+   "component": "none",
+   "target": "n12",
+   "position": "after",
+   "viewport": "mobile",
+   "heading": "",
+   "label": "",
+   "items": [],
+   "source": "n20",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r2",
+   "op": "component",
+   "component": "rating_summary",
+   "target": "title",
+   "position": "after",
+   "viewport": "mobile",
+   "heading": "",
+   "label": "4.89 (777 reviews)",
+   "items": [],
+   "source": "",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r3",
+   "op": "component",
+   "component": "delivery_check",
+   "target": "atc",
+   "position": "before",
+   "viewport": "all",
+   "heading": "Enter pincode",
+   "label": "Check delivery date and COD for your area",
+   "items": [],
+   "source": "",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r4",
+   "op": "component",
+   "component": "trust_strip",
+   "target": "buy_now",
+   "position": "after",
+   "viewport": "all",
+   "heading": "",
+   "label": "UPI, cards, EMI and COD accepted",
+   "items": [
+    {
+     "title": "",
+     "text": "[7-day returns]",
+     "icon": "returns"
+    },
+    {
+     "title": "",
+     "text": "Secure checkout",
+     "icon": "secure"
+    },
+    {
+     "title": "",
+     "text": "Lab tested",
+     "icon": "shield"
+    }
+   ],
+   "source": "",
+   "css": "",
+   "html": ""
+  },
+  {
+   "rec_id": "r7",
+   "op": "component",
+   "component": "key_facts",
+   "target": "description",
+   "position": "before",
+   "viewport": "all",
+   "heading": "",
+   "label": "",
+   "items": [
+    {
+     "title": "31g",
+     "text": "protein per scoop",
+     "icon": ""
+    },
+    {
+     "title": "15.4g",
+     "text": "essential amino acids",
+     "icon": ""
+    },
+    {
+     "title": "7.1g",
+     "text": "BCAAs",
+     "icon": ""
+    },
+    {
+     "title": "4B CFU",
+     "text": "probiotics",
+     "icon": ""
+    }
+   ],
+   "source": "",
+   "css": "",
+   "html": ""
+  }
+ ],
+ "applied": [
+  {
+   "rec_id": "r1",
+   "op": "move",
+   "component": "none",
+   "target": "n12",
+   "position": "after",
+   "viewport": "mobile",
+   "source": "n20"
+  },
+  {
+   "rec_id": "r2",
+   "op": "component",
+   "component": "rating_summary",
+   "target": "title",
+   "position": "after",
+   "viewport": "mobile",
+   "source": ""
+  },
+  {
+   "rec_id": "r3",
+   "op": "component",
+   "component": "delivery_check",
+   "target": "atc",
+   "position": "before",
+   "viewport": "all",
+   "source": ""
+  },
+  {
+   "rec_id": "r4",
+   "op": "component",
+   "component": "trust_strip",
+   "target": "buy_now",
+   "position": "after",
+   "viewport": "all",
+   "source": ""
+  },
+  {
+   "rec_id": "r7",
+   "op": "component",
+   "component": "key_facts",
+   "target": "description",
+   "position": "before",
+   "viewport": "all",
+   "source": ""
+  }
+ ],
+ "rejected": [],
+ "guard_log": [
+  {
+   "rec_id": "r3",
+   "kind": "target",
+   "detail": "the add-to-cart sits in a sticky bar on mobile, so the block was placed after the price instead (next to the button it would float with the bar)"
+  },
+  {
+   "rec_id": "r4",
+   "kind": "target",
+   "detail": "the add-to-cart sits in a sticky bar on mobile, so the block was placed after the price instead (next to the button it would float with the bar)"
+  }
+ ],
+ "tokens": {
+  "source": "dom",
+  "roles": {
+   "primary": "#1a1818",
+   "on_primary": "#ffffff",
+   "text": "#1a1818",
+   "heading": "#1a1818",
+   "muted": "#808080",
+   "bg": "#ffffff",
+   "surface": "#eeeeee",
+   "border": "#808080",
+   "accent": "#c1d0e4",
+   "link": "#ffffff"
+  },
+  "palette": [
+   {
+    "hex": "#ffffff",
+    "weight": 1.069
+   },
+   {
+    "hex": "#1a1818",
+    "weight": 0.9365
+   },
+   {
+    "hex": "#808080",
+    "weight": 0.1093
+   },
+   {
+    "hex": "#eeeeee",
+    "weight": 0.099
+   },
+   {
+    "hex": "#ebf3fb",
+    "weight": 0.0632
+   },
+   {
+    "hex": "#d4d4d4",
+    "weight": 0.053
+   },
+   {
+    "hex": "#e8e8e1",
+    "weight": 0.037
+   },
+   {
+    "hex": "#000000",
+    "weight": 0.0129
+   },
+   {
+    "hex": "#c1d0e4",
+    "weight": 0.0116
+   }
+  ],
+  "fonts": {
+   "body": "\"Circular Std Book\", sans-serif",
+   "heading": "\"Circular Std\", sans-serif",
+   "button": "\"Circular Std Book\", sans-serif"
+  },
+  "font_names": [
+   "Circular Std Book",
+   "Circular Std",
+   "Arial",
+   "Inter",
+   "DomaineDisplay-MediumItalic"
+  ],
+  "sizes": [
+   12.0,
+   13.0,
+   13.5,
+   14.0,
+   14.5,
+   16.0,
+   18.0,
+   22.0,
+   26.0
+  ],
+  "size_roles": {
+   "xs": 12.0,
+   "sm": 13.5,
+   "base": 14.0,
+   "lg": 14.5,
+   "xl": 16.0,
+   "h1": 26.0,
+   "button": 13.0
+  },
+  "radius": {
+   "button": "0px",
+   "input": "0px"
+  },
+  "button": {
+   "transform": "uppercase",
+   "spacing": "3.9px",
+   "weight": "700",
+   "padding": "0 20px",
+   "height": "46px"
+  },
+  "line_height": "19.6px",
+  "logo": {
+   "tag": "img",
+   "src": "https://wellbeingnutrition.com/cdn/shop/files/Artboard_1_5_2.png?v=1774249789&width=70",
+   "alt": "wellbeing nutrition logo"
+  },
+  "google_font_url": null,
+  "notes": [
+   "Primary CTA is an outline button; primary colour taken from its border."
+  ],
+  "css_vars": ":root{--cro-primary: #1a1818;--cro-on-primary: #ffffff;--cro-text: #1a1818;--cro-heading: #1a1818;--cro-muted: #808080;--cro-bg: #ffffff;--cro-surface: #eeeeee;--cro-border: #808080;--cro-accent: #c1d0e4;--cro-link: #ffffff;--cro-font-body: \"Circular Std Book\", sans-serif;--cro-font-heading: \"Circular Std\", sans-serif;--cro-font-button: \"Circular Std Book\", sans-serif;--cro-fs-xs: 12.0px;--cro-fs-sm: 13.5px;--cro-fs-base: 14.0px;--cro-fs-lg: 14.5px;--cro-fs-xl: 16.0px;--cro-fs-h1: 26.0px;--cro-fs-button: 13.0px;--cro-radius: 0px;--cro-radius-input: 0px;--cro-btn-transform: uppercase;--cro-btn-spacing: 3.9px;--cro-btn-weight: 700;--cro-btn-padding: 0 20px;--cro-btn-height: 46px;--cro-line: 19.6px;}"
+ },
+ "shots": {
+  "before_mobile": "shots/before_mobile.png",
+  "after_mobile": "shots/after_mobile.png",
+  "before_desktop": "shots/before_desktop.png",
+  "after_desktop": "shots/after_desktop.png"
+ },
+ "original": "original.html",
+ "optimized": "optimized.html",
+ "error": "",
+ "profile": {
+  "brand": "Wellbeing Nutrition",
+  "category": "Protein & sports nutrition",
+  "product_type": "Unflavoured whey protein isolate powder with probiotics, 1 kg",
+  "market": "IN",
+  "price_positioning": "mid",
+  "audience": "Gym-goers and fitness enthusiasts in India wanting high-protein supplements that are gentle on digestion",
+  "competitors": [
+   {
+    "brand": "MuscleBlaze",
+    "domain": "muscleblaze.com",
+    "search_query": "whey protein isolate",
+    "why": "Major Indian sports nutrition D2C brand selling whey protein isolate to the same gym-going shoppers"
+   },
+   {
+    "brand": "The Whole Truth",
+    "domain": "thewholetruthfoods.com",
+    "search_query": "whey protein powder",
+    "why": "Clean-label Indian protein brand competing on natural ingredients and whey protein products"
+   },
+   {
+    "brand": "SuperYou",
+    "domain": "superyou.in",
+    "search_query": "whey protein isolate",
+    "why": "Indian D2C protein brand selling whey isolate and protein powders to fitness shoppers"
+   },
+   {
+    "brand": "Fast&Up",
+    "domain": "fastandup.in",
+    "search_query": "whey protein powder",
+    "why": "Indian sports nutrition brand offering whey protein for workout and recovery needs"
+   },
+   {
+    "brand": "Oziva",
+    "domain": "oziva.in",
+    "search_query": "whey protein powder",
+    "why": "Indian wellness brand with protein supplements targeting health-conscious and fitness shoppers"
+   }
+  ],
+  "source": "claude-haiku-5-5"
+ },
+ "comparison": {
+  "competitors": [
+   {
+    "url": "https://www.muscleblaze.com/sv/muscleblaze-whey-gold-100-whey-protein-isolate/SP-43113",
+    "final_url": "https://www.muscleblaze.com/sv/muscleblaze-whey-gold-100-whey-protein-isolate/SP-43113",
+    "domain": "muscleblaze.com",
+    "brand": "MuscleBlaze",
+    "title": "Whey Gold 100% Whey Protein Isolate",
+    "price": "₹12,459 (Inclusive of all taxes)",
+    "compare": "₹12,459",
+    "discount": "",
+    "currency": "INR",
+    "atc_label": "ADD TO CART",
+    "rating": 4.5,
+    "reviews": 455,
+    "rating_text": "",
+    "images": 27,
+    "video": false,
+    "sticky_atc": true,
+    "bullets": [
+     "Isolate-primary whey protein blend, Clean",
+     "26g protein",
+     "30 g Protein",
+     "6.62 g BCAA",
+     "14.1 g EAA",
+     "140.84 Kcal"
+    ],
+    "headings": [
+     "Description",
+     "Key Benefits",
+     "You might also like"
+    ],
+    "trust": [
+     "secure checkout",
+     "returns",
+     "authenticity",
+     "quality claims"
+    ],
+    "offers": "t Card Quick Links and Policies Blog MB Coupons Trade Partners Busines",
+    "delivery": "",
+    "faq": true,
+    "cross_sell": false,
+    "cro_score": 73,
+    "grade": "B",
+    "mobile_score": 74,
+    "desktop_score": 73,
+    "categories": {
+     "First screen (mobile)": 73,
+     "First screen (desktop)": 70,
+     "Add to cart": 90,
+     "Trust & social proof": 60,
+     "Purchase friction": 80,
+     "Content & merchandising": 67,
+     "Offer clarity": 64,
+     "Technical & SEO": 88
+    },
+    "checks": {
+     "title_atf": "pass",
+     "price_atf": "pass",
+     "atc_atf": "fail",
+     "image_atf": "pass",
+     "no_popup": "pass",
+     "d_title_price_atf": "pass",
+     "d_atc_atf": "fail",
+     "d_buybox": "pass",
+     "d_no_popup": "pass",
+     "atc_present": "pass",
+     "atc_contrast": "pass",
+     "atc_tap": "partial",
+     "sticky_atc": "pass",
+     "rating_title": "partial",
+     "reviews": "pass",
+     "trust_atc": "pass",
+     "payments": "fail",
+     "delivery": "pass",
+     "shipping": "fail",
+     "returns": "pass",
+     "variants": "pass",
+     "images": "pass",
+     "video": "fail",
+     "scannable": "pass",
+     "faq": "pass",
+     "cross_sell": "fail",
+     "discount": "partial",
+     "offers": "partial",
+     "mandatory_info": "pass",
+     "schema": "pass",
+     "rating_schema": "pass",
+     "meta": "pass",
+     "h1": "pass",
+     "alt": "fail",
+     "font": "pass"
+    },
+    "perf_score": 18,
+    "lab": {
+     "total_kb": 5533,
+     "js_kb": 4567,
+     "requests": 296,
+     "lcp_ms": 1544,
+     "cls": 0.137
+    },
+    "ok": true,
+    "captured_ts": 1793216330.4486308,
+    "dir": "cache/competitors/a80ef2981441",
+    "why": "Major Indian sports nutrition D2C brand selling whey protein isolate to the same gym-going shoppers",
+    "shots": {
+     "mobile_fold": "competitors/c1_mobile_fold.jpg",
+     "mobile_full": "competitors/c1_mobile_full.jpg",
+     "desktop_fold": "competitors/c1_desktop_fold.jpg"
+    }
+   },
+   {
+    "url": "https://thewholetruthfoods.com/products/unflavoured-30-g-pure-whey-protein-isolate",
+    "final_url": "https://thewholetruthfoods.com/products/unflavoured-30-g-pure-whey-protein-isolate?sku_id=38730407",
+    "domain": "thewholetruthfoods.com",
+    "brand": "The Whole Truth",
+    "title": "Unflavoured 30 g Pure Whey Protein Isolate Pack of 1 KG",
+    "price": "₹6,110 ₹7,499 ₹1,389 OFF",
+    "compare": "₹6,110",
+    "discount": "",
+    "currency": "INR",
+    "atc_label": "ADD TO CART",
+    "rating": 4.43,
+    "reviews": 2226,
+    "rating_text": "",
+    "images": 13,
+    "video": false,
+    "sticky_atc": true,
+    "bullets": [
+     "Whey Protein Isolate 99.4%",
+     "Bromelain 0.6%"
+    ],
+    "headings": [
+     "What's inside?",
+     "Nutritional Facts",
+     "Product Details",
+     "Unflavoured 30 g Pure Whey Protein Isolate - Pack of 1 KG",
+     "Real People. Real Reviews.",
+     "Got questions?",
+     "Do I need protein powder even if I don't go to the gym?",
+     "How much protein do I need in a day?",
+     "What are BCAAs and EAAs?",
+     "Can my body use more than 25-30 g of protein in one go?",
+     "Will whey protein make me bulky?",
+     "Can teenagers have this protein?",
+     "I'm pregnant or breastfeeding. Can I have this protein?",
+     "I have diabetes. Can I have this protein?",
+     "Will protein powder make me gain or lose weight?",
+     "How do I make my shake? Water or milk, and how much?"
+    ],
+    "trust": [
+     "free shipping"
+    ],
+    "offers": "",
+    "delivery": "0 Discounts auto-applied in cart Orders dispatched within 48-72 hours ",
+    "faq": true,
+    "cross_sell": false,
+    "cro_score": 79,
+    "grade": "B",
+    "mobile_score": 77,
+    "desktop_score": 76,
+    "categories": {
+     "First screen (mobile)": 86,
+     "First screen (desktop)": 100,
+     "Add to cart": 100,
+     "Trust & social proof": 72,
+     "Purchase friction": 67,
+     "Content & merchandising": 57,
+     "Offer clarity": 50,
+     "Technical & SEO": 100
+    },
+    "checks": {
+     "title_atf": "pass",
+     "price_atf": "pass",
+     "atc_atf": "partial",
+     "image_atf": "pass",
+     "no_popup": "pass",
+     "d_title_price_atf": "pass",
+     "d_atc_atf": "pass",
+     "d_buybox": "pass",
+     "d_no_popup": "pass",
+     "atc_present": "pass",
+     "atc_contrast": "pass",
+     "atc_tap": "pass",
+     "sticky_atc": "pass",
+     "rating_title": "partial",
+     "reviews": "pass",
+     "trust_atc": "partial",
+     "payments": "pass",
+     "delivery": "pass",
+     "shipping": "pass",
+     "returns": "fail",
+     "variants": "na",
+     "images": "pass",
+     "video": "fail",
+     "scannable": "partial",
+     "faq": "pass",
+     "cross_sell": "fail",
+     "discount": "partial",
+     "offers": "partial",
+     "mandatory_info": "partial",
+     "schema": "pass",
+     "rating_schema": "pass",
+     "meta": "pass",
+     "h1": "pass",
+     "alt": "pass",
+     "font": "pass"
+    },
+    "perf_score": 50,
+    "lab": {
+     "total_kb": 3157,
+     "js_kb": 1950,
+     "requests": 234,
+     "lcp_ms": 2600,
+     "cls": 0.007
+    },
+    "ok": true,
+    "captured_ts": 1793216321.5333123,
+    "dir": "cache/competitors/8168504af2af",
+    "why": "Clean-label Indian protein brand competing on natural ingredients and whey protein products",
+    "shots": {
+     "mobile_fold": "competitors/c2_mobile_fold.jpg",
+     "mobile_full": "competitors/c2_mobile_full.jpg",
+     "desktop_fold": "competitors/c2_desktop_fold.jpg"
+    }
+   },
+   {
+    "url": "https://superyou.in/products/vanilla-fermented-yeast-500g",
+    "final_url": "https://superyou.in/products/vanilla-fermented-yeast-500g",
+    "domain": "superyou.in",
+    "brand": "SuperYou",
+    "title": "VANILLA FERMENTED YEAST PROTEIN - 500G JAR",
+    "price": "Regular price Sale price ₹1,299 ₹1,499 -",
+    "compare": "₹1,499",
+    "discount": "13% OFF",
+    "currency": "INR",
+    "atc_label": "ADD TO CART",
+    "rating": null,
+    "reviews": 15,
+    "rating_text": "15 Reviews",
+    "images": 11,
+    "video": true,
+    "sticky_atc": true,
+    "bullets": [],
+    "headings": [
+     "BUY 2 GET 20% OFF",
+     "BUY 3 GET 21% OFF",
+     "BUY 4 GET 23% OFF",
+     "FREQUENTLY BOUGHT TOGETHER",
+     "VANILLA FERMENTED YEAST PROTEIN - 500G JAR",
+     "20G MEGA PROTEIN WAFER - NUTTY CHOCOLATE (PACK OF 6)",
+     "HEAR IT FROM",
+     "THE EARLY ADOPTERS",
+     "THE SUPER ADVANTAGE",
+     "FREQUENTLY ASKED QUESTIONS",
+     "EXPLORE OUR RANGE",
+     "SHOP ALL",
+     "KNOW MORE",
+     "SUPPORT & POLICY",
+     "FOLLOW ALONG",
+     "GET IN TOUCH"
+    ],
+    "trust": [
+     "free shipping"
+    ],
+    "offers": "BUY MORE, SAVE MORE! BUY 2 GET 20% OFF Sale tier price: ₹2,399 Origina",
+    "delivery": "",
+    "faq": true,
+    "cross_sell": true,
+    "cro_score": 71,
+    "grade": "B",
+    "mobile_score": 73,
+    "desktop_score": 67,
+    "categories": {
+     "First screen (mobile)": 73,
+     "First screen (desktop)": 50,
+     "Add to cart": 87,
+     "Trust & social proof": 62,
+     "Purchase friction": 40,
+     "Content & merchandising": 90,
+     "Offer clarity": 86,
+     "Technical & SEO": 88
+    },
+    "checks": {
+     "title_atf": "pass",
+     "price_atf": "pass",
+     "atc_atf": "fail",
+     "image_atf": "pass",
+     "no_popup": "pass",
+     "d_title_price_atf": "pass",
+     "d_atc_atf": "fail",
+     "d_buybox": "fail",
+     "d_no_popup": "pass",
+     "atc_present": "pass",
+     "atc_contrast": "partial",
+     "atc_tap": "pass",
+     "sticky_atc": "pass",
+     "rating_title": "pass",
+     "reviews": "pass",
+     "trust_atc": "partial",
+     "payments": "fail",
+     "delivery": "fail",
+     "shipping": "pass",
+     "returns": "fail",
+     "variants": "pass",
+     "images": "pass",
+     "video": "pass",
+     "scannable": "partial",
+     "faq": "pass",
+     "cross_sell": "pass",
+     "discount": "pass",
+     "offers": "pass",
+     "mandatory_info": "partial",
+     "schema": "pass",
+     "rating_schema": "fail",
+     "meta": "pass",
+     "h1": "pass",
+     "alt": "pass",
+     "font": "pass"
+    },
+    "perf_score": 25,
+    "lab": {
+     "total_kb": 9263,
+     "js_kb": 2664,
+     "requests": 579,
+     "lcp_ms": 2368,
+     "cls": 0.002
+    },
+    "ok": true,
+    "captured_ts": 1793216339.1702454,
+    "dir": "cache/competitors/642cb4800d26",
+    "why": "Indian D2C protein brand selling whey isolate and protein powders to fitness shoppers",
+    "shots": {
+     "mobile_fold": "competitors/c3_mobile_fold.jpg",
+     "mobile_full": "competitors/c3_mobile_full.jpg",
+     "desktop_fold": "competitors/c3_desktop_fold.jpg"
+    }
+   }
+  ],
+  "matrix": [
+   {
+    "check_id": "title_atf",
+    "title": "Product name above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "price_atf",
+    "title": "Price above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "atc_atf",
+    "title": "Add to cart above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 6,
+    "target": "pass",
+    "comps": [
+     "fail",
+     "partial",
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "image_atf",
+    "title": "Product image leads",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "no_popup",
+    "title": "No entry popup",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "d_title_price_atf",
+    "title": "Name and price above the fold",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 3,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "d_atc_atf",
+    "title": "Add to cart above the fold",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "The Whole Truth"
+    ]
+   },
+   {
+    "check_id": "d_buybox",
+    "title": "Buy box beside the gallery",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 2,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth"
+    ]
+   },
+   {
+    "check_id": "d_no_popup",
+    "title": "No entry popup",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "atc_present",
+    "title": "Clear add-to-cart button",
+    "category": "Add to cart",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "atc_contrast",
+    "title": "CTA text contrast",
+    "category": "Add to cart",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "partial"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth"
+    ]
+   },
+   {
+    "check_id": "atc_tap",
+    "title": "CTA tap target size",
+    "category": "Add to cart",
+    "viewport": "mobile",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "partial",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "sticky_atc",
+    "title": "Sticky add-to-cart (mobile)",
+    "category": "Add to cart",
+    "viewport": "mobile",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "rating_title",
+    "title": "Rating summary near title",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 6,
+    "target": "partial",
+    "comps": [
+     "partial",
+     "partial",
+     "pass"
+    ],
+    "passing": [
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "reviews",
+    "title": "Customer reviews section",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "trust_atc",
+    "title": "Trust signals near CTA",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 5,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "partial",
+     "partial"
+    ],
+    "passing": [
+     "MuscleBlaze"
+    ]
+   },
+   {
+    "check_id": "payments",
+    "title": "Payment options visible",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "fail",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "The Whole Truth"
+    ]
+   },
+   {
+    "check_id": "delivery",
+    "title": "Delivery estimate",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth"
+    ]
+   },
+   {
+    "check_id": "shipping",
+    "title": "Shipping cost clarity",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "returns",
+    "title": "Returns policy near CTA",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 4,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "fail",
+     "fail"
+    ],
+    "passing": [
+     "MuscleBlaze"
+    ]
+   },
+   {
+    "check_id": "variants",
+    "title": "Variant selection UX",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "na",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "images",
+    "title": "Product imagery depth",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 4,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "video",
+    "title": "Product video",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 2,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "fail",
+     "pass"
+    ],
+    "passing": [
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "scannable",
+    "title": "Scannable benefits",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "partial",
+     "partial"
+    ],
+    "passing": [
+     "MuscleBlaze"
+    ]
+   },
+   {
+    "check_id": "faq",
+    "title": "FAQ / objection handling",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "cross_sell",
+    "title": "Cross-sell / bundles",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "fail",
+     "pass"
+    ],
+    "passing": [
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "discount",
+    "title": "Discount clearly stated",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "partial",
+     "partial",
+     "pass"
+    ],
+    "passing": [
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "offers",
+    "title": "Offers / coupons near price",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "partial",
+     "partial",
+     "pass"
+    ],
+    "passing": [
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "mandatory_info",
+    "title": "Mandatory product declarations (India)",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 2,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "partial",
+     "partial"
+    ],
+    "passing": [
+     "MuscleBlaze"
+    ]
+   },
+   {
+    "check_id": "schema",
+    "title": "Product structured data",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "rating_schema",
+    "title": "Review stars in search",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth"
+    ]
+   },
+   {
+    "check_id": "meta",
+    "title": "Meta description",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "h1",
+    "title": "Single H1",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "alt",
+    "title": "Image alt text",
+    "category": "Technical & SEO",
+    "viewport": "both",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "fail",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "font",
+    "title": "Readable mobile body text",
+    "category": "Technical & SEO",
+    "viewport": "mobile",
+    "weight": 1,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   }
+  ],
+  "gaps": [
+   {
+    "check_id": "price_atf",
+    "title": "Price above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "delivery",
+    "title": "Delivery estimate",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth"
+    ]
+   },
+   {
+    "check_id": "d_title_price_atf",
+    "title": "Name and price above the fold",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 3,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "rating_title",
+    "title": "Rating summary near title",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 6,
+    "target": "partial",
+    "comps": [
+     "partial",
+     "partial",
+     "pass"
+    ],
+    "passing": [
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "shipping",
+    "title": "Shipping cost clarity",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "trust_atc",
+    "title": "Trust signals near CTA",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 5,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "partial",
+     "partial"
+    ],
+    "passing": [
+     "MuscleBlaze"
+    ]
+   },
+   {
+    "check_id": "d_buybox",
+    "title": "Buy box beside the gallery",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 2,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth"
+    ]
+   },
+   {
+    "check_id": "returns",
+    "title": "Returns policy near CTA",
+    "category": "Purchase friction",
+    "viewport": "both",
+    "weight": 4,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "fail",
+     "fail"
+    ],
+    "passing": [
+     "MuscleBlaze"
+    ]
+   },
+   {
+    "check_id": "d_atc_atf",
+    "title": "Add to cart above the fold",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "The Whole Truth"
+    ]
+   },
+   {
+    "check_id": "cross_sell",
+    "title": "Cross-sell / bundles",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "fail",
+     "pass"
+    ],
+    "passing": [
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "mandatory_info",
+    "title": "Mandatory product declarations (India)",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 2,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "partial",
+     "partial"
+    ],
+    "passing": [
+     "MuscleBlaze"
+    ]
+   },
+   {
+    "check_id": "video",
+    "title": "Product video",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 2,
+    "target": "fail",
+    "comps": [
+     "fail",
+     "fail",
+     "pass"
+    ],
+    "passing": [
+     "SuperYou"
+    ]
+   }
+  ],
+  "leads": [
+   {
+    "check_id": "atc_atf",
+    "title": "Add to cart above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 6,
+    "target": "pass",
+    "comps": [
+     "fail",
+     "partial",
+     "fail"
+    ],
+    "passing": []
+   },
+   {
+    "check_id": "payments",
+    "title": "Payment options visible",
+    "category": "Trust & social proof",
+    "viewport": "both",
+    "weight": 5,
+    "target": "pass",
+    "comps": [
+     "fail",
+     "pass",
+     "fail"
+    ],
+    "passing": [
+     "The Whole Truth"
+    ]
+   },
+   {
+    "check_id": "scannable",
+    "title": "Scannable benefits",
+    "category": "Content & merchandising",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "pass",
+     "partial",
+     "partial"
+    ],
+    "passing": [
+     "MuscleBlaze"
+    ]
+   },
+   {
+    "check_id": "discount",
+    "title": "Discount clearly stated",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 3,
+    "target": "pass",
+    "comps": [
+     "partial",
+     "partial",
+     "pass"
+    ],
+    "passing": [
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "offers",
+    "title": "Offers / coupons near price",
+    "category": "Offer clarity",
+    "viewport": "both",
+    "weight": 2,
+    "target": "pass",
+    "comps": [
+     "partial",
+     "partial",
+     "pass"
+    ],
+    "passing": [
+     "SuperYou"
+    ]
+   }
+  ],
+  "table_stakes": [
+   {
+    "check_id": "price_atf",
+    "title": "Price above the fold",
+    "category": "First screen (mobile)",
+    "viewport": "mobile",
+    "weight": 5,
+    "target": "fail",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   },
+   {
+    "check_id": "d_title_price_atf",
+    "title": "Name and price above the fold",
+    "category": "First screen (desktop)",
+    "viewport": "desktop",
+    "weight": 3,
+    "target": "partial",
+    "comps": [
+     "pass",
+     "pass",
+     "pass"
+    ],
+    "passing": [
+     "MuscleBlaze",
+     "The Whole Truth",
+     "SuperYou"
+    ]
+   }
+  ],
+  "benchmark": {
+   "target": 69,
+   "avg": 74,
+   "best": 79,
+   "best_brand": "The Whole Truth",
+   "rank": 4,
+   "of": 4,
+   "mobile": {
+    "target": 72,
+    "avg": 75
+   },
+   "desktop": {
+    "target": 64,
+    "avg": 72
+   }
+  },
+  "facts": [
+   {
+    "label": "Price",
+    "target": "₹6,839 (MRP ₹7,199)",
+    "comps": [
+     "₹12,459 (Inclusive of all taxes)",
+     "₹6,110 ₹7,499 ₹1,389 OFF",
+     "Regular price Sale price ₹1,299 ₹1,499 -"
+    ]
+   },
+   {
+    "label": "Rating",
+    "target": "4.89 (777 reviews)",
+    "comps": [
+     "4.5 (455 reviews)",
+     "4.43 (2,226 reviews)",
+     "15 reviews"
+    ]
+   },
+   {
+    "label": "Product images",
+    "target": 15,
+    "comps": [
+     27,
+     13,
+     11
+    ]
+   },
+   {
+    "label": "Video",
+    "target": "no",
+    "comps": [
+     "no",
+     "no",
+     "yes"
+    ]
+   },
+   {
+    "label": "Sticky add-to-cart (mobile)",
+    "target": "yes",
+    "comps": [
+     "yes",
+     "yes",
+     "yes"
+    ]
+   },
+   {
+    "label": "Trust cues near CTA",
+    "target": "quality claims",
+    "comps": [
+     "secure checkout, returns, authenticity, quality claims",
+     "free shipping",
+     "free shipping"
+    ]
+   },
+   {
+    "label": "Offer shown",
+    "target": "6 months EMI options later at 0% EMI on Flat 10% cashback up to ₹250 P",
+    "comps": [
+     "t Card Quick Links and Policies Blog MB Coupons Trade Partners Busines",
+     "none",
+     "BUY MORE, SAVE MORE! BUY 2 GET 20% OFF Sale tier price: ₹2,399 Origina"
+    ]
+   },
+   {
+    "label": "Delivery info",
+    "target": "none",
+    "comps": [
+     "none",
+     "0 Discounts auto-applied in cart Orders dispatched within 48-72 hours ",
+     "none"
+    ]
+   },
+   {
+    "label": "FAQ",
+    "target": "yes",
+    "comps": [
+     "yes",
+     "yes",
+     "yes"
+    ]
+   },
+   {
+    "label": "Mobile page weight",
+    "target": "4.4 MB",
+    "comps": [
+     "5.4 MB",
+     "3.1 MB",
+     "9.0 MB"
+    ]
+   }
+  ]
+ },
+ "comp_notes": [],
+ "target": {
+  "url": "https://wellbeingnutrition.com/products/raw-whey-protein-isolate-unflavored",
+  "final_url": "https://wellbeingnutrition.com/products/raw-whey-protein-isolate-unflavored",
+  "domain": "wellbeingnutrition.com",
+  "brand": "Wellbeing Nutrition",
+  "title": "Whey Protein Isolate 31g | 1kg | 4B CFU Probiotics | Unflavoured",
+  "price": "₹6,839 (MRP ₹7,199)",
+  "compare": "₹7,199",
+  "discount": "10% off",
+  "currency": "INR",
+  "atc_label": "ADD TO CART",
+  "rating": 4.89,
+  "reviews": 777,
+  "rating_text": "",
+  "images": 15,
+  "video": false,
+  "sticky_atc": true,
+  "bullets": [
+   "Description",
+   "Ingredients",
+   "How to take",
+   "Lab Reports"
+  ],
+  "headings": [
+   "Clinically Proven Whey Protein Isolate",
+   "Why Non Denatured, Native Whey Matters",
+   "Natural And Traceable Ingredients",
+   "Science Behind Our Ingredients",
+   "Testimonials",
+   "Customer Reviews",
+   "Why most whey isolate proteins disrupt gut comfort?",
+   "Introducing Wellbeing Nutrition Whey Protein Isolate",
+   "What Makes it a Ligher, Quieter Proetin?",
+   "Pure native whey",
+   "Cold processed and microfiltered for easier digestion",
+   "Instantized for smooth texture",
+   "Natural digestive enzymes that do the heavy lifting",
+   "Probiotics that support gut comfort",
+   "Clean label. Nothing extra that upsets your gut",
+   "FAQs"
+  ],
+  "trust": [
+   "quality claims"
+  ],
+  "offers": "6 months EMI options later at 0% EMI on Flat 10% cashback up to ₹250 P",
+  "delivery": "",
+  "faq": true,
+  "cross_sell": false,
+  "cro_score": 69,
+  "grade": "C",
+  "mobile_score": 72,
+  "desktop_score": 64,
+  "categories": {
+   "First screen (mobile)": 77,
+   "First screen (desktop)": 35,
+   "Add to cart": 100,
+   "Trust & social proof": 72,
+   "Purchase friction": 20,
+   "Content & merchandising": 67,
+   "Offer clarity": 86,
+   "Technical & SEO": 100
+  },
+  "checks": {
+   "title_atf": "pass",
+   "price_atf": "fail",
+   "atc_atf": "pass",
+   "image_atf": "pass",
+   "no_popup": "pass",
+   "d_title_price_atf": "partial",
+   "d_atc_atf": "fail",
+   "d_buybox": "fail",
+   "d_no_popup": "pass",
+   "atc_present": "pass",
+   "atc_contrast": "pass",
+   "atc_tap": "pass",
+   "sticky_atc": "pass",
+   "rating_title": "partial",
+   "reviews": "pass",
+   "trust_atc": "partial",
+   "payments": "pass",
+   "delivery": "fail",
+   "shipping": "fail",
+   "returns": "fail",
+   "variants": "pass",
+   "images": "pass",
+   "video": "fail",
+   "scannable": "pass",
+   "faq": "pass",
+   "cross_sell": "fail",
+   "discount": "pass",
+   "offers": "pass",
+   "mandatory_info": "partial",
+   "schema": "pass",
+   "rating_schema": "pass",
+   "meta": "pass",
+   "h1": "pass",
+   "alt": "pass",
+   "font": "pass"
+  },
+  "perf_score": 28,
+  "lab": {
+   "total_kb": 4513,
+   "js_kb": 2031,
+   "requests": 301,
+   "lcp_ms": 7152,
+   "cls": 0.011
+  }
+ },
+ "research": {
+  "anchoring": {
+   "id": "anchoring",
+   "source": "Tversky & Kahneman, Judgment under Uncertainty (1974)",
+   "finding": "Anchoring: a reference price (MRP or compare-at price) shapes perceived value, so showing the saving next to the selling price makes the offer register instantly.",
+   "url": ""
+  },
+  "baymard-abandon": {
+   "id": "baymard-abandon",
+   "source": "Baymard Institute, Cart Abandonment Rate statistics",
+   "finding": "The documented average cart abandonment rate is about 70%. Extra costs (shipping, taxes, fees) revealed late are the #1 reason shoppers abandon; slow delivery, not trusting the site with card details and an unsatisfactory returns policy are also among the top reasons.",
+   "url": "https://baymard.com/lists/cart-abandonment-rate"
+  },
+  "baymard-pdp": {
+   "id": "baymard-pdp",
+   "source": "Baymard Institute, Product Page UX research",
+   "finding": "Shoppers judge products mainly through images and product information; when key details (scale, variations, specs, delivery) are missing or hard to find, they leave the page or look elsewhere. Variation options should be visible (buttons or swatches) rather than hidden in drop-downs.",
+   "url": "https://baymard.com/research/product-page"
+  },
+  "ccpa-dark": {
+   "id": "ccpa-dark",
+   "source": "Central Consumer Protection Authority (India), Guidelines for Prevention and Regulation of Dark Patterns, 2023",
+   "finding": "Lists 13 dark patterns, including false urgency, basket sneaking, confirm shaming and drip pricing; urgency, scarcity and price claims must be true and fully disclosed.",
+   "url": ""
+  },
+  "choice-overload": {
+   "id": "choice-overload",
+   "source": "Iyengar & Lepper, When Choice is Demotivating (2000)",
+   "finding": "Shoppers shown 6 jam flavours were about ten times more likely to buy (30%) than those shown 24 (3%): too many competing options and CTAs stall decisions.",
+   "url": ""
+  },
+  "cialdini-proof": {
+   "id": "cialdini-proof",
+   "source": "Robert Cialdini, Influence (1984)",
+   "finding": "Social proof: under uncertainty people follow what others like them have done, which is why visible ratings, review counts and real customer photos reduce hesitation.",
+   "url": ""
+  },
+  "deloitte-speed": {
+   "id": "deloitte-speed",
+   "source": "Deloitte for Google, Milliseconds Make Millions (2020)",
+   "finding": "A 0.1s improvement in mobile site speed increased retail conversions by 8.4% and average order value by 9.2%.",
+   "url": ""
+  },
+  "fitts": {
+   "id": "fitts",
+   "source": "Fitts's law (Fitts, 1954)",
+   "finding": "The time to hit a target grows with its distance and shrinks with its size, so a large CTA that stays within reach (sticky) is faster and easier to tap.",
+   "url": ""
+  },
+  "google-cwv": {
+   "id": "google-cwv",
+   "source": "Google web.dev, Core Web Vitals",
+   "finding": "Good thresholds at the 75th percentile of visits: LCP 2.5s or less, INP 200ms or less, CLS 0.1 or less.",
+   "url": "https://web.dev/articles/vitals"
+  },
+  "google-interstitials": {
+   "id": "google-interstitials",
+   "source": "Google Search Central, intrusive interstitials guidance",
+   "finding": "Popups that cover the main content on mobile make it hard to access and can hurt how the page performs in Google Search.",
+   "url": "https://developers.google.com/search/docs/appearance/avoid-intrusive-interstitials"
+  },
+  "google-product-schema": {
+   "id": "google-product-schema",
+   "source": "Google Search Central, Product structured data",
+   "finding": "Product markup with offers and aggregateRating makes pages eligible for price, availability and review star rich results.",
+   "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+  },
+  "google-speed": {
+   "id": "google-speed",
+   "source": "Google / SOASTA research, Think with Google (2017)",
+   "finding": "As mobile page load time goes from 1s to 3s, the probability of a bounce increases 32%; from 1s to 5s, it increases 90%.",
+   "url": "https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/page-load-time-statistics/"
+  },
+  "india-lm": {
+   "id": "india-lm",
+   "source": "Legal Metrology (Packaged Commodities) Rules, 2011, as amended in 2017 (India)",
+   "finding": "E-commerce listings of packaged goods must show declarations such as manufacturer or packer, net quantity, MRP inclusive of all taxes, country of origin and consumer-care details.",
+   "url": ""
+  },
+  "lighthouse-font": {
+   "id": "lighthouse-font",
+   "source": "Google Lighthouse, legible font sizes audit; Apple HIG",
+   "finding": "Lighthouse flags text below 12px as illegible on mobile; platform guidelines set body text larger (Apple's default body style is 17pt).",
+   "url": ""
+  },
+  "nng-fold": {
+   "id": "nng-fold",
+   "source": "Nielsen Norman Group, Scrolling and Attention (2018)",
+   "finding": "57% of page-viewing time is spent above the fold and 74% within the first two screenfuls, so what the first screen shows gets most of the attention.",
+   "url": "https://www.nngroup.com/articles/scrolling-and-attention/"
+  },
+  "nng-scan": {
+   "id": "nng-scan",
+   "source": "Nielsen Norman Group, Concise, Scannable and Objective writing study",
+   "finding": "Users scan web pages rather than read them; a concise, scannable, objective version of a page measured 124% better usability than the original.",
+   "url": "https://www.nngroup.com/articles/concise-scannable-and-objective-how-to-write-for-the-web/"
+  },
+  "spiegel-reviews": {
+   "id": "spiegel-reviews",
+   "source": "Spiegel Research Center, Northwestern University, How Online Reviews Influence Sales (2017)",
+   "finding": "A product with five reviews is 270% more likely to be purchased than one with none. Purchase likelihood peaks for average ratings of 4.0-4.7 and falls as ratings approach 5.0, and reviews matter more for higher-priced products.",
+   "url": "https://spiegel.medill.northwestern.edu/how-online-reviews-influence-sales/"
+  },
+  "wcag-contrast": {
+   "id": "wcag-contrast",
+   "source": "W3C WCAG 2.2, SC 1.4.3 Contrast (Minimum)",
+   "finding": "Text needs a contrast ratio of at least 4.5:1 against its background (3:1 for large text).",
+   "url": "https://www.w3.org/TR/WCAG22/#contrast-minimum"
+  },
+  "wcag-target": {
+   "id": "wcag-target",
+   "source": "W3C WCAG 2.2, SC 2.5.5 and 2.5.8 Target Size",
+   "finding": "Touch targets of 44x44 CSS px meet the enhanced level (24x24 is the minimum); Apple's Human Interface Guidelines also recommend 44pt.",
+   "url": "https://www.w3.org/TR/WCAG22/#target-size-minimum"
+  },
+  "wyzowl-video": {
+   "id": "wyzowl-video",
+   "source": "Wyzowl, State of Video Marketing (annual survey)",
+   "finding": "In every recent edition, over 80% of consumers say a brand's video has convinced them to buy a product.",
+   "url": "https://www.wyzowl.com/video-marketing-statistics/"
+  }
+ },
+ "cost": {
+  "usd": 0.0446,
+  "calls": [
+   {
+    "tag": "wellbeing-nutrition-85bcc2.profile",
+    "model": "claude-haiku-5-5",
+    "input_tokens": 797,
+    "output_tokens": 492,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 2770,
+    "batch": false,
+    "usd": 0.0007
+   },
+   {
+    "tag": "wellbeing-nutrition-85bcc2.audit",
+    "model": "claude-sonnet-5-5",
+    "input_tokens": 17697,
+    "output_tokens": 3708,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 6186,
+    "batch": true,
+    "usd": 0.044
+   }
+  ]
+ },
+ "sev_counts": {
+  "critical": 1,
+  "high": 3,
+  "medium": 4,
+  "low": 0
+ },
+ "applied_recs": "{'r4', 'r2', 'r3', 'r1', 'r7'}",
+ "slug": "wellbeing-nutrition-85bcc2"
+}
