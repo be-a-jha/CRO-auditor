@@ -143,7 +143,7 @@ async def run(items: list[Item], opts: Options) -> list[dict]:
         llm.batch.expect(sum(1 for i in items if i.kind != "invalid"))
     t_start = time.time()
     async with async_playwright() as pw:
-        browser = await pw.chromium.launch(args=["--no-sandbox"])
+        browser = await pw.chromium.launch(args=["--no-sandbox", "--disable-dev-shm-usage"])  # Docker: tiny /dev/shm
         bsem = asyncio.Semaphore(opts.concurrency)
         bank = CompetitorBank(opts.cache_dir, browser, bsem, opts.timeout_ms)
 

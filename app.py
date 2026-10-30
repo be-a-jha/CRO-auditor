@@ -9,8 +9,10 @@ from __future__ import annotations
 import argparse
 import asyncio
 import base64
+import hmac
 import io
 import json
+import shutil
 import sys
 import mimetypes
 import zipfile
@@ -33,8 +35,14 @@ from run import load_env
 ROOT = Path(__file__).resolve().parent
 OUT_ROOT = ROOT / "out"
 RUNS = OUT_ROOT / "ui-runs"
+SAMPLE = ROOT / "sample_output"
 UI_FILE = ROOT / "ui" / "index.html"
 MAX_BODY = 150 * 1024 * 1024
+# Public mode (a deployment, e.g. a Hugging Face Space): set in main() when listening on a public interface.
+# Then any Host header is accepted, the API key comes only from the server's secrets, runs can be locked with
+# APP_PASSWORD and are capped at MAX_PAGES pages.
+PUBLIC = False
+MAX_PAGES = 0
 IMG_EXT = {".png", ".jpg", ".jpeg", ".webp"}
 
 ROW_KEYS = ("cro_score", "grade", "mobile_score", "desktop_score", "comp_avg", "rank", "competitors", "perf_score",
@@ -79,8 +87,10 @@ def start_job(payload: dict) -> str:
         dest.write_bytes(base64.b64decode(str(f.get("data", "")).split(",")[-1]))
         saved.append(dest)
     lines += _pair_shots(saved)
-    if not lines:
-        raise ValueError("Add at least one product URL or screenshot.")
+    if not lines or (MAX_PAGES and len(lines) > MAX_PAGES):
+        shutil.rmtree(outdir, ignore_errors=True)
+        raise ValueError("Add at least one product URL or screenshot." if not lines
+                         else f"This site audits at most {MAX_PAGES} pages per run; you added {len(lines)}.")
     (outdir / "inputs.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
     items = parse_inputs([str(outdir / "inputs.txt")])
 
@@ -221,13 +231,14 @@ class Handler(BaseHTTPRequestHandler):
 
     def _host_ok(self) -> bool:
         host = (self.headers.get("Host") or "").split(":")[0]
-        return host in ("127.0.0.1", "localhost")  # blocks DNS-rebinding
+        return PUBLIC or host in ("127.0.0.1", "localhost")  # locally: blocks DNS-rebinding
 
     def _send(self, code, body: bytes, ctype="application/json", filename: str | None = None):
         self.send_response(code)
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
+        self.send_header("X-Robots-Tag", "noindex, nofollow")  # snapshots of real stores must not show up in search
         if filename:  # save instead of display
             self.send_header("Content-Disposition", f'attachment; filename="{filename}"')
         self.end_headers()
@@ -235,6 +246,17 @@ class Handler(BaseHTTPRequestHandler):
 
     def _json(self, code, obj):
         self._send(code, json.dumps(obj, ensure_ascii=False).encode())
+
+    def _file(self, base: Path, rel: str):
+        target = (base / rel).resolve()
+        if not target.is_relative_to(base.resolve()) or not target.is_file():
+            return self._send(404, b"not found", "text/plain")
+        ctype = mimetypes.guess_type(str(target))[0] or "application/octet-stream"
+        if ctype.startswith("text/"):
+            ctype += "; charset=utf-8"
+        download = "download" in urlparse(self.path).query.split("&")
+        name = f"{target.parent.name}-{target.name}" if download else None
+        return self._send(200, target.read_bytes(), ctype, name)
 
     def do_GET(self):
         if not self._host_ok():
@@ -246,7 +268,9 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(200, {"has_key": bool(os.getenv("ANTHROPIC_API_KEY")), "has_psi_key": bool(os.getenv("PSI_API_KEY")),
                                     "model": os.getenv("CRO_MODEL", "claude-sonnet-5-5"),
                                     "fast_model": os.getenv("CRO_FAST_MODEL", "claude-haiku-5-5"),
-                                    "effort": os.getenv("CRO_EFFORT", "low")})
+                                    "effort": os.getenv("CRO_EFFORT", "low"),
+                                    "public": PUBLIC, "needs_password": bool(os.getenv("APP_PASSWORD")),
+                                    "max_pages": MAX_PAGES, "has_samples": (SAMPLE / "index.html").exists()})
         if path == "/api/runs":
             return self._json(200, list_runs())
         m = re.match(r"^/api/runs/([\w-]+)\.zip$", path)
@@ -259,15 +283,9 @@ class Handler(BaseHTTPRequestHandler):
             v = job_view(m.group(1))
             return self._json(200, v) if v else self._json(404, {"error": "not found"})
         if path.startswith("/out/"):
-            target = (OUT_ROOT / path[len("/out/"):]).resolve()
-            if not target.is_relative_to(OUT_ROOT.resolve()) or not target.is_file():
-                return self._send(404, b"not found", "text/plain")
-            ctype = mimetypes.guess_type(str(target))[0] or "application/octet-stream"
-            if ctype.startswith("text/"):
-                ctype += "; charset=utf-8"
-            download = "download" in urlparse(self.path).query.split("&")
-            name = f"{target.parent.name}-{target.name}" if download else None
-            return self._send(200, target.read_bytes(), ctype, name)
+            return self._file(OUT_ROOT, path[len("/out/"):])
+        if path.startswith("/sample/"):
+            return self._file(SAMPLE, path[len("/sample/"):] or "index.html")
         self._send(404, b"not found", "text/plain")
 
     def do_POST(self):
@@ -281,8 +299,13 @@ class Handler(BaseHTTPRequestHandler):
             data = json.loads(self.rfile.read(n) or b"{}")
             path = urlparse(self.path).path
             if path == "/api/runs":
+                pw = os.getenv("APP_PASSWORD") or ""
+                if pw and not hmac.compare_digest(str(data.get("password", "")).encode(), pw.encode()):
+                    return self._json(401, {"error": "Wrong access password."})
                 return self._json(200, {"id": start_job(data)})
             if path == "/api/key":
+                if PUBLIC:  # a visitor must never replace the owner's key on a deployed site
+                    return self._json(403, {"error": "On this site the API key is set by the owner."})
                 return self._json(200, {"ok": True, "message": save_key(str(data.get("key", "")))})
             return self._json(404, {"error": "not found"})
         except ValueError as e:
@@ -298,15 +321,22 @@ def main():
     os.chdir(ROOT)
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("--port", type=int, default=8787)
+    ap.add_argument("--host", default=os.getenv("HOST", "127.0.0.1"),
+                    help="127.0.0.1 = this computer only; 0.0.0.0 = public mode for a deployment")
+    ap.add_argument("--port", type=int, default=int(os.getenv("PORT", "8787")))
     ap.add_argument("--no-browser", action="store_true")
     a = ap.parse_args()
+    global PUBLIC, MAX_PAGES
+    PUBLIC = a.host not in ("127.0.0.1", "localhost")
+    MAX_PAGES = int(os.getenv("MAX_PAGES", "10" if PUBLIC else "0"))
+    if PUBLIC and not os.getenv("APP_PASSWORD"):
+        print("[warn] public mode without APP_PASSWORD: anyone with the link can run audits on your API key")
     RUNS.mkdir(parents=True, exist_ok=True)
     # importing the Claude SDK can take 10-20s on a cold Windows machine; do it now, not when the user clicks Save
     threading.Thread(target=lambda: __import__("anthropic"), daemon=True).start()
-    srv = ThreadingHTTPServer(("127.0.0.1", a.port), Handler)
-    url = f"http://127.0.0.1:{a.port}"
-    print(f"PDP CRO Auditor running at {url}  (Ctrl+C to stop)")
+    srv = ThreadingHTTPServer((a.host, a.port), Handler)
+    url = f"http://{'127.0.0.1' if a.host == '0.0.0.0' else a.host}:{a.port}"
+    print(f"PDP CRO Auditor running at {url}{' (public mode)' if PUBLIC else ''}  (Ctrl+C to stop)", flush=True)
     if not a.no_browser:
         threading.Timer(0.8, lambda: webbrowser.open(url)).start()
     try:

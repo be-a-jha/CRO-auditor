@@ -1,0 +1,9 @@
+# never ship the key or your own runs inside the image
+.env
+.git
+out/
+out_*/
+cache/
+tests/
+**/__pycache__
+*.pyc

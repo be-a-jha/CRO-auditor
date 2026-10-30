@@ -1,3 +1,14 @@
+---
+title: CRO Auditor
+emoji: 📈
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+short_description: D2C product page CRO audit vs top competitors
+---
+
 # PDP CRO Auditor (with competitor benchmarking)
 
 Give it D2C product page URLs or full-page screenshots. For each page it:
@@ -48,6 +59,27 @@ mockup. Open each report or optimised page from the table, or **Download HTML** 
 **Download all (.zip)** saves every report and page of the run. The key is checked live when you save it. **Economy mode** sends
 the audits through the Batch API at half price (results usually within minutes). A mobile and a desktop screenshot of the
 same page are paired automatically when their file names differ only by "mobile" / "desktop".
+
+## Deploy (free, shareable link)
+
+The app runs on a free [Hugging Face Space](https://huggingface.co/spaces) (Docker: 2 CPU, 16 GB RAM), which gives a public
+link like `https://<you>-cro-auditor.hf.space`. The settings block at the top of this README configures the Space.
+
+```bash
+pip install huggingface_hub
+hf auth login                                                   # a token with "write" access from huggingface.co/settings/tokens
+python deploy_hf.py cro-auditor --key --password "pick-a-password"
+```
+
+`--key` stores your `ANTHROPIC_API_KEY` from `.env` as a private secret of the Space; `--password` stores `APP_PASSWORD`,
+so only people you give the password to can start audits (and spend your credit). Anyone with the link can open the
+sample reports. The first build takes about 5-10 minutes (it installs Chrome); run the script again to redeploy.
+
+On a deployed site (public mode) the key can't be changed from the page, each run is capped at 10 pages (`MAX_PAGES`),
+one run happens at a time, and every response tells search engines not to index it, since reports contain snapshots of
+real stores. A free Space sleeps after 48 hours without visitors and wakes up (about a minute) on the next visit; runs
+are not kept across restarts. The same `Dockerfile` works on any container host (set `ANTHROPIC_API_KEY`,
+`APP_PASSWORD`; the app listens on `$PORT`).
 
 ## Run from the terminal
 
