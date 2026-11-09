@@ -317,8 +317,8 @@ async def _process_url(item, browser, bsem, bank, llm, llm_note, opts, outdir) -
     F = rules.normalize_dom(cap.desktop.facts, cap.mobile.facts, cap.mobile.sticky_cta, cap.mobile.popups,
                             cap.desktop.tokens_raw["page_bg"], cap.desktop.popups)
     rubric = rules.evaluate(F)
-    lab = lab_metrics(cap.final_url, cap.mobile.perf, cap.responses)
-    lab_s, lab_rows = lab_score(lab)
+    lab = {} if cap.reduced else lab_metrics(cap.final_url, cap.mobile.perf, cap.responses)
+    lab_s, lab_rows = (None, []) if cap.reduced else lab_score(lab)
     target_summary = summarize(item.raw, cap.final_url, cap, F, rubric, lab, lab_s)
 
     _p(opts, item, "competitors")
@@ -334,6 +334,8 @@ async def _process_url(item, browser, bsem, bank, llm, llm_note, opts, outdir) -
     perf = {"source": "lab", "score": lab_s, "lab": lab, "lab_rows": lab_rows, "psi": None,
             "note": "Lab budget score from our own mobile load (no CPU/network throttling). Weight, requests and CLS are "
                     "reliable; timings are optimistic. Set PSI_API_KEY for Lighthouse + real-user (CrUX) data."}
+    if cap.reduced:
+        perf.update(source="unavailable", note="The full page crashed in Chromium, so no lab speed score is available.")
     if psi_task:
         try:
             psi = await asyncio.wait_for(psi_task, timeout=150)
@@ -344,7 +346,7 @@ async def _process_url(item, browser, bsem, bank, llm, llm_note, opts, outdir) -
         else:
             perf.update(source="PageSpeed Insights", score=psi["score"], psi=psi,
                         note="Score is Google Lighthouse (mobile). Lab budget checks below are from our own load.")
-    perf_label = "Lighthouse mobile" if perf["psi"] else "Lab budget estimate"
+    perf_label = "Lighthouse mobile" if perf["psi"] else ("Reduced capture" if cap.reduced else "Lab budget estimate")
 
     error = ""
     plan = None
@@ -352,7 +354,8 @@ async def _process_url(item, browser, bsem, bank, llm, llm_note, opts, outdir) -
         _p(opts, item, "waiting for batch" if llm.batch else "analysing")
         try:
             perf_brief = {"score": perf["score"], "source": perf["source"],
-                          **{k: lab[k] for k in ("total_kb", "js_kb", "requests", "cls", "third_party_domains", "lcp_lazy")}}
+                          **{k: lab[k] for k in ("total_kb", "js_kb", "requests", "cls", "third_party_domains", "lcp_lazy")
+                             if k in lab}}
             plan = await llm_mod.audit_url(llm, cap, F, rubric, tokens, perf_brief, profile, brief_for_model(comparison),
                                            comps, tag=outdir.name, batch_key=item.idx)
         except llm_mod.DryRun as e:
@@ -388,6 +391,9 @@ async def _process_url(item, browser, bsem, bank, llm, llm_note, opts, outdir) -
     r = _report_dict(item, opts, llm, outdir, plan, rubric, perf, perf_label, tokens, ctx, applied, rejected, error,
                      shots=shots, original="original.html", optimized="optimized.html", profile=profile,
                      comparison=comparison, comp_notes=comp_notes, target=target_summary)
+    if cap.reduced:
+        r["capture_note"] = ("Chromium crashed on the full storefront. The retry skipped media, embedded frames and "
+                             "some third-party requests, so widgets that depend on them may be missing from the audit.")
     write_report(outdir, r)
     return r
 

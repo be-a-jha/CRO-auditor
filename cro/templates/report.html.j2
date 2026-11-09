@@ -64,6 +64,7 @@ sup.cite a{font-size:11px;text-decoration:none;background:#eef0f7;color:#4a5ba8;
 </header>
 
 {% if r.error %}<div class="note"><b>Partial result.</b> {{ r.error }}</div>{% endif %}
+{% if r.capture_note %}<div class="note">{{ r.capture_note }}</div>{% endif %}
 
 <div class="grid g5">
   <div class="card ring">{{ ring(r.cro_score) }}<div><div class="k">CRO score</div><div class="big">{{ r.cro_score }}</div><div class="sub">Grade {{ r.grade }} · {{ (r.coverage*100)|int }}% measurable</div></div></div>

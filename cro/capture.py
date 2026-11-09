@@ -28,6 +28,10 @@ class CaptureError(Exception):
     pass
 
 
+class ViewCrash(CaptureError):
+    pass
+
+
 @dataclass
 class ViewCapture:
     facts: dict
@@ -48,6 +52,7 @@ class Capture:
     desktop: ViewCapture
     mobile: ViewCapture
     responses: dict = field(default_factory=dict)  # url -> (resource_type, bytes, content_type)
+    reduced: bool = False
 
 
 async def _settle(page, extra_ms=1500):
@@ -72,12 +77,36 @@ async def _scroll_through(page):
 
 
 async def _load_view(browser, url: str, cfg: dict, outdir: Path, name: str, want_dom: bool,
-                     responses: dict | None, timeout_ms: int) -> tuple[ViewCapture, str]:
-    ctx = await browser.new_context(locale="en-IN", timezone_id="Asia/Kolkata", ignore_https_errors=True, **cfg)
+                     responses: dict | None, timeout_ms: int, reduced: bool = False) -> tuple[ViewCapture, str]:
+    from playwright.async_api import Error as PWError, TimeoutError as PWTimeout
+
+    ctx = await browser.new_context(locale="en-IN", timezone_id="Asia/Kolkata", ignore_https_errors=True,
+                                    service_workers="block" if reduced else "allow", **cfg)
+    crashed = asyncio.Event()
     try:
-        from playwright.async_api import TimeoutError as PWTimeout
         await ctx.add_init_script(js.PERF_INIT)
         page = await ctx.new_page()
+        page.on("crash", lambda _: crashed.set())
+        if reduced:
+            async def trim(route):
+                request = route.request
+                kind = request.resource_type
+                if kind == "document":
+                    try:
+                        if request.frame != page.main_frame:
+                            return await route.abort()
+                    except PWError:  # some navigations start before Playwright has a frame
+                        pass
+                if kind == "media":
+                    return await route.abort()
+                if kind in ("script", "xhr", "fetch", "ping", "eventsource"):
+                    host = site_label(request.url)
+                    first_party = site_label(page.url) if page.url.startswith(("http://", "https://")) else site_label(url)
+                    if host not in (first_party, "cdn.shopify.com") and not host.endswith("." + first_party):
+                        return await route.abort()
+                await route.continue_()
+
+            await page.route("**/*", trim)
         if responses is not None:
             def on_response(r):
                 try:
@@ -138,6 +167,10 @@ async def _load_view(browser, url: str, cfg: dict, outdir: Path, name: str, want
             vc.outline = await page.evaluate(js.TAG_NODES)
             vc.html = await page.content()
         return vc, page.url
+    except PWError as e:
+        if crashed.is_set():
+            raise ViewCrash(f"Chromium crashed during {name} capture.") from e
+        raise
     finally:
         try:
             await asyncio.wait_for(ctx.close(), timeout=CONTEXT_CLOSE_SECONDS)
@@ -151,13 +184,17 @@ async def capture_url(browser, url: str, outdir: Path, timeout_ms: int = 45000, 
     Heavy storefronts sometimes time out under load: one retry with a longer timeout before giving up."""
     from playwright.async_api import TimeoutError as PWTimeout
     try:
-        return await _capture(browser, url, outdir, timeout_ms, light, slots)
-    except PWTimeout:
-        return await _capture(browser, url, outdir, int(timeout_ms * 1.5), light, slots)
+        try:
+            return await _capture(browser, url, outdir, timeout_ms, light, slots)
+        except PWTimeout:
+            return await _capture(browser, url, outdir, int(timeout_ms * 1.5), light, slots)
+    except ViewCrash as e:
+        print(f"[warn] {e} Retrying with fewer storefront resources.", flush=True)
+        return await _capture(browser, url, outdir, timeout_ms, light, slots, reduced=True)
 
 
 async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool,
-                   slots: asyncio.Semaphore | None) -> Capture:
+                   slots: asyncio.Semaphore | None, reduced: bool = False) -> Capture:
     outdir.mkdir(parents=True, exist_ok=True)
     responses: dict = {}
 
@@ -166,7 +203,7 @@ async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool
             # Start the deadline after the viewport has a browser slot.
             try:
                 return await asyncio.wait_for(
-                    _load_view(browser, url, cfg, outdir, name, want_dom, view_responses, timeout_ms),
+                    _load_view(browser, url, cfg, outdir, name, want_dom, view_responses, timeout_ms, reduced),
                     timeout=timeout_ms / 1000 + CAPTURE_OVERHEAD_SECONDS,
                 )
             except asyncio.TimeoutError as e:
@@ -187,7 +224,7 @@ async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool
             if not view.done():
                 view.cancel()
         await asyncio.gather(*views, return_exceptions=True)
-    return Capture(url=url, final_url=final, desktop=desktop, mobile=mobile, responses=responses)
+    return Capture(url=url, final_url=final, desktop=desktop, mobile=mobile, responses=responses, reduced=reduced)
 
 
 def freeze_html(html: str, base_url: str) -> str:

@@ -283,14 +283,14 @@ class CompetitorBank:
             if not (F.get("atc_present") or F.get("price_text")):
                 raise CaptureError("not a product page (no price or add-to-cart found)")
             rubric = rules.evaluate(F)
-            lab = lab_metrics(cap.final_url, cap.mobile.perf, cap.responses)
-            lab_s, _ = lab_score(lab)
+            lab = {} if cap.reduced else lab_metrics(cap.final_url, cap.mobile.perf, cap.responses)
+            lab_s = lab_score(lab)[0] if lab else None
             s = summarize(url, cap.final_url, cap, F, rubric, lab, lab_s)
             _jpeg(cap.mobile.screenshot_fold, d / "mobile_fold.jpg", 390, 844)
             _jpeg(cap.mobile.screenshot_full, d / "mobile_full.jpg", 390, 5000)
             _jpeg(cap.desktop.screenshot_fold, d / "desktop_fold.jpg", 960, 600)
             shutil.rmtree(d / "raw", ignore_errors=True)
-            s.update(ok=True, captured_ts=time.time(), dir=str(d))
+            s.update(ok=True, captured_ts=time.time(), dir=str(d), reduced_capture=cap.reduced)
         except Exception as e:  # a competitor failing never fails the audit
             shutil.rmtree(d / "raw", ignore_errors=True)
             s = {"ok": False, "url": url, "error": f"{type(e).__name__}: {str(e)[:160]}", "captured_ts": time.time()}
@@ -337,7 +337,10 @@ async def find_competitors(bank: CompetitorBank, profile: dict, target_url: str,
         got = await asyncio.gather(*(bank.get(u) for _, u in take))
         for (c, u), s in zip(take, got):
             if s:
-                out.append({**s, "brand": c.get("brand") or s["brand"], "why": c.get("why", "")})
+                brand = c.get("brand") or s["brand"]
+                out.append({**s, "brand": brand, "why": c.get("why", "")})
+                if s.get("reduced_capture"):
+                    notes.append(f"{brand}: captured with fewer storefront resources after a browser crash.")
             else:
                 notes.append(f"{c.get('brand') or host_of(u)}: page could not be captured ({u}).")
     if len(out) < 2:
