@@ -379,16 +379,24 @@ async def _process_url(item, browser, bsem, bank, llm, llm_note, opts, outdir) -
     shots_dir = outdir / "shots"
     shots_dir.mkdir(exist_ok=True)
     _p(opts, item, "rendering")
-    failed = await _render_all([
-        (browser, outdir / "original.html", shots_dir / "before_mobile.png", True, True, False),
-        (browser, outdir / "optimized.html", shots_dir / "after_mobile.png", True, True, True),
-        (browser, outdir / "original.html", shots_dir / "before_desktop.png", False, True, False, 3600),
-        (browser, outdir / "optimized.html", shots_dir / "after_desktop.png", False, True, True, 3600),
-    ], bsem)
+    full_preview = cap.mode != "static"
+    render_jobs = [
+        (browser, outdir / "optimized.html", shots_dir / "after_mobile.png", True, full_preview, True),
+        (browser, outdir / "optimized.html", shots_dir / "after_desktop.png", False, full_preview, True, 3600),
+    ]
+    if full_preview:
+        render_jobs += [
+            (browser, outdir / "original.html", shots_dir / "before_mobile.png", True, True, False),
+            (browser, outdir / "original.html", shots_dir / "before_desktop.png", False, True, False, 3600),
+        ]
+    else:
+        (shots_dir / "before_mobile.png").write_bytes(cap.mobile.screenshot_fold.read_bytes())
+        (shots_dir / "before_desktop.png").write_bytes(cap.desktop.screenshot_fold.read_bytes())
+    failed = await _render_all(render_jobs, bsem)
     if failed:
-        error = (error + " " if error else "") + "Preview render timed out (" + ", ".join(failed) + "); open optimized.html directly."
-    shots = {"before_mobile": "shots/before_mobile.png", "after_mobile": "shots/after_mobile.png",
-             "before_desktop": "shots/before_desktop.png", "after_desktop": "shots/after_desktop.png"}
+        error = (error + " " if error else "") + "Preview render failed (" + ", ".join(failed) + "); open optimized.html directly."
+    shots = {name: f"shots/{name}.png" for name in ("before_mobile", "after_mobile", "before_desktop", "after_desktop")
+             if (shots_dir / f"{name}.png").exists()}
     if (shots_dir / "after_mobile_sticky.png").exists():
         shots["after_sticky"] = "shots/after_mobile_sticky.png"
     r = _report_dict(item, opts, llm, outdir, plan, rubric, perf, perf_label, tokens, ctx, applied, rejected, error,
@@ -399,6 +407,8 @@ async def _process_url(item, browser, bsem, bank, llm, llm_note, opts, outdir) -
             "media, embedded frames and some third-party requests")
         r["capture_note"] = (f"Chromium crashed on the full storefront. The retry skipped {skipped}, "
                              "so widgets that depend on them may be missing from the audit.")
+        if not full_preview:
+            r["capture_note"] += " Before and after images show the first screen."
     write_report(outdir, r)
     return r
 

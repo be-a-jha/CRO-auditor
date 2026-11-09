@@ -139,17 +139,20 @@ async def _load_view(browser, url: str, cfg: dict, outdir: Path, name: str, want
         popups = await page.evaluate(js.REMOVE_POPUPS)
         await page.keyboard.press("Escape")
         cap = 6000 if name == "mobile" else 5000
-        await _scroll_through(page, cap)
-        popups += await page.evaluate(js.REMOVE_POPUPS)  # delayed popups
+        if mode != "static":
+            await _scroll_through(page, cap)
+            popups += await page.evaluate(js.REMOVE_POPUPS)  # delayed popups
         facts = await page.evaluate(js.FACTS)
         facts.update(await page.evaluate(js.LAYOUT))  # row_depth, floating
 
         fold = outdir / f"{name}_fold.png"
-        full = outdir / f"{name}_full.png"
         await page.screenshot(path=str(fold), timeout=60000)
-        doc_h = await page.evaluate("document.documentElement.scrollHeight")
-        await page.screenshot(path=str(full), full_page=True, timeout=90000,
-                              clip={"x": 0, "y": 0, "width": cfg["viewport"]["width"], "height": min(doc_h, cap)})
+        full = fold
+        if mode != "static":
+            full = outdir / f"{name}_full.png"
+            doc_h = await page.evaluate("document.documentElement.scrollHeight")
+            await page.screenshot(path=str(full), full_page=True, timeout=90000,
+                                  clip={"x": 0, "y": 0, "width": cfg["viewport"]["width"], "height": min(doc_h, cap)})
 
         # Is an add-to-cart reachable once the user scrolls past the main one?
         sticky = False
