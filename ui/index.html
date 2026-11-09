@@ -130,7 +130,7 @@ async function loadConfig() {
   const pill = $("keyPill");
   pill.className = "pill" + (cfg.has_key ? "" : " off");
   const change = cfg.public ? "" : ` · <a href="#" id="changeKey">change key</a>`;
-  pill.innerHTML = cfg.has_key ? `Claude: <b>connected</b> · ${esc(cfg.model)} + ${esc(cfg.fast_model)}${change}`
+  pill.innerHTML = cfg.has_key ? `Claude key: <b>configured</b> · ${esc(cfg.model)} + ${esc(cfg.fast_model)}${change}`
     : `Claude: <b>no key</b> · rules-only mode`;
   $("keyCard").classList.toggle("hidden", cfg.has_key || cfg.public);  // on a deployed site the owner sets the key
   $("passRow").classList.toggle("hidden", !cfg.needs_password);

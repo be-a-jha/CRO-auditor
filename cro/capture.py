@@ -19,6 +19,8 @@ DESKTOP = dict(viewport={"width": 1440, "height": 900}, user_agent=DESKTOP_UA, d
 MOBILE = dict(viewport={"width": 390, "height": 844}, user_agent=MOBILE_UA, device_scale_factor=2,
               is_mobile=True, has_touch=True)
 BLOCK_RE = re.compile(r"just a moment|attention required|access denied|verify you are human|captcha|are you a robot", re.I)
+CAPTURE_OVERHEAD_SECONDS = 45  # settling, scrolling, extraction and screenshots after navigation
+CONTEXT_CLOSE_SECONDS = 5
 
 
 class CaptureError(Exception):
@@ -71,18 +73,18 @@ async def _scroll_through(page):
 async def _load_view(browser, url: str, cfg: dict, outdir: Path, name: str, want_dom: bool,
                      responses: dict | None, timeout_ms: int) -> tuple[ViewCapture, str]:
     ctx = await browser.new_context(locale="en-IN", timezone_id="Asia/Kolkata", ignore_https_errors=True, **cfg)
-    await ctx.add_init_script(js.PERF_INIT)
-    page = await ctx.new_page()
-    if responses is not None:
-        def on_response(r):
-            try:
-                h = r.headers
-                responses[r.url] = (r.request.resource_type, int(h.get("content-length") or 0), h.get("content-type", ""))
-            except Exception:
-                pass
-        page.on("response", on_response)
     try:
         from playwright.async_api import TimeoutError as PWTimeout
+        await ctx.add_init_script(js.PERF_INIT)
+        page = await ctx.new_page()
+        if responses is not None:
+            def on_response(r):
+                try:
+                    h = r.headers
+                    responses[r.url] = (r.request.resource_type, int(h.get("content-length") or 0), h.get("content-type", ""))
+                except Exception:
+                    pass
+            page.on("response", on_response)
         resp = await page.goto(url, wait_until="commit", timeout=timeout_ms)
         try:  # heavy storefronts can hold DOMContentLoaded back behind blocking scripts; work with what rendered
             await page.wait_for_load_state("domcontentloaded", timeout=timeout_ms)
@@ -136,7 +138,10 @@ async def _load_view(browser, url: str, cfg: dict, outdir: Path, name: str, want
             vc.html = await page.content()
         return vc, page.url
     finally:
-        await ctx.close()
+        try:
+            await asyncio.wait_for(ctx.close(), timeout=CONTEXT_CLOSE_SECONDS)
+        except asyncio.TimeoutError:
+            print(f"[warn] {name} browser context did not close in time")
 
 
 async def capture_url(browser, url: str, outdir: Path, timeout_ms: int = 45000, light: bool = False) -> Capture:
@@ -152,10 +157,26 @@ async def capture_url(browser, url: str, outdir: Path, timeout_ms: int = 45000, 
 async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool) -> Capture:
     outdir.mkdir(parents=True, exist_ok=True)
     responses: dict = {}
-    (desktop, final), (mobile, _) = await asyncio.gather(
-        _load_view(browser, url, DESKTOP, outdir, "desktop", not light, None, timeout_ms),
-        _load_view(browser, url, MOBILE, outdir, "mobile", False, responses, timeout_ms),
-    )
+    views = [
+        asyncio.create_task(_load_view(browser, url, DESKTOP, outdir, "desktop", not light, None, timeout_ms)),
+        asyncio.create_task(_load_view(browser, url, MOBILE, outdir, "mobile", False, responses, timeout_ms)),
+    ]
+    # Playwright navigation and screenshot timeouts do not cover DOM evaluation or context setup.
+    try:
+        done, pending = await asyncio.wait(
+            views, timeout=timeout_ms / 1000 + CAPTURE_OVERHEAD_SECONDS, return_when=asyncio.FIRST_EXCEPTION,
+        )
+        for view in done:
+            view.result()  # Propagate a viewport error before retrying.
+        if pending:
+            raise CaptureError("Browser capture timed out. Retry the URL or upload screenshots of the page.")
+        (desktop, final), (mobile, _) = (view.result() for view in views)
+    finally:
+        # If either viewport fails, stop the other one before retrying or releasing the browser slot.
+        for view in views:
+            if not view.done():
+                view.cancel()
+        await asyncio.gather(*views, return_exceptions=True)
     return Capture(url=url, final_url=final, desktop=desktop, mobile=mobile, responses=responses)
 
 
