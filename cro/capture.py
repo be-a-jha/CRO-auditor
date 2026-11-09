@@ -52,7 +52,7 @@ class Capture:
     desktop: ViewCapture
     mobile: ViewCapture
     responses: dict = field(default_factory=dict)  # url -> (resource_type, bytes, content_type)
-    reduced: bool = False
+    mode: str = "full"
 
 
 async def _settle(page, extra_ms=1500):
@@ -63,11 +63,11 @@ async def _settle(page, extra_ms=1500):
     await page.wait_for_timeout(extra_ms)
 
 
-async def _scroll_through(page):
+async def _scroll_through(page, depth: int):
     height = await page.evaluate("document.documentElement.scrollHeight")
     step = await page.evaluate("innerHeight") * 0.8
     y, n = 0, 0
-    while y < min(height, 20000) and n < 30:
+    while y < min(height, depth) and n < 30:
         await page.evaluate(f"window.scrollTo(0, {int(y)})")
         await page.wait_for_timeout(180)
         y += step
@@ -77,17 +77,18 @@ async def _scroll_through(page):
 
 
 async def _load_view(browser, url: str, cfg: dict, outdir: Path, name: str, want_dom: bool,
-                     responses: dict | None, timeout_ms: int, reduced: bool = False) -> tuple[ViewCapture, str]:
+                     responses: dict | None, timeout_ms: int, mode: str = "full") -> tuple[ViewCapture, str]:
     from playwright.async_api import Error as PWError, TimeoutError as PWTimeout
 
     ctx = await browser.new_context(locale="en-IN", timezone_id="Asia/Kolkata", ignore_https_errors=True,
-                                    service_workers="block" if reduced else "allow", **cfg)
+                                    service_workers="allow" if mode == "full" else "block",
+                                    java_script_enabled=mode != "static", **cfg)
     crashed = asyncio.Event()
     try:
         await ctx.add_init_script(js.PERF_INIT)
         page = await ctx.new_page()
         page.on("crash", lambda _: crashed.set())
-        if reduced:
+        if mode != "full":
             async def trim(route):
                 request = route.request
                 kind = request.resource_type
@@ -137,7 +138,8 @@ async def _load_view(browser, url: str, cfg: dict, outdir: Path, name: str, want
         perf = await page.evaluate(js.READ_PERF)  # read before scrolling so CLS reflects load, not our scroll
         popups = await page.evaluate(js.REMOVE_POPUPS)
         await page.keyboard.press("Escape")
-        await _scroll_through(page)
+        cap = 6000 if name == "mobile" else 5000
+        await _scroll_through(page, cap)
         popups += await page.evaluate(js.REMOVE_POPUPS)  # delayed popups
         facts = await page.evaluate(js.FACTS)
         facts.update(await page.evaluate(js.LAYOUT))  # row_depth, floating
@@ -146,7 +148,6 @@ async def _load_view(browser, url: str, cfg: dict, outdir: Path, name: str, want
         full = outdir / f"{name}_full.png"
         await page.screenshot(path=str(fold), timeout=60000)
         doc_h = await page.evaluate("document.documentElement.scrollHeight")
-        cap = 6000 if name == "mobile" else 5000
         await page.screenshot(path=str(full), full_page=True, timeout=90000,
                               clip={"x": 0, "y": 0, "width": cfg["viewport"]["width"], "height": min(doc_h, cap)})
 
@@ -190,11 +191,15 @@ async def capture_url(browser, url: str, outdir: Path, timeout_ms: int = 45000, 
             return await _capture(browser, url, outdir, int(timeout_ms * 1.5), light, slots)
     except ViewCrash as e:
         print(f"[warn] {e} Retrying with fewer storefront resources.", flush=True)
-        return await _capture(browser, url, outdir, timeout_ms, light, slots, reduced=True)
+        try:
+            return await _capture(browser, url, outdir, timeout_ms, light, slots, mode="reduced")
+        except ViewCrash as retry_error:
+            print(f"[warn] {retry_error} Retrying with storefront scripts disabled.", flush=True)
+            return await _capture(browser, url, outdir, timeout_ms, light, slots, mode="static")
 
 
 async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool,
-                   slots: asyncio.Semaphore | None, reduced: bool = False) -> Capture:
+                   slots: asyncio.Semaphore | None, mode: str = "full") -> Capture:
     outdir.mkdir(parents=True, exist_ok=True)
     responses: dict = {}
 
@@ -203,7 +208,7 @@ async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool
             # Start the deadline after the viewport has a browser slot.
             try:
                 return await asyncio.wait_for(
-                    _load_view(browser, url, cfg, outdir, name, want_dom, view_responses, timeout_ms, reduced),
+                    _load_view(browser, url, cfg, outdir, name, want_dom, view_responses, timeout_ms, mode),
                     timeout=timeout_ms / 1000 + CAPTURE_OVERHEAD_SECONDS,
                 )
             except asyncio.TimeoutError as e:
@@ -224,7 +229,7 @@ async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool
             if not view.done():
                 view.cancel()
         await asyncio.gather(*views, return_exceptions=True)
-    return Capture(url=url, final_url=final, desktop=desktop, mobile=mobile, responses=responses, reduced=reduced)
+    return Capture(url=url, final_url=final, desktop=desktop, mobile=mobile, responses=responses, mode=mode)
 
 
 def freeze_html(html: str, base_url: str) -> str:

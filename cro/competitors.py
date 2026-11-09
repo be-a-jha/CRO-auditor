@@ -283,14 +283,14 @@ class CompetitorBank:
             if not (F.get("atc_present") or F.get("price_text")):
                 raise CaptureError("not a product page (no price or add-to-cart found)")
             rubric = rules.evaluate(F)
-            lab = {} if cap.reduced else lab_metrics(cap.final_url, cap.mobile.perf, cap.responses)
+            lab = lab_metrics(cap.final_url, cap.mobile.perf, cap.responses) if cap.mode == "full" else {}
             lab_s = lab_score(lab)[0] if lab else None
             s = summarize(url, cap.final_url, cap, F, rubric, lab, lab_s)
             _jpeg(cap.mobile.screenshot_fold, d / "mobile_fold.jpg", 390, 844)
             _jpeg(cap.mobile.screenshot_full, d / "mobile_full.jpg", 390, 5000)
             _jpeg(cap.desktop.screenshot_fold, d / "desktop_fold.jpg", 960, 600)
             shutil.rmtree(d / "raw", ignore_errors=True)
-            s.update(ok=True, captured_ts=time.time(), dir=str(d), reduced_capture=cap.reduced)
+            s.update(ok=True, captured_ts=time.time(), dir=str(d), reduced_capture=cap.mode != "full")
         except Exception as e:  # a competitor failing never fails the audit
             shutil.rmtree(d / "raw", ignore_errors=True)
             s = {"ok": False, "url": url, "error": f"{type(e).__name__}: {str(e)[:160]}", "captured_ts": time.time()}
