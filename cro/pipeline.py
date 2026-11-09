@@ -20,7 +20,7 @@ from playwright.async_api import async_playwright
 
 from . import llm as llm_mod
 from . import rules, tokens as tok
-from .capture import DESKTOP, MOBILE, CaptureError, capture_url, freeze_html, site_label
+from .capture import CONTEXT_CLOSE_SECONDS, DESKTOP, MOBILE, CaptureError, capture_url, freeze_html, site_label
 from .competitors import (CompetitorBank, brief_for_model, compare, copy_shots, find_competitors, heuristic_profile,
                           summarize, TRUST_LABELS)
 from .composite import View, css_width
@@ -64,6 +64,7 @@ class Options:
     competitors: list = field(default_factory=list)  # applied to every page without its own list
     cache_dir: Path = ROOT / "cache"
     progress: object = None    # optional callable(item, stage, row=None) for UIs
+    browser_slots: int | None = None
 
 
 def _p(opts: Options, item, stage: str, row: dict | None = None):
@@ -144,7 +145,7 @@ async def run(items: list[Item], opts: Options) -> list[dict]:
     t_start = time.time()
     async with async_playwright() as pw:
         browser = await pw.chromium.launch(args=["--no-sandbox", "--disable-dev-shm-usage"])  # Docker: tiny /dev/shm
-        bsem = asyncio.Semaphore(opts.concurrency)
+        bsem = asyncio.Semaphore(opts.browser_slots or opts.concurrency * 2)
         bank = CompetitorBank(opts.cache_dir, browser, bsem, opts.timeout_ms)
 
         async def one(item):
@@ -216,9 +217,13 @@ async def process(item: Item, browser, bsem, bank, llm, llm_note, opts: Options)
     return row
 
 
-async def _render_all(jobs: list) -> list[str]:
+async def _render_all(jobs: list, slots: asyncio.Semaphore) -> list[str]:
     """Before/after renders only illustrate the report: one that times out must never discard a finished audit."""
-    res = await asyncio.gather(*(_render(*j) for j in jobs), return_exceptions=True)
+    async def render(job):
+        async with slots:
+            await asyncio.wait_for(_render(*job), timeout=120)
+
+    res = await asyncio.gather(*(render(j) for j in jobs), return_exceptions=True)
     return [f"{Path(j[2]).stem}: {type(r).__name__}" for j, r in zip(jobs, res) if isinstance(r, Exception)]
 
 
@@ -260,7 +265,7 @@ async def _render(browser, html_path: Path, png: Path, mobile: bool, full: bool,
         else:
             await page.screenshot(path=str(png), timeout=90000)
     finally:
-        await ctx.close()
+        await asyncio.wait_for(ctx.close(), timeout=CONTEXT_CLOSE_SECONDS)
 
 
 async def _safe_psi(url: str) -> dict:
@@ -303,9 +308,8 @@ async def _competitors(item, bank, profile, target_url, opts, outdir, exclude_br
 
 async def _process_url(item, browser, bsem, bank, llm, llm_note, opts, outdir) -> dict:
     psi_task = asyncio.create_task(_safe_psi(item.raw)) if opts.psi else None
-    async with bsem:
-        _p(opts, item, "capturing")
-        cap = await capture_url(browser, item.raw, outdir / "capture", opts.timeout_ms)
+    _p(opts, item, "capturing")
+    cap = await capture_url(browser, item.raw, outdir / "capture", opts.timeout_ms, slots=bsem)
     _p(opts, item, "scoring")
     frozen = freeze_html(cap.desktop.html, cap.final_url)
     (outdir / "original.html").write_text(frozen, encoding="utf-8")
@@ -369,13 +373,12 @@ async def _process_url(item, browser, bsem, bank, llm, llm_note, opts, outdir) -
     shots_dir = outdir / "shots"
     shots_dir.mkdir(exist_ok=True)
     _p(opts, item, "rendering")
-    async with bsem:
-        failed = await _render_all([
-            (browser, outdir / "original.html", shots_dir / "before_mobile.png", True, True, False),
-            (browser, outdir / "optimized.html", shots_dir / "after_mobile.png", True, True, True),
-            (browser, outdir / "original.html", shots_dir / "before_desktop.png", False, True, False, 3600),
-            (browser, outdir / "optimized.html", shots_dir / "after_desktop.png", False, True, True, 3600),
-        ])
+    failed = await _render_all([
+        (browser, outdir / "original.html", shots_dir / "before_mobile.png", True, True, False),
+        (browser, outdir / "optimized.html", shots_dir / "after_mobile.png", True, True, True),
+        (browser, outdir / "original.html", shots_dir / "before_desktop.png", False, True, False, 3600),
+        (browser, outdir / "optimized.html", shots_dir / "after_desktop.png", False, True, True, 3600),
+    ], bsem)
     if failed:
         error = (error + " " if error else "") + "Preview render timed out (" + ", ".join(failed) + "); open optimized.html directly."
     shots = {"before_mobile": "shots/before_mobile.png", "after_mobile": "shots/after_mobile.png",
@@ -465,9 +468,8 @@ async def _process_image(item, browser, bsem, bank, llm, llm_note, opts, outdir)
     (outdir / "optimized.html").write_text(doc, encoding="utf-8")
     _p(opts, item, "rendering")
     shots = {f"before_{v}": f"shots/before_{v}{p.suffix.lower()}" for v, p in given.items()}
-    async with bsem:
-        failed = await _render_all([(browser, outdir / "optimized.html", shots_dir / f"after_{v}.png", v == "mobile", True,
-                                     True, 6000 if v == "mobile" else 4500) for v in given])
+    failed = await _render_all([(browser, outdir / "optimized.html", shots_dir / f"after_{v}.png", v == "mobile", True,
+                                 True, 6000 if v == "mobile" else 4500) for v in given], bsem)
     for v in given:
         if (shots_dir / f"after_{v}.png").exists():
             shots[f"after_{v}"] = f"shots/after_{v}.png"

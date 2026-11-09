@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import asyncio
 import re
+from contextlib import nullcontext
 from dataclasses import dataclass, field
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
@@ -144,32 +145,41 @@ async def _load_view(browser, url: str, cfg: dict, outdir: Path, name: str, want
             print(f"[warn] {name} browser context did not close in time")
 
 
-async def capture_url(browser, url: str, outdir: Path, timeout_ms: int = 45000, light: bool = False) -> Capture:
+async def capture_url(browser, url: str, outdir: Path, timeout_ms: int = 45000, light: bool = False,
+                      *, slots: asyncio.Semaphore | None = None) -> Capture:
     """light=True (competitor pages): facts and screenshots only, no DOM snapshot, brand tokens or node outline.
     Heavy storefronts sometimes time out under load: one retry with a longer timeout before giving up."""
     from playwright.async_api import TimeoutError as PWTimeout
     try:
-        return await _capture(browser, url, outdir, timeout_ms, light)
+        return await _capture(browser, url, outdir, timeout_ms, light, slots)
     except PWTimeout:
-        return await _capture(browser, url, outdir, int(timeout_ms * 1.5), light)
+        return await _capture(browser, url, outdir, int(timeout_ms * 1.5), light, slots)
 
 
-async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool) -> Capture:
+async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool,
+                   slots: asyncio.Semaphore | None) -> Capture:
     outdir.mkdir(parents=True, exist_ok=True)
     responses: dict = {}
+
+    async def load(cfg, name, want_dom, view_responses):
+        async with slots if slots is not None else nullcontext():
+            # Start the deadline after the viewport has a browser slot.
+            try:
+                return await asyncio.wait_for(
+                    _load_view(browser, url, cfg, outdir, name, want_dom, view_responses, timeout_ms),
+                    timeout=timeout_ms / 1000 + CAPTURE_OVERHEAD_SECONDS,
+                )
+            except asyncio.TimeoutError as e:
+                raise CaptureError(f"{name.title()} browser capture timed out. Retry the URL or upload screenshots.") from e
+
     views = [
-        asyncio.create_task(_load_view(browser, url, DESKTOP, outdir, "desktop", not light, None, timeout_ms)),
-        asyncio.create_task(_load_view(browser, url, MOBILE, outdir, "mobile", False, responses, timeout_ms)),
+        asyncio.create_task(load(DESKTOP, "desktop", not light, None)),
+        asyncio.create_task(load(MOBILE, "mobile", False, responses)),
     ]
-    # Playwright navigation and screenshot timeouts do not cover DOM evaluation or context setup.
     try:
-        done, pending = await asyncio.wait(
-            views, timeout=timeout_ms / 1000 + CAPTURE_OVERHEAD_SECONDS, return_when=asyncio.FIRST_EXCEPTION,
-        )
+        done, _ = await asyncio.wait(views, return_when=asyncio.FIRST_EXCEPTION)
         for view in done:
             view.result()  # Propagate a viewport error before retrying.
-        if pending:
-            raise CaptureError("Browser capture timed out. Retry the URL or upload screenshots of the page.")
         (desktop, final), (mobile, _) = (view.result() for view in views)
     finally:
         # If either viewport fails, stop the other one before retrying or releasing the browser slot.

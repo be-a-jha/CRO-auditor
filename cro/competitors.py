@@ -277,8 +277,7 @@ class CompetitorBank:
                 return s if s.get("ok") else None
         d.mkdir(parents=True, exist_ok=True)
         try:
-            async with self.bsem:
-                cap = await capture_url(self.browser, url, d / "raw", self.timeout_ms, light=True)
+            cap = await capture_url(self.browser, url, d / "raw", self.timeout_ms, light=True, slots=self.bsem)
             F = rules.normalize_dom(cap.desktop.facts, cap.mobile.facts, cap.mobile.sticky_cta, cap.mobile.popups,
                                     "rgb(255, 255, 255)", cap.desktop.popups)
             if not (F.get("atc_present") or F.get("price_text")):

@@ -24,7 +24,7 @@ class CaptureTimeoutTest(unittest.IsolatedAsyncioTestCase):
 
         with tempfile.TemporaryDirectory() as tmp, patch.object(capture, "_load_view", stall), \
                 patch.object(capture, "CAPTURE_OVERHEAD_SECONDS", 0):
-            with self.assertRaisesRegex(capture.CaptureError, "Browser capture timed out"):
+            with self.assertRaisesRegex(capture.CaptureError, "browser capture timed out"):
                 await asyncio.wait_for(capture.capture_url(None, "https://example.com", Path(tmp), 50), timeout=1)
         self.assertEqual(closed, {"desktop", "mobile"})
 
@@ -46,6 +46,28 @@ class CaptureTimeoutTest(unittest.IsolatedAsyncioTestCase):
         with tempfile.TemporaryDirectory() as tmp, patch.object(capture, "_load_view", load):
             result = await asyncio.wait_for(capture.capture_url(None, "https://example.com", Path(tmp), 100), timeout=1)
         self.assertEqual((result.desktop, result.mobile), ("desktop", "mobile"))
+
+    async def test_shared_slot_serializes_views_across_pages(self):
+        active = 0
+
+        async def load(browser, url, cfg, outdir, name, want_dom, responses, timeout_ms):
+            nonlocal active
+            active += 1
+            try:
+                self.assertEqual(active, 1)
+                await asyncio.sleep(0.01)
+                return name, url
+            finally:
+                active -= 1
+
+        slots = asyncio.Semaphore(1)
+        with tempfile.TemporaryDirectory() as tmp, patch.object(capture, "_load_view", load):
+            first, second = await asyncio.gather(
+                capture.capture_url(None, "https://example.com/first", Path(tmp) / "first", slots=slots),
+                capture.capture_url(None, "https://example.com/second", Path(tmp) / "second", slots=slots),
+            )
+        self.assertEqual((first.desktop, first.mobile, second.desktop, second.mobile),
+                         ("desktop", "mobile", "desktop", "mobile"))
 
 
 if __name__ == "__main__":

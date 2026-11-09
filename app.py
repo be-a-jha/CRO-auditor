@@ -112,6 +112,7 @@ def start_job(payload: dict) -> str:
     use_llm = bool(payload.get("use_llm", True)) and bool(os.getenv("ANTHROPIC_API_KEY"))
     comps = [c.strip() for c in re.split(r"[\s,]+", str(payload.get("competitors", ""))) if c.strip()]
     opts = Options(out=outdir, concurrency=max(1, min(int(payload.get("concurrency", 2)), 8)), use_llm=use_llm,
+                   browser_slots=1 if PUBLIC else None,  # Limit simultaneous Chromium tabs on hosted instances.
                    psi=bool(payload.get("psi", True)), model=os.getenv("CRO_MODEL", "claude-sonnet-5-5"),
                    fast_model=os.getenv("CRO_FAST_MODEL", "claude-haiku-5-5"), effort=os.getenv("CRO_EFFORT", "low"),
                    batch=bool(payload.get("batch")) and use_llm, competitors=comps,

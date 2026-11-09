@@ -133,6 +133,7 @@ async function loadConfig() {
   pill.innerHTML = cfg.has_key ? `Claude key: <b>configured</b> · ${esc(cfg.model)} + ${esc(cfg.fast_model)}${change}`
     : `Claude: <b>no key</b> · rules-only mode`;
   $("keyCard").classList.toggle("hidden", cfg.has_key || cfg.public);  // on a deployed site the owner sets the key
+  if (cfg.public) $("conc").closest("label").style.display = "none";  // hosted browser views share one slot
   $("passRow").classList.toggle("hidden", !cfg.needs_password);
   $("sampleCard").classList.toggle("hidden", !cfg.has_samples);
   $("useLlm").disabled = !cfg.has_key;
