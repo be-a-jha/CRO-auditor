@@ -405,7 +405,7 @@ async def _process_url(item, browser, bsem, bank, llm, llm_note, opts, outdir) -
     if reduced:
         skipped = "storefront scripts, media and embedded frames" if cap.mode == "static" else (
             "media, embedded frames and some third-party requests")
-        r["capture_note"] = (f"Chromium crashed on the full storefront. The retry skipped {skipped}, "
+        r["capture_note"] = (f"The full browser capture could not finish. The retry skipped {skipped}, "
                              "so widgets that depend on them may be missing from the audit.")
         if not full_preview:
             r["capture_note"] += " Before and after images show the first screen."

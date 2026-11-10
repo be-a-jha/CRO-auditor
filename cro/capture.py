@@ -32,6 +32,10 @@ class ViewCrash(CaptureError):
     pass
 
 
+class ViewTimeout(CaptureError):
+    pass
+
+
 @dataclass
 class ViewCapture:
     facts: dict
@@ -185,20 +189,22 @@ async def _load_view(browser, url: str, cfg: dict, outdir: Path, name: str, want
 async def capture_url(browser, url: str, outdir: Path, timeout_ms: int = 45000, light: bool = False,
                       *, slots: asyncio.Semaphore | None = None) -> Capture:
     """light=True (competitor pages): facts and screenshots only, no DOM snapshot, brand tokens or node outline.
-    Heavy storefronts sometimes time out under load: one retry with a longer timeout before giving up."""
+    Retry slow navigation once and use lighter capture when the browser crashes or exceeds its deadline."""
     from playwright.async_api import TimeoutError as PWTimeout
     try:
         try:
             return await _capture(browser, url, outdir, timeout_ms, light, slots)
         except PWTimeout:
             return await _capture(browser, url, outdir, int(timeout_ms * 1.5), light, slots)
-    except ViewCrash as e:
-        print(f"[warn] {e} Retrying with fewer storefront resources.", flush=True)
-        try:
-            return await _capture(browser, url, outdir, timeout_ms, light, slots, mode="reduced")
-        except ViewCrash as retry_error:
-            print(f"[warn] {retry_error} Retrying with storefront scripts disabled.", flush=True)
-            return await _capture(browser, url, outdir, timeout_ms, light, slots, mode="static")
+    except (ViewCrash, ViewTimeout, PWTimeout) as failure:
+        if isinstance(failure, ViewCrash):
+            print(f"[warn] {failure} Retrying with fewer storefront resources.", flush=True)
+            try:
+                return await _capture(browser, url, outdir, timeout_ms, light, slots, mode="reduced")
+            except (ViewCrash, ViewTimeout, PWTimeout) as retry_error:
+                failure = retry_error
+        print(f"[warn] {failure} Retrying with storefront scripts disabled.", flush=True)
+        return await _capture(browser, url, outdir, timeout_ms, light, slots, mode="static")
 
 
 async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool,
@@ -215,7 +221,7 @@ async def _capture(browser, url: str, outdir: Path, timeout_ms: int, light: bool
                     timeout=timeout_ms / 1000 + CAPTURE_OVERHEAD_SECONDS,
                 )
             except asyncio.TimeoutError as e:
-                raise CaptureError(f"{name.title()} browser capture timed out. Retry the URL or upload screenshots.") from e
+                raise ViewTimeout(f"{name.title()} browser capture timed out. Retry the URL or upload screenshots.") from e
 
     views = [
         asyncio.create_task(load(DESKTOP, "desktop", not light, None)),

@@ -47,6 +47,26 @@ class CaptureTimeoutTest(unittest.IsolatedAsyncioTestCase):
             result = await asyncio.wait_for(capture.capture_url(None, "https://example.com", Path(tmp), 100), timeout=1)
         self.assertEqual((result.desktop, result.mobile), ("desktop", "mobile"))
 
+    async def test_capture_deadline_falls_back_to_static_after_cleanup(self):
+        desktop_closed = asyncio.Event()
+
+        async def load(browser, url, cfg, outdir, name, want_dom, responses, timeout_ms, mode):
+            if mode == "full" and name == "desktop":
+                try:
+                    await asyncio.Future()
+                finally:
+                    desktop_closed.set()
+            if mode != "full":
+                self.assertEqual(mode, "static")
+                self.assertTrue(desktop_closed.is_set())
+            return name, url
+
+        with tempfile.TemporaryDirectory() as tmp, patch.object(capture, "_load_view", load), \
+                patch.object(capture, "CAPTURE_OVERHEAD_SECONDS", 0):
+            result = await asyncio.wait_for(capture.capture_url(None, "https://example.com", Path(tmp), 50), timeout=1)
+        self.assertEqual(result.mode, "static")
+        self.assertEqual((result.desktop, result.mobile), ("desktop", "mobile"))
+
     async def test_shared_slot_serializes_views_across_pages(self):
         active = 0
 

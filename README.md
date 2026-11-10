@@ -60,26 +60,28 @@ mockup. Open each report or optimised page from the table, or **Download HTML** 
 the audits through the Batch API at half price (results usually within minutes). A mobile and a desktop screenshot of the
 same page are paired automatically when their file names differ only by "mobile" / "desktop".
 
-## Deploy (free, shareable link)
+## Deploy with a shareable link
 
-The app runs on a free [Hugging Face Space](https://huggingface.co/spaces) (Docker: 2 CPU, 16 GB RAM), which gives a public
-link like `https://<you>-cro-auditor.hf.space`. The settings block at the top of this README configures the Space.
+For an assignment demo, create a [Hugging Face Docker Space](https://huggingface.co/docs/hub/spaces-sdks-docker) on CPU
+Basic (2 vCPU, 16 GB RAM). Creating a personal Docker Space requires Hugging Face PRO. CPU Basic has no hourly compute fee
+and can sleep when idle. Use Protected visibility if you want anyone with the app link to be able to open it while keeping
+the source private. The settings block at the top of this README configures the Space.
 
 ```bash
 pip install huggingface_hub
-hf auth login                                                   # a token with "write" access from huggingface.co/settings/tokens
-python deploy_hf.py cro-auditor --key --password "pick-a-password"
+hf auth login
+python deploy_hf.py your-hf-username/cro-auditor
 ```
 
-`--key` stores your `ANTHROPIC_API_KEY` from `.env` as a private secret of the Space; `--password` stores `APP_PASSWORD`,
-so only people you give the password to can start audits (and spend your credit). Anyone with the link can open the
-sample reports. The first build takes about 5-10 minutes (it installs Chrome); run the script again to redeploy.
+In the Space settings, add `APP_PASSWORD` as a secret before adding `ANTHROPIC_API_KEY`. Anyone with the app link can
+open the sample reports. Only reviewers with the password can start an audit and use your Claude credits. Once the build
+finishes, open the app link in a private browser window and complete an audit on the product URL you plan to demonstrate.
+Share the app URL and its `/sample/index.html` link so reviewers can also open finished examples immediately.
 
 On a deployed site (public mode) the key can't be changed from the page, each run is capped at 10 pages (`MAX_PAGES`),
 one run happens at a time, and every response tells search engines not to index it, since reports contain snapshots of
-real stores. A free Space sleeps after 48 hours without visitors and wakes up (about a minute) on the next visit; runs
-are not kept across restarts. The same `Dockerfile` works on any container host (set `ANTHROPIC_API_KEY`,
-`APP_PASSWORD`; the app listens on `$PORT`).
+real stores. New runs are stored locally and can be lost on restart. Download important runs as ZIP files. The same
+`Dockerfile` works on a Render Docker Web Service. The app listens on `$PORT`.
 
 ## Run from the terminal
 

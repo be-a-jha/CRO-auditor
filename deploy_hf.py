@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deploy the web app to a free Hugging Face Space and get a public link.
+"""Deploy the web app to a Hugging Face Docker Space and get a shareable link.
 
   pip install huggingface_hub
   hf auth login                      # paste a token with "write" access from huggingface.co/settings/tokens
@@ -18,7 +18,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-IGNORE = [".env", ".git/*", "out/*", "out_*/*", "cache/*", "tests/*", "*/__pycache__/*", "*.pyc"]
+APP_FILES = ["README.md", "Dockerfile", ".dockerignore", "requirements.txt", "app.py", "run.py",
+             "cro/*", "ui/*", "sample_output/*"]
+IGNORE = ["*/__pycache__/*", "*.pyc", "*.env", ".env.*"]
 
 
 def main():
@@ -50,8 +52,9 @@ def main():
         api.add_space_secret(repo_id, "APP_PASSWORD", a.password)
         print("APP_PASSWORD stored as a private Space secret.")
 
-    print(f"Uploading to {repo_id} (skipping {', '.join(IGNORE)}) ...")
-    api.upload_folder(folder_path=str(ROOT), repo_id=repo_id, repo_type="space", ignore_patterns=IGNORE,
+    print(f"Uploading app files and bundled sample reports to {repo_id} ...")
+    api.upload_folder(folder_path=str(ROOT), repo_id=repo_id, repo_type="space", allow_patterns=APP_FILES,
+                      ignore_patterns=IGNORE,
                       commit_message="Deploy CRO auditor")
     owner, name = repo_id.split("/")
     host = re.sub(r"[^a-z0-9-]", "-", f"{owner}-{name}".lower())
@@ -59,7 +62,7 @@ def main():
           f"  https://{host}.hf.space\n"
           f"Build logs and settings: https://huggingface.co/spaces/{repo_id}")
     if not a.password:
-        print("Note: no --password given, so anyone with the link can run audits on your API key.")
+        print("Set APP_PASSWORD in Space settings before enabling live audits.")
 
 
 if __name__ == "__main__":
