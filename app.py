@@ -25,6 +25,7 @@ from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlparse
+from uuid import uuid4
 
 from cro.llm import check_key
 from cro.pipeline import Options, parse_inputs
@@ -33,7 +34,8 @@ from cro.pipeline import run as run_pipeline
 from run import load_env
 
 ROOT = Path(__file__).resolve().parent
-OUT_ROOT = ROOT / "out"
+DATA_ROOT = Path(os.getenv("CRO_DATA_DIR", ROOT))
+OUT_ROOT = DATA_ROOT / "out"
 RUNS = OUT_ROOT / "ui-runs"
 SAMPLE = ROOT / "sample_output"
 UI_FILE = ROOT / "ui" / "index.html"
@@ -48,6 +50,7 @@ IMG_EXT = {".png", ".jpg", ".jpeg", ".webp"}
 ROW_KEYS = ("cro_score", "grade", "mobile_score", "desktop_score", "comp_avg", "rank", "competitors", "perf_score",
             "perf_source", "critical", "top_issues", "cost_usd", "error")
 LOCK = threading.Lock()
+START_LOCK = threading.Lock()
 JOBS: dict[str, dict] = {}
 
 
@@ -64,11 +67,11 @@ def _clean_url(line: str) -> str | None:
     return f"{raw} | {label.strip()}" if label.strip() else raw
 
 
-def start_job(payload: dict) -> str:
+def start_job(payload: dict, api_key: str | None = None) -> str:
     with LOCK:
         if any(j["status"] == "running" for j in JOBS.values()):
             raise ValueError("A run is already in progress. Wait for it to finish.")
-    run_id = datetime.now().strftime("%Y%m%d-%H%M%S")
+    run_id = f"{datetime.now():%Y%m%d-%H%M%S}-{uuid4().hex[:8]}"
     outdir = RUNS / run_id
     inputs_dir = outdir / "inputs"
     inputs_dir.mkdir(parents=True, exist_ok=True)
@@ -109,15 +112,15 @@ def start_job(payload: dict) -> str:
                 if row:
                     it["row"] = row
 
-    use_llm = bool(payload.get("use_llm", True)) and bool(os.getenv("ANTHROPIC_API_KEY"))
+    use_llm = bool(payload.get("use_llm", True)) and bool(api_key or os.getenv("ANTHROPIC_API_KEY"))
     comps = [c.strip() for c in re.split(r"[\s,]+", str(payload.get("competitors", ""))) if c.strip()]
     opts = Options(out=outdir, concurrency=max(1, min(int(payload.get("concurrency", 2)), 8)), use_llm=use_llm,
                    browser_slots=1 if PUBLIC else None,  # Limit simultaneous Chromium tabs on hosted instances.
                    psi=bool(payload.get("psi", True)), model=os.getenv("CRO_MODEL", "claude-sonnet-5-5"),
                    fast_model=os.getenv("CRO_FAST_MODEL", "claude-haiku-5-5"), effort=os.getenv("CRO_EFFORT", "low"),
                    batch=bool(payload.get("batch")) and use_llm, competitors=comps,
-                   n_competitors=max(0, min(int(payload.get("n_competitors", 3)), 3)), cache_dir=ROOT / "cache",
-                   progress=progress)
+                   n_competitors=max(0, min(int(payload.get("n_competitors", 3)), 3)), cache_dir=DATA_ROOT / "cache",
+                   progress=progress, api_key=api_key)
 
     def worker():
         try:
@@ -231,6 +234,9 @@ class Handler(BaseHTTPRequestHandler):
         pass
 
     def _host_ok(self) -> bool:
+        token = os.getenv("CRO_WORKER_TOKEN")
+        if token:
+            return hmac.compare_digest((self.headers.get("X-CRO-Worker-Token") or "").encode(), token.encode())
         host = (self.headers.get("Host") or "").split(":")[0]
         return PUBLIC or host in ("127.0.0.1", "localhost")  # locally: blocks DNS-rebinding
 
@@ -303,7 +309,10 @@ class Handler(BaseHTTPRequestHandler):
                 pw = os.getenv("APP_PASSWORD") or ""
                 if pw and not hmac.compare_digest(str(data.get("password", "")).encode(), pw.encode()):
                     return self._json(401, {"error": "Wrong access password."})
-                return self._json(200, {"id": start_job(data)})
+                api_key = self.headers.get("X-CRO-Anthropic-Key") if os.getenv("CRO_WORKER_TOKEN") else None
+                with START_LOCK:
+                    run_id = start_job(data, api_key=api_key)
+                return self._json(200, {"id": run_id})
             if path == "/api/key":
                 if PUBLIC:  # a visitor must never replace the owner's key on a deployed site
                     return self._json(403, {"error": "On this site the API key is set by the owner."})

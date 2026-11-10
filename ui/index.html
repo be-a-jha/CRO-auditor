@@ -140,7 +140,8 @@ async function loadConfig() {
   $("sampleCard").classList.toggle("hidden", !cfg.has_samples);
   $("useLlm").disabled = !cfg.has_key;
   $("useLlm").checked = cfg.has_key;
-  $("batch").disabled = !cfg.has_key;
+  $("batch").disabled = !cfg.has_key || cfg.supports_batch === false;
+  if (cfg.supports_batch === false) $("batch").closest("label").style.display = "none";
   const ck = $("changeKey");
   if (ck) ck.onclick = (e) => { e.preventDefault(); $("keyCard").classList.remove("hidden"); $("keyInput").focus(); };
   updateHint();
@@ -200,8 +201,15 @@ $("runBtn").onclick = async () => {
   $("runBtn").disabled = true;
   const body = {urls: $("urls").value, files, use_llm: $("useLlm").checked, psi: $("psi").checked, concurrency: +$("conc").value,
     batch: $("batch").checked, competitors: $("comps").value, n_competitors: +$("ncomp").value, password: $("pass").value};
+  const payload = JSON.stringify(body);
+  if (cfg.max_request_bytes && new TextEncoder().encode(payload).length > cfg.max_request_bytes) {
+    $("runErr").textContent = "These screenshots are too large for one upload. Try smaller JPEGs or run them separately.";
+    $("runBtn").disabled = false;
+    return;
+  }
+  $("runBtn").textContent = "Starting audit…";
   try {
-    const res = await fetch("/api/runs", {method: "POST", headers: H, body: JSON.stringify(body)});
+    const res = await fetch("/api/runs", {method: "POST", headers: H, body: payload});
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Could not start the audit.");
     files = []; renderFiles();
@@ -211,18 +219,36 @@ $("runBtn").onclick = async () => {
       ? "Could not reach the live audit service. The sample reports are available below."
       : error.message;
     $("runBtn").disabled = false;
+  } finally {
+    $("runBtn").textContent = "Run audit";
   }
 };
 
 function watch(id) {
   clearInterval(pollTimer);
   $("jobCard").classList.remove("hidden");
+  let checking = false;
   const tick = async () => {
-    const res = await fetch(`/api/runs/${id}`);
-    if (!res.ok) return;
-    const j = await res.json();
-    renderJob(j);
-    if (j.status !== "running") { clearInterval(pollTimer); $("runBtn").disabled = false; loadRuns(); }
+    if (checking) return;
+    checking = true;
+    try {
+      const res = await fetch(`/api/runs/${id}`, {signal: AbortSignal.timeout(15000)});
+      if (res.status === 404) {
+        clearInterval(pollTimer);
+        $("jobTitle").textContent = "This run is unavailable. Start a new audit to retry.";
+        $("runBtn").disabled = false;
+        return;
+      }
+      if (!res.ok) throw new Error("Could not load audit progress.");
+      const j = await res.json();
+      $("runErr").textContent = "";
+      renderJob(j);
+      if (j.status !== "running") { clearInterval(pollTimer); $("runBtn").disabled = false; loadRuns(); }
+    } catch {
+      $("runErr").textContent = "Lost contact with the audit worker. Reconnecting…";
+    } finally {
+      checking = false;
+    }
   };
   tick();
   pollTimer = setInterval(tick, 1500);

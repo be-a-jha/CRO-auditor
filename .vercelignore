@@ -6,4 +6,5 @@ out/
 out_*
 cache/
 dist/
+node_modules/
 **/__pycache__/

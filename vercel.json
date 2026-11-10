@@ -1,25 +1,31 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "installCommand": "",
+  "installCommand": "npm ci",
   "buildCommand": "node scripts/build-vercel.mjs",
   "outputDirectory": "dist",
+  "functions": {
+    "api/worker.mjs": {
+      "maxDuration": 240,
+      "includeFiles": "{app.py,run.py,requirements.txt,cro/**,scripts/start-vercel-worker.sh}"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/config",
-      "destination": "https://cro-auditor-production-14c8.up.railway.app/api/config"
+      "destination": "/api/worker?route=config"
     },
     {
       "source": "/api/runs",
-      "destination": "https://cro-auditor-production-14c8.up.railway.app/api/runs"
+      "destination": "/api/worker?route=runs"
     },
     {
-      "source": "/api/runs/:path*",
-      "destination": "https://cro-auditor-production-14c8.up.railway.app/api/runs/:path*"
+      "source": "/api/runs/:id",
+      "destination": "/api/worker?route=run&id=:id"
     },
     {
       "source": "/out/ui-runs/:path*",
-      "destination": "https://cro-auditor-production-14c8.up.railway.app/out/ui-runs/:path*"
+      "destination": "/api/worker?route=asset&file=:path*"
     }
   ],
   "headers": [

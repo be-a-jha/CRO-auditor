@@ -64,14 +64,17 @@ same page are paired automatically when their file names differ only by "mobile"
 
 ### Vercel Hobby
 
-Deploy this repo with Vercel Hobby for a personal assignment. The included `vercel.json` builds the interface and sample
-reports as static files. Requests to start audits, check progress and open new reports go to the existing Railway service.
-Chromium and the Claude key stay on the backend. Sample reports open on Vercel even when the browser service is down.
+Deploy this repo with Vercel Hobby for a personal assignment. Vercel serves the interface and sample reports as static files.
+A Vercel Function starts a persistent Vercel Sandbox to run Python and Chromium. The Sandbox retains generated reports
+across idle sessions. Sample reports open even when the browser worker is stopped.
 
-From the repository root, run `vercel link`, choose your **Hobby** team, and then run `vercel deploy --prod`. You can also
-import the repository in the Vercel dashboard and use the checked-in build settings. Use the production `.vercel.app` link
-for the assignment and include its `/sample/index.html` link for the finished examples. To point at a different backend,
-update the rewrite destinations in `vercel.json` and redeploy.
+Link the repository to your **Hobby** team in Vercel. Add a long random `CRO_WORKER_TOKEN` and your `ANTHROPIC_API_KEY`
+as sensitive Production environment variables. Keep Vercel's system environment variables enabled for Sandbox OIDC.
+`APP_PASSWORD` is optional. Deploy with `vercel deploy --prod` or push to the linked production branch. Share the production
+`.vercel.app` URL and `/sample/index.html` for the finished examples.
+
+The first audit after a cold start may wait while the browser worker starts. The Vercel version accepts up to three pages
+per run and a 4.4 MB request including encoded screenshots. It uses the regular Claude API for live audits.
 
 ### Docker Space
 

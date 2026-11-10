@@ -65,6 +65,7 @@ class Options:
     cache_dir: Path = ROOT / "cache"
     progress: object = None    # optional callable(item, stage, row=None) for UIs
     browser_slots: int | None = None
+    api_key: str | None = field(default=None, repr=False)
 
 
 def _p(opts: Options, item, stage: str, row: dict | None = None):
@@ -136,7 +137,7 @@ async def run(items: list[Item], opts: Options) -> list[dict]:
     if opts.use_llm:
         try:
             llm = llm_mod.LLM(opts.model, opts.fast_model, opts.llm_concurrency, opts.effort, batch=opts.batch,
-                              dry_run_dir=(opts.out / "_dry_run") if opts.dry_run else None)
+                              dry_run_dir=(opts.out / "_dry_run") if opts.dry_run else None, api_key=opts.api_key)
         except llm_mod.LLMError as e:
             llm_note = f"{e}: using the rules engine for analysis and mockups (screenshot inputs need the API key)."
             print(f"[warn] {llm_note}")

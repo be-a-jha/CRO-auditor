@@ -182,7 +182,7 @@ def _usage(msg) -> dict:
 
 class LLM:
     def __init__(self, model: str, fast_model: str = "claude-haiku-5-5", concurrency: int = 3, effort: str = "low",
-                 batch: bool = False, dry_run_dir: Path | None = None):
+                 batch: bool = False, dry_run_dir: Path | None = None, api_key: str | None = None):
         self.model, self.fast_model, self.effort = model, fast_model, effort
         self.dry_run_dir = dry_run_dir
         self.sem = asyncio.Semaphore(concurrency)
@@ -192,9 +192,9 @@ class LLM:
         self.batch = None
         if not dry_run_dir:
             import anthropic
-            if not os.getenv("ANTHROPIC_API_KEY"):
+            if not (api_key or os.getenv("ANTHROPIC_API_KEY")):
                 raise LLMError("ANTHROPIC_API_KEY not set")
-            self.client = anthropic.AsyncAnthropic(max_retries=6, timeout=600)
+            self.client = anthropic.AsyncAnthropic(api_key=api_key, max_retries=6, timeout=600)
             if batch:
                 self.batch = BatchQueue(self)
 

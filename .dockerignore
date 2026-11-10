@@ -5,5 +5,8 @@ out/
 out_*/
 cache/
 tests/
+node_modules/
+dist/
+.vercel/
 **/__pycache__
 *.pyc
