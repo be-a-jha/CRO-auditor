@@ -1,0 +1,31 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "node scripts/build-vercel.mjs",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/api/config",
+      "destination": "https://cro-auditor-production-14c8.up.railway.app/api/config"
+    },
+    {
+      "source": "/api/runs",
+      "destination": "https://cro-auditor-production-14c8.up.railway.app/api/runs"
+    },
+    {
+      "source": "/api/runs/:path*",
+      "destination": "https://cro-auditor-production-14c8.up.railway.app/api/runs/:path*"
+    },
+    {
+      "source": "/out/ui-runs/:path*",
+      "destination": "https://cro-auditor-production-14c8.up.railway.app/out/ui-runs/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
+  ]
+}

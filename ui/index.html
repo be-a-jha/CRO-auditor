@@ -87,12 +87,12 @@ td.nw{white-space:nowrap}td .sub{max-width:240px;white-space:nowrap;overflow:hid
     </div>
     <div class="actions">
       <span class="hint" id="costHint"></span>
-      <button class="btn" id="runBtn">Run audit</button>
+      <button class="btn" id="runBtn" disabled>Run audit</button>
     </div>
     <div id="runErr" class="err"></div>
   </div>
 
-  <div id="sampleCard" class="card hidden">
+  <div id="sampleCard" class="card">
     <h2>Sample reports</h2>
     <p class="hint" style="margin:0">Four finished audits (protein, skincare, furniture by URL and by screenshot), each benchmarked
       against its competitors. <a href="/sample/index.html" target="_blank">Open the sample dashboard</a></p>
@@ -126,7 +126,9 @@ const STAGE = {queued: "Queued", capturing: "Loading page", scoring: "Scoring", 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 
 async function loadConfig() {
-  cfg = await (await fetch("/api/config")).json();
+  const res = await fetch("/api/config", {signal: AbortSignal.timeout(12000)});
+  if (!res.ok) throw new Error("Could not reach the live audit service.");
+  cfg = await res.json();
   const pill = $("keyPill");
   pill.className = "pill" + (cfg.has_key ? "" : " off");
   const change = cfg.public ? "" : ` · <a href="#" id="changeKey">change key</a>`;
@@ -198,11 +200,18 @@ $("runBtn").onclick = async () => {
   $("runBtn").disabled = true;
   const body = {urls: $("urls").value, files, use_llm: $("useLlm").checked, psi: $("psi").checked, concurrency: +$("conc").value,
     batch: $("batch").checked, competitors: $("comps").value, n_competitors: +$("ncomp").value, password: $("pass").value};
-  const res = await fetch("/api/runs", {method: "POST", headers: H, body: JSON.stringify(body)});
-  const data = await res.json();
-  if (!res.ok) { $("runErr").textContent = data.error; $("runBtn").disabled = false; return; }
-  files = []; renderFiles();
-  watch(data.id);
+  try {
+    const res = await fetch("/api/runs", {method: "POST", headers: H, body: JSON.stringify(body)});
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Could not start the audit.");
+    files = []; renderFiles();
+    watch(data.id);
+  } catch (error) {
+    $("runErr").textContent = error instanceof SyntaxError || error instanceof TypeError
+      ? "Could not reach the live audit service. The sample reports are available below."
+      : error.message;
+    $("runBtn").disabled = false;
+  }
 };
 
 function watch(id) {
@@ -246,21 +255,38 @@ function renderJob(j) {
 }
 
 async function loadRuns() {
-  const runs = await (await fetch("/api/runs")).json();
+  let runs;
+  try {
+    const res = await fetch("/api/runs", {signal: AbortSignal.timeout(12000)});
+    if (!res.ok) throw new Error("Could not load recent runs.");
+    runs = await res.json();
+  } catch {
+    $("runs").textContent = "Recent runs are temporarily unavailable.";
+    return [];
+  }
   $("runs").innerHTML = runs.length ? runs.map(r => {
     const when = r.id.replace(/^(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2}).*/, "$3/$2/$1 $4:$5");
     const meta = r.status === "running" ? "running" : r.status === "done" ? `${r.pages} pages · avg CRO ${r.avg_cro ?? "n/a"}` : "incomplete";
     return `<li><a href="#" data-id="${esc(r.id)}">${when}</a> <span class="hint">${meta}</span>${r.index ? ` · <a href="${r.index}" target="_blank">dashboard</a>` : ""}</li>`;
   }).join("") : '<li class="hint" style="list-style:none;margin-left:-18px">No runs yet.</li>';
   $("runs").querySelectorAll("a[data-id]").forEach(a => a.onclick = (e) => { e.preventDefault(); watch(a.dataset.id); });
+  return runs;
 }
 
-loadConfig();
-loadRuns().then(async () => {
-  const runs = await (await fetch("/api/runs")).json();
+async function init() {
+  try {
+    await loadConfig();
+  } catch {
+    $("keyPill").textContent = "Live audit service unavailable";
+    $("runErr").textContent = "Live audits are temporarily unavailable. Open the sample reports below.";
+    return;
+  }
+  const runs = await loadRuns();
   const live = runs.find(r => r.status === "running");
-  if (live) { $("runBtn").disabled = true; watch(live.id); }
-});
+  if (live) watch(live.id);
+  else $("runBtn").disabled = false;
+}
+init();
 </script>
 </body>
 </html>

@@ -5,6 +5,8 @@
 out/
 out_*/
 cache/
+dist/
+.vercel/
 
 # python
 __pycache__/
@@ -17,3 +19,4 @@ venv/
 Thumbs.db
 .vscode/
 .idea/
+.vercel

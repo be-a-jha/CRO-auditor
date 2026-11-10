@@ -62,6 +62,19 @@ same page are paired automatically when their file names differ only by "mobile"
 
 ## Deploy with a shareable link
 
+### Vercel Hobby
+
+Deploy this repo with Vercel Hobby for a personal assignment. The included `vercel.json` builds the interface and sample
+reports as static files. Requests to start audits, check progress and open new reports go to the existing Railway service.
+Chromium and the Claude key stay on the backend. Sample reports open on Vercel even when the browser service is down.
+
+From the repository root, run `vercel link`, choose your **Hobby** team, and then run `vercel deploy --prod`. You can also
+import the repository in the Vercel dashboard and use the checked-in build settings. Use the production `.vercel.app` link
+for the assignment and include its `/sample/index.html` link for the finished examples. To point at a different backend,
+update the rewrite destinations in `vercel.json` and redeploy.
+
+### Docker Space
+
 For an assignment demo, create a [Hugging Face Docker Space](https://huggingface.co/docs/hub/spaces-sdks-docker) on CPU
 Basic (2 vCPU, 16 GB RAM). Creating a personal Docker Space requires Hugging Face PRO. CPU Basic has no hourly compute fee
 and can sleep when idle. Use Protected visibility if you want anyone with the app link to be able to open it while keeping
